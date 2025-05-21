@@ -1,0 +1,21 @@
+---
+import "@/styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  description = "Especialistas creando muebles exclusivos de alta calidad, diseñados para ti.",
+  title = "Ebanos Muebles",
+} = Astro.props;
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+<meta name="generator" content={Astro.generator} />
+<meta name="description" content={description} />
+
+<title>{title}</title>

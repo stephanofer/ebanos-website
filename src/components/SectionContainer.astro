@@ -1,0 +1,17 @@
+---
+interface Props{
+    name: string
+}
+
+const {name} = Astro.props;
+---
+<section id={name}>
+    <slot/>
+</section>
+
+<style>
+    section{
+        max-width: 1200px;
+        background-color: red;
+    }
+</style>

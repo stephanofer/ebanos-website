@@ -1,0 +1,66 @@
+---
+const {
+  target = "_blank",
+  rel = "noopener noreferrer",
+  role = "link",
+  type = "primary",
+  style,
+  ...props
+} = Astro.props;
+
+const typeClass = type === "secondary" ? "secondary" : "primary";
+---
+
+<a
+  {...props}
+  target={target}
+  rel={rel}
+  role={role}
+  class:list={["sociallink", typeClass]}
+>
+  <slot name="icon-left" />
+  <span> <slot /> </span>
+  <slot name="icon-right" />
+</a>
+
+<style>
+  .sociallink {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    font-family: "Clash";
+    font-weight: 450;
+    border-width: 1px;
+    border-style: solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition:
+      color 150ms cubic-bezier(0.4, 0, 0.2, 1),
+      background-color 150ms cubic-bezier(0.4, 0, 0.2, 1),
+      border-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .primary {
+    background-color: white;
+    border-color: black;
+
+    &:hover {
+      background-color: black;
+      color: white;
+    }
+  }
+
+  .secondary {
+    color: white;
+    background-color: var(--secondary);
+
+    &:hover {
+      background-color: white;
+      color: black;
+    }
+  }
+</style>

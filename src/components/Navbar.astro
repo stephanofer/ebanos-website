@@ -1,0 +1,84 @@
+---
+import Logo from "@/assets/main-logo.svg";
+import Arrow from "@/assets/arrow-up.svg";
+import Cart from "@/assets/cart.svg";
+import Button from "@/components/Button.astro";
+import { Image } from "astro:assets";
+---
+
+<header>
+  <nav>
+    <div class="logo">
+        <Logo height={40} width={450} class="logo-svg"/>
+    </div>
+
+    <ul class="nav-links">
+      <li><a href="/" class="selected">Servicios</a></li>
+      <li><a href="/about">Sobre Nosotros</a></li>
+      <li><a href="/services">Contacto</a></li>
+    </ul>
+
+    <div class="buttons">
+      <Button href="mailto:contacto@stephanofer.com">
+        <Arrow slot="icon-right" />
+        ¡Diseño Personalizado!
+      </Button>
+      <Button href="mailto:contacto@stephanofer.com" type="secondary">
+        <Cart slot="icon-left" />
+        ¡Ultimos Proyectos!
+      </Button>
+    </div>
+  </nav>
+</header>
+
+<style>
+  header {
+    padding: 1.5rem;
+    color: #000;
+  }
+
+  .logo{
+    height: 100%;
+  }
+
+  .logo-svg{
+    display: flex;
+    align-content: center;
+  }
+
+
+
+  nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .nav-links {
+    display: none;
+    gap: 2rem;
+
+    @media (width > 1024px) {
+      display: flex;
+    }
+
+    a {
+        font-family: "Clash";
+        font-weight: 450;
+        font-size: var(--fs-base);
+    }
+  }
+
+  a {
+    color: inherit;
+  }
+
+  .buttons {
+    display: none;
+    gap: 1rem;
+    @media (width > 1024px) {
+      display: flex;
+    }
+  }
+</style>

@@ -1,0 +1,28 @@
+---
+import MainHead from "@/components/MainHead.astro";
+
+interface Props {
+  title?: string;
+}
+
+const { title= "Ebanos Muebles" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <MainHead title={title}/>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+
+<style>
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
+</style>
