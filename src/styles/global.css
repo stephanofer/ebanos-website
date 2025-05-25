@@ -30,7 +30,7 @@
   --fs-xl: clamp(1.95rem, 0.76vi + 1.76rem, 2.37rem);
   --fs-xxl: clamp(2.44rem, 1.3vi + 2.12rem, 3.16rem);
   --fs-xxxl: clamp(3.05rem, 2.1vi + 2.53rem, 6.21rem);
-  --foreground: rgb(255 255 255);
+  --foreground: rgb(0, 0, 0);
   --secondary: rgb(69 69 69);
 }
 
@@ -49,6 +49,7 @@ body {
 
 a {
   text-decoration: none;
+  color: black;
 }
 
 li {

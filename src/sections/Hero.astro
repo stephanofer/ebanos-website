@@ -1,0 +1,173 @@
+---
+import Button from "@/components/Button.astro";
+import Arrow from "@/assets/arrow-up.svg";
+import Cart from "@/assets/cart.svg";
+import { Image } from "astro:assets";
+import Image1 from "@/assets/image1.webp";
+import Image2 from "@/assets/image2.webp";
+import Image3 from "@/assets/image3.webp";
+---
+
+<div class="container">
+  <div class="container-title">
+    <div class="texts">
+      <h1>
+        Especialista creando muebles exclusivos de alta calidad, diseñados para
+        ti en Chiclayo
+      </h1>
+      <p>
+        Con más de <span>30 años de experiencia</span>, garantizamos increíbles
+        acabados y puntualidad en cada entrega.
+      </p>
+    </div>
+    <div class="buttons">
+      <Button href="mailto:contacto@stephanofer.com" type="secondary">
+        <Cart slot="icon-left" />
+        ¡Ultimos Proyectos!
+      </Button>
+      <Button href="mailto:contacto@stephanofer.com">
+        <Arrow slot="icon-right" />
+        ¡Diseño Personalizado!
+      </Button>
+    </div>
+  </div>
+  <div class="container-images">
+    <div class="image-card top-left">
+      <span class="badge badge-1">Nuevo</span>
+      <Image
+        src={Image1}
+        alt="Silla gris con detalle naranja"
+        width={500}
+        height={300}
+        quality={100}
+      />
+    </div>
+    <div class="image-card top-right">
+      <span class="badge badge-2">Nuevo</span>
+      <Image
+        src={Image3}
+        alt="Silla gris con detalle naranja"
+        width={500}
+        height={300}
+        quality={100}
+      />
+    </div>
+    <div class="image-card bottom">
+      <span class="badge badge-3">Nuevo</span>
+      <Image
+        src={Image2}
+        class="especial"
+        alt="Silla gris con detalle naranja"
+        width={500}
+        height={300}
+        quality={100}
+      />
+    </div>
+  </div>
+</div>
+
+<style>
+  .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: calc(100dvh - 139.09px);
+  }
+
+  .container-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 70%;
+    /* justify-items: ; */
+  }
+  h1 {
+    font-family: "Clash";
+    font-weight: 500;
+    font-size: var(--fs-xxl);
+    max-width: 23ch;
+  }
+
+  /* h2 {
+    font-family: "Clash";
+    font-weight: 500;
+    font-size: var(--fs-xxl);
+    max-width: 25ch;
+  } */
+
+  p {
+    margin-top: 3.5rem;
+    max-width: 50ch;
+    font-size: var(--fs-md);
+  }
+  span {
+    font-weight: 600;
+    color: var(--secondary);
+  }
+
+  .buttons {
+    margin-bottom: 5rem;
+    display: flex;
+    gap: 1rem;
+  }
+  .container-images {
+    /* align-self: center; */
+    display: grid;
+    grid-template-areas:
+      "top-left top-right"
+      "bottom bottom";
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    max-height: 80%;
+    max-width: 40%;
+  }
+
+  .image-card {
+    position: relative;
+    border-radius: 0.75rem;
+    overflow: hidden;
+  }
+
+  .top-left {
+    grid-area: top-left;
+  }
+
+  .top-right {
+    grid-area: top-right;
+  }
+
+  .bottom {
+    grid-area: bottom;
+  }
+
+  .badge {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-family: "Clash";
+    font-size: var(--fs-sm);
+    font-weight: 550;
+  }
+
+  .badge-1 {
+    background-color: rgb(227 240 250);
+  }
+
+  .badge-2 {
+    background-color: rgb(232, 250, 227);
+  }
+
+  .badge-3 {
+    background-color: rgb(250, 227, 249);
+  }
+
+  .image-card img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+</style>

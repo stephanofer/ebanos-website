@@ -1,15 +1,15 @@
 ---
-import BaseLayout from '@/layouts/BaseLayout.astro';
-import Announce from '@/components/Announce.astro'
-import Navbar from '@/components/Navbar.astro'
-import SectionContainer from '@/components/SectionContainer.astro'
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Announce from "@/components/Announce.astro";
+import Navbar from "@/components/Navbar.astro";
+import SectionContainer from "@/components/SectionContainer.astro";
+import Hero from "@/sections/Hero.astro";
 ---
 
 <BaseLayout>
-    <Announce />
-    <Navbar />
-    <SectionContainer name="main">
-        <h1>Hola mundo</h1>
-    </SectionContainer>
-    
+  <Announce />
+  <Navbar />
+  <SectionContainer name="main">
+    <Hero/>
+  </SectionContainer>
 </BaseLayout>
