@@ -129,11 +129,14 @@ import Image2 from "@/assets/image4.webp";
   .buttons {
     margin-top: 2.5rem;
     display: flex;
-    gap: 1rem;
+    gap: 0.5rem;
+    flex-direction: column;
     justify-content: center;
 
     @media (width > 1024px) {
       margin-top: 5rem;
+      gap: 1rem;
+
       justify-content: start;
     }
   }
@@ -142,15 +145,15 @@ import Image2 from "@/assets/image4.webp";
     display: none;
 
     @media (width > 1024px) {
-    display: grid;
-    grid-template-areas:
-      "top-left top-right"
-      "bottom bottom";
-    grid-template-rows: 1fr 1fr;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-    max-height: 80%;
-    max-width: 45%;
+      display: grid;
+      grid-template-areas:
+        "top-left top-right"
+        "bottom bottom";
+      grid-template-rows: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      max-height: 80%;
+      max-width: 45%;
     }
   }
 
