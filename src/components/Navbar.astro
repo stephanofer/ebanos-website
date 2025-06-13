@@ -10,9 +10,8 @@ import { Image } from "astro:assets";
   <nav>
     <div class="logo">
       <a href="/">
-        <Logo height={70} width={400} class="logo-svg"/>
+        <Logo height={70} width={300} class="logo-svg" />
       </a>
-       <!-- Ebanos -->
     </div>
 
     <ul class="nav-links">
@@ -42,8 +41,13 @@ import { Image } from "astro:assets";
 
   .logo {
     height: 100%;
+    display: none;
+
+    @media (width > 1024px) {
+      display: flex;
+    }
   }
-/* 
+  /* 
   .logo-svg {
     display: flex;
     align-content: center;
@@ -52,18 +56,22 @@ import { Image } from "astro:assets";
   nav {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+
+    @media (width > 1024px) {
+      justify-content: space-between;
+    }
   }
 
   .nav-links {
-    display: none;
+    display: flex;
     gap: 2rem;
 
-    @media (width > 1024px) {
-      display: flex;
-    }
-
+    /* @media (width > 1024px) { */
+    /* display: flex; */
+    /* } */
+    /*  */
     a {
       font-family: "Clash";
       font-weight: 450;
