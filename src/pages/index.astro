@@ -4,12 +4,16 @@ import Announce from "@/components/Announce.astro";
 import Navbar from "@/components/Navbar.astro";
 import SectionContainer from "@/components/SectionContainer.astro";
 import Hero from "@/sections/Hero.astro";
+import Categories from "@/sections/Categories.astro";
 ---
 
 <BaseLayout>
   <Announce />
   <Navbar />
+    <SectionContainer name="main">
+    <Hero />
+  </SectionContainer>
   <SectionContainer name="main">
-    <Hero/>
+    <Categories />
   </SectionContainer>
 </BaseLayout>

@@ -1,0 +1,110 @@
+---
+import Layout from '../layouts/BaseLayout.astro';
+---
+
+<Layout title="404 - Page Not Found">
+  <main class="error-container">
+    <h1 class="error-code">404</h1>
+    <h2 class="error-title">Oops! Page Not Found</h2>
+    <p class="error-description">
+      The page you're looking for doesn't exist or has been moved. Let's get you back on track!
+    </p>
+    <a href="/" class="home-button">
+      Return Home
+    </a>
+  </main>
+</Layout>
+
+<style>
+  .error-container {
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem;
+    text-align: center;
+  }
+
+  .error-code {
+    font-size: 6rem;
+    font-weight: bold;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+    animation: fadeIn 0.5s ease-in;
+  }
+
+  .error-title {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    animation: slideUp 0.5s ease-out;
+  }
+
+  .error-description {
+    color: #666;
+    margin-bottom: 2rem;
+    max-width: 28rem;
+    animation: slideUp 0.5s ease-out 0.2s both;
+  }
+
+  .home-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: white;
+    background-color: var(--color-primary);
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+    animation: fadeIn 0.5s ease-in 0.4s both;
+  }
+
+  .home-button:hover {
+    background-color: var(--color-primary-hover);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .error-description {
+      color: #a0a0a0;
+    }
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.5s ease-out;
+  }
+
+  .animate-slide-up-delayed {
+    animation: slideUp 0.5s ease-out 0.2s both;
+  }
+
+  .animate-fade-in-delayed {
+    animation: fadeIn 0.5s ease-in 0.4s both;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style> 
