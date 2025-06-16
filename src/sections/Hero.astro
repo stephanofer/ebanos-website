@@ -37,6 +37,8 @@ import Image2 from "@/assets/image4.webp";
         width={1000}
         height={500}
         quality={100}
+        loading="eager"
+        fetchpriority="high"
       />
     </div>
     <div class="image-card top-right">
@@ -47,6 +49,8 @@ import Image2 from "@/assets/image4.webp";
         width={1000}
         height={500}
         quality={100}
+        loading="eager"
+        fetchpriority="high"
       />
     </div>
     <div class="image-card bottom">
@@ -58,6 +62,8 @@ import Image2 from "@/assets/image4.webp";
         width={1000}
         height={500}
         quality={100}
+        loading="eager"
+        fetchpriority="high"
       />
     </div>
   </div>
@@ -84,7 +90,8 @@ import Image2 from "@/assets/image4.webp";
     display: flex;
     flex-direction: column;
     height: 70%;
-    justify-content: center;
+    justify-content: start;
+    margin-top: 3rem;
   }
   h1 {
     font-family: "Clash";
@@ -152,7 +159,7 @@ import Image2 from "@/assets/image4.webp";
       grid-template-rows: 1fr 1fr;
       grid-template-columns: 1fr 1fr;
       gap: 1rem;
-      max-height: 80%;
+      max-height: 70%;
       max-width: 45%;
     }
   }
