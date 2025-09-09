@@ -2,82 +2,117 @@
 import Button from "@/components/Button.astro";
 import Arrow from "@/assets/arrow-up.svg";
 import Cart from "@/assets/cart.svg";
-import { Image } from "astro:assets";
-import Image1 from "@/assets/image1.webp";
-import Image3 from "@/assets/image2.webp";
-import Image2 from "@/assets/image4.webp";
+import Heart from "@/assets/heart.svg";
+import Calendar from "@/assets/calendar.svg";
+import Shield from "@/assets/shield.svg";
+import Package from "@/assets/package.svg";
+import { Image, Picture } from "astro:assets";
+// import Image1 from "@/assets/image1.webp";
+// import Image2 from "@/assets/image2.webp";
+// import Image3 from "@/assets/image4.webp";
 ---
 
 <div class="container">
   <div class="container-title">
+    <div class="badge-trust">
+      <Heart />
+      <span>Confianza de más de 3,000 familias en todo el país</span>
+    </div>
     <div class="texts">
-      <h1>Fabricantes de Mobiliario de Alta Calidad en Chiclayo</h1>
-      <p>
-        <span>+30 años</span> creando muebles excepcionales con acabados perfectos
-        y entregas puntuales.
-      </p>
+      <h1>Fabricantes de Mobiliario de <br /> Alta Calidad en Chiclayo</h1>
+      <p>Muebles excepcionales con acabados perfectos y entregas puntuales.</p>
     </div>
     <div class="buttons">
       <Button href="mailto:contacto@stephanofer.com" type="secondary">
         <Cart slot="icon-left" />
-        ¡Ultimos Proyectos!
+        ¡Últimos Proyectos!
       </Button>
       <Button href="mailto:contacto@stephanofer.com">
         <Arrow slot="icon-right" />
         ¡Diseño Personalizado!
       </Button>
     </div>
+
+    <div class="resalt-points">
+      <div class="point">
+        <div class="resalt-point-1">
+          +25
+          <Calendar width={50} height={50} />
+        </div>
+        <div class="resalt-point-1-2">Años de experiencia</div>
+      </div>
+      <div class="point">
+        <div class="resalt-point-1">
+          100%
+          <Shield width={50} height={50} />
+        </div>
+        <div class="resalt-point-1-2">Calidad Garantizada</div>
+      </div>
+      <div class="point">
+        <div class="resalt-point-1">
+          +3,000
+          <Package width={50} height={50} />
+        </div>
+        <div class="resalt-point-1-2">Entregas Realizadas</div>
+      </div>
+    </div>
   </div>
   <div class="container-images">
     <div class="image-card top-left">
       <span class="badge badge-1">NUEVO</span>
-      <Image
-        src={Image1}
-        alt="Silla gris con detalle naranja"
-        width={1000}
-        height={500}
-        quality={100}
+      <img
+        src="/assets/image1.webp"
+        alt="Closet de tres puertas corredizas, fabricado en melamina de 18 mm, en un sofisticado color TAUPE, Tocador integrado con iluminación LED, que agrega un toque práctico y elegante a tu espacio., Diseño moderno y funcional, ideal para maximizar cada rincón de tu dormitorio."
         loading="eager"
         fetchpriority="high"
-      />
-    </div>
-    <div class="image-card top-right">
-      <span class="badge badge-2">NUEVO</span>
-      <Image
-        src={Image2}
-        alt="Silla gris con detalle naranja"
-        width={1000}
-        height={500}
-        quality={100}
-        loading="eager"
-        fetchpriority="high"
-      />
-    </div>
-    <div class="image-card bottom">
-      <span class="badge badge-3">NUEVO</span>
-      <Image
-        src={Image3}
-        class="especial"
-        alt="Silla gris con detalle naranja"
-        width={1000}
-        height={500}
-        quality={100}
-        loading="eager"
-        fetchpriority="high"
+        decoding="async"
+        class="image-top"
       />
     </div>
   </div>
 </div>
 
 <style>
+  .resalt-points {
+    margin-top: 2.5rem;
+    display: flex;
+    gap: 2rem;
+
+    & > div:first-of-type {
+      border-right: 1px solid var(--secondary);
+      padding-right: 2.5rem;
+    }
+
+    & > div:nth-child(2) {
+      border-right: 1px solid var(--secondary);
+      padding-right: 2rem;
+    }
+  }
+
+  .resalt-point-1 {
+    display: flex;
+    align-items: center;
+    font-size: var(--fs-lg);
+    gap: 1rem;
+    font-weight: 600;
+    justify-content: center;
+  }
+
+  .point {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .resalt-point-1-2 {
+    font-weight: 500;
+    font-size: var(--fs-base);
+  }
+
   .container {
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
-    /* align-items: center; */
-
-    /* height: calc(100dvh - 163.09px); */
-
+    /* gap: 4rem; */
     @media (width > 1024px) {
       flex-direction: row;
       justify-content: space-between;
@@ -89,15 +124,33 @@ import Image2 from "@/assets/image4.webp";
   .container-title {
     display: flex;
     flex-direction: column;
-    height: 70%;
-    justify-content: start;
-    margin-top: 3rem;
+    /* width: 50%; */
   }
+
+  .badge-trust {
+    background-color: rgb(69 69 69/ 0.2);
+    padding: 0.3rem 1rem;
+    border-radius: 1rem;
+    border: 2px solid var(--secondary);
+    color: var(--secondary);
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    width: fit-content;
+    font-size: var(--fs-base);
+    font-family: "Inter";
+
+    & span {
+      font-weight: 500;
+    }
+  }
+
   h1 {
+    margin-top: 1rem;
     font-family: "Clash";
     font-weight: 500;
     font-size: var(--fs-lg);
-    max-width: 18ch;
+    max-width: 20ch;
     text-align: center;
 
     @media (width > 1024px) {
@@ -111,75 +164,52 @@ import Image2 from "@/assets/image4.webp";
     flex-direction: column;
     align-items: center;
     @media (width > 1024px) {
-      /* font-size: var(--fs-xxl); */
       align-items: start;
     }
   }
 
   p {
-    max-width: 45ch;
-    font-size: var(--fs-base);
+    font-size: var(--fs-sm);
     text-align: center;
-    margin-top: 1.5rem;
+    font-family: "Inter";
+    font-weight: 350;
 
     @media (width > 1024px) {
-      margin-top: 3.5rem;
       font-size: var(--fs-md);
       text-align: left;
     }
   }
-  span {
-    font-weight: 600;
-    color: var(--secondary);
-  }
-
   .buttons {
-    margin-top: 2.5rem;
+    margin-top: 2rem;
     display: flex;
     gap: 0.5rem;
     flex-direction: column;
     justify-content: center;
 
     @media (width > 1024px) {
-      margin-top: 5rem;
       gap: 1rem;
       flex-direction: row;
       justify-content: start;
     }
   }
-  .container-images {
-    /* align-self: center; */
-    display: none;
 
-    @media (width > 1024px) {
-      display: grid;
-      grid-template-areas:
-        "top-left top-right"
-        "bottom bottom";
-      grid-template-rows: 1fr 1fr;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      max-height: 70%;
-      max-width: 45%;
-    }
+  .container-images {
+    width: 40%;
+    height: 80%;
+    gap: 1rem;
+    
+    /* @media (width > 1024px) { */
+      /* width: 45%; */
+      /* height: 80%; */
+    /* } */
   }
 
   .image-card {
+    width: 100%;
+    height: 100%;
     position: relative;
     border-radius: 0.75rem;
     overflow: hidden;
-  }
-
-  .top-left {
-    grid-area: top-left;
-  }
-
-  .top-right {
-    grid-area: top-right;
-  }
-
-  .bottom {
-    grid-area: bottom;
   }
 
   .badge {
@@ -197,17 +227,11 @@ import Image2 from "@/assets/image4.webp";
     background-color: rgb(227 240 250);
   }
 
-  .badge-2 {
-    background-color: rgb(232, 250, 227);
-  }
-
-  .badge-3 {
-    background-color: rgb(250, 227, 249);
-  }
-
-  .image-card img {
+  img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
+    border-radius: 0.75rem;
   }
 </style>
