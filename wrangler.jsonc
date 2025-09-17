@@ -1,6 +1,8 @@
 {
   "name": "ebanos-website",
   "compatibility_date": "2025-06-22",
+  "workers_dev": false,
+  "preview_urls": false,
   "routes": [
     {
       "pattern": "ebanosmuebles.com",
