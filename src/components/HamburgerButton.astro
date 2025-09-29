@@ -1,0 +1,67 @@
+---
+import { MOBILE_MENU_CONTENT_ID } from '@/consts/mobile-menu'
+const { class: className, id = "" } = Astro.props
+---
+
+<button 
+  class:list={["hamburger-button", className]} 
+  id={id}
+  aria-expanded="false"
+  aria-controls={MOBILE_MENU_CONTENT_ID}
+  aria-label="Abrir menú de navegación"
+>
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+
+<style>
+  .hamburger-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 2rem;
+    height: 2rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 50;
+    position: relative;
+    transition: transform 0.3s ease;
+
+    @media (width > 1024px) {
+      display: none !important;
+    }
+  }
+
+  .hamburger-button:hover {
+    transform: scale(1.05);
+  }
+
+  .hamburger-button span {
+    width: 2rem;
+    height: 0.25rem;
+    background: #000;
+    border-radius: 10px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    transform-origin: 1px;
+  }
+
+  .hamburger-button.open span:first-child {
+    transform: rotate(45deg);
+    background: #000;
+  }
+
+  .hamburger-button.open span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+
+  .hamburger-button.open span:nth-child(3) {
+    transform: rotate(-45deg);
+    background: #000;
+  }
+
+</style>

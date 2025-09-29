@@ -1,19 +1,26 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import Announce from "@/components/Announce.astro";
-import Navbar from "@/components/Navbar.astro";
 import SectionContainer from "@/components/SectionContainer.astro";
 import Hero from "@/sections/Hero.astro";
 import Categories from "@/sections/Categories.astro";
+import Services from "@/sections/Services.astro";
+import Testimonials from "@/sections/Testimonials.astro";
+
+const title = "Ebanos Muebles - Inicio";
+const description = "Especialistas creando muebles exclusivos de alta calidad, diseñados para ti.";
 ---
 
-<BaseLayout>
-  <Announce />
-  <Navbar />
-    <SectionContainer name="main">
-    <Hero />
-  </SectionContainer>
+<BaseLayout title={title} description={description}>
   <SectionContainer name="main">
+    <!-- <Hero /> -->
+  </SectionContainer>
+  <SectionContainer name="categorias">
     <Categories />
+  </SectionContainer>
+  <SectionContainer name="servicios">
+    <Services />
+  </SectionContainer>
+  <SectionContainer name="testimonios">
+    <Testimonials />
   </SectionContainer>
 </BaseLayout>

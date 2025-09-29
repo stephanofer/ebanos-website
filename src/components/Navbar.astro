@@ -1,9 +1,16 @@
 ---
+import { MOBILE_MENU_CONTENT_ID } from "@/consts/mobile-menu";
+import HamburgerButton from "@/components/HamburgerButton.astro";
 import Logo from "@/assets/main-logo.svg";
 import Arrow from "@/assets/arrow-up.svg";
 import Cart from "@/assets/cart.svg";
 import Button from "@/components/Button.astro";
-import { Image } from "astro:assets";
+
+const sections = [
+  { name: "Servicios", href: "/" },
+  { name: "Sobre Nosotros", href: "/about" },
+  { name: "Contacto", href: "/services" },
+];
 ---
 
 <header>
@@ -15,9 +22,15 @@ import { Image } from "astro:assets";
     </div>
 
     <ul class="nav-links">
-      <li><a href="/" class="selected">Servicios</a></li>
-      <li><a href="/about">Sobre Nosotros</a></li>
-      <li><a href="/services">Contacto</a></li>
+      {
+        sections.map(({ name, href }) => (
+          <li>
+            <a href={href} class={href === "/" ? "selected" : ""}>
+              {name}
+            </a>
+          </li>
+        ))
+      }
     </ul>
 
     <div class="buttons">
@@ -30,53 +43,71 @@ import { Image } from "astro:assets";
         ¡Ultimos Proyectos!
       </Button>
     </div>
+
+    <HamburgerButton id="menuButton" />
+
+    <div class="mobile-menu-overlay" id={MOBILE_MENU_CONTENT_ID}>
+      <aside class="mobile-menu-header"></aside>
+      <nav class="mobile-nav-content">
+        {
+          sections.map(({ name, href }, key) => (
+            <a href={href} class="mobile-nav-link" id={`navmob-link-${key}`}>
+              {name}
+            </a>
+          ))
+        }
+        <div class="mobile-buttons">
+          <Button href="mailto:contacto@stephanofer.com">
+            <Arrow slot="icon-right" />
+            ¡Diseño Personalizado!
+          </Button>
+          <Button href="mailto:contacto@stephanofer.com" type="secondary">
+            <Cart slot="icon-left" />
+            ¡Ultimos Proyectos!
+          </Button>
+        </div>
+      </nav>
+    </div>
   </nav>
 </header>
 
 <style>
+  :root {
+    --announce-height: 37.59px;
+    --navbar-padding: 1.5rem;
+  }
+
   header {
     padding: 1.5rem;
     color: #000;
+    position: relative;
+    z-index: 50;
   }
-
-  .logo {
-    height: 100%;
-    display: none;
-
-    @media (width > 1024px) {
-      display: flex;
-    }
-  }
-  /* 
-  .logo-svg {
-    display: flex;
-    align-content: center;
-  } */
 
   nav {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+  }
 
-    @media (width > 1024px) {
-      justify-content: space-between;
-    }
+  .logo {
+    height: 100%;
+    display: flex;
   }
 
   .nav-links {
-    display: flex;
+    display: none;
     gap: 2rem;
 
-    /* @media (width > 1024px) { */
-    /* display: flex; */
-    /* } */
-    /*  */
+    @media (width > 1024px) {
+      display: flex;
+    }
+
     a {
       font-family: "Clash";
       font-weight: 450;
       font-size: var(--fs-base);
-      /* transition: opacity 150ms cubic-bezier(0.4, 0, 0.2, 1); */
 
       &:hover {
         position: relative;
@@ -92,14 +123,214 @@ import { Image } from "astro:assets";
         height: 1.5px;
         background-color: black;
       }
+
+      &.selected {
+        position: relative;
+        font-weight: 600;
+      }
+
+      &.selected::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -3px;
+        width: 100%;
+        height: 1.5px;
+        background-color: black;
+      }
     }
   }
-
+  /* Desktop Buttons */
   .buttons {
     display: none;
     gap: 1rem;
+
     @media (width > 1024px) {
       display: flex;
     }
   }
+
+  .mobile-menu-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow-x: auto;
+    backdrop-filter: blur(20px) saturate(180%);
+    background: rgba(255, 255, 255, 0.85);
+    background-image: radial-gradient(
+        at 40% 20%,
+        rgba(120, 119, 198, 0.1) 0px,
+        transparent 50%
+      ),
+      radial-gradient(at 80% 0%, rgba(255, 255, 255, 0.1) 0px, transparent 50%),
+      radial-gradient(at 0% 50%, rgba(255, 255, 255, 0.1) 0px, transparent 50%);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    @media (width > 1024px) {
+      display: none;
+    }
+
+    &.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+  }
+
+  .mobile-nav-content {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    gap: 2rem;
+  }
+
+  .mobile-nav-link {
+    font-family: "Clash";
+    font-size: 2.5rem;
+    font-weight: 500;
+    color: #000;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    position: relative;
+
+    &:hover {
+      opacity: 0.7;
+      transform: translateY(-2px);
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(0, 0, 0, 0.3),
+        transparent
+      );
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    &:hover::after {
+      transform: scaleX(1);
+    }
+  }
+
+  .mobile-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+    width: 100%;
+    max-width: 300px;
+  }
+
+  @media (width > 1024px) {
+    .mobile-menu-overlay {
+      display: none !important;
+    }
+  }
+
+  :global(body.overflow-hidden) {
+    overflow: hidden;
+  }
+
+  @media (width > 1024px) {
+    :global(body.lg\:overflow-auto) {
+      overflow: auto;
+    }
+  }
+
+  @media (prefers-reduced-motion) {
+    .mobile-menu-overlay {
+      transition: opacity 0s;
+    }
+
+    .mobile-nav-link {
+      transition: none;
+    }
+
+    .mobile-nav-link::after {
+      transition: none;
+    }
+  }
 </style>
+
+<script>
+  import { MOBILE_MENU_CONTENT_ID } from "@/consts/mobile-menu";
+
+  function toggleMenu(
+    menuButton: HTMLElement,
+    menuMobileContent: HTMLElement
+  ) {
+    const isOpen = menuMobileContent.classList.toggle("open");
+    menuButton.classList.toggle("open");
+    document.body.classList.toggle("overflow-hidden");
+    document.body.classList.toggle("lg:overflow-auto");
+
+    menuButton.setAttribute("aria-expanded", String(isOpen));
+    menuButton.setAttribute(
+      "aria-label",
+      isOpen ? "Cerrar menú de navegación" : "Abrir menú de navegación"
+    );
+  }
+
+  function initializeNavbar() {
+    const menuButton = document.querySelector("#menuButton") as HTMLElement;
+    const menuMobileContent = document.getElementById(MOBILE_MENU_CONTENT_ID) as HTMLElement;
+
+    if (!menuButton || !menuMobileContent) return;
+
+    // Cerrar menú si está abierto (limpieza de estado)
+    if (menuMobileContent.classList.contains("open")) {
+      toggleMenu(menuButton, menuMobileContent);
+    }
+
+    // Click en el botón hamburguesa
+    menuButton.addEventListener("click", () => {
+      toggleMenu(menuButton, menuMobileContent);
+    });
+
+    // Click en enlaces móviles
+    menuMobileContent.addEventListener("click", (e) => {
+      const target = e.target as HTMLElement;
+      
+      // Si es un link o el overlay mismo
+      if (target.classList.contains("mobile-nav-link") || target === menuMobileContent) {
+        toggleMenu(menuButton, menuMobileContent);
+      }
+    });
+  }
+
+  // Inicializar
+  document.addEventListener("astro:page-load", () => {
+    console.log("PAGE");
+    initializeNavbar();
+  });
+
+  // Cerrar al redimensionar a desktop
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 1024) {
+      const menuMobileContent = document.getElementById(MOBILE_MENU_CONTENT_ID);
+      if (menuMobileContent?.classList.contains("open")) {
+        const menuButton = document.querySelector("#menuButton") as HTMLElement;
+        if (menuButton) toggleMenu(menuButton, menuMobileContent);
+      }
+    }
+  });
+</script>

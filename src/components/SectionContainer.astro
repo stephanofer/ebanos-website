@@ -1,19 +1,20 @@
 ---
-interface Props{
-    name: string
+interface Props {
+  name: string;
 }
 
-const {name} = Astro.props;
+const { name } = Astro.props;
 ---
+
 <section id={name}>
-    <slot/>
+  <slot />
 </section>
 
 <style>
-    section{
-        max-width: 1440px;
-        padding-left: 1rem;
-        padding-right: 1rem;
-        margin: auto
-    }
+  section {
+    max-width: 1280px;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    margin: auto;
+  }
 </style>

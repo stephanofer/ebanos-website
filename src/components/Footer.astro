@@ -1,0 +1,155 @@
+---
+
+---
+
+<footer class="footer">
+  <div class="footer-container">
+    <nav class="footer-nav">
+      <div class="main-links">
+        <a href="/servicios">Servicios Personalizados</a>
+        <span class="separator">•</span>
+        <a href="/nosotros">Sobre Ébanos Muebles</a>
+        <span class="separator">•</span>
+        <a href="/catalogo">Catálogo de Productos</a>
+        <span class="separator">•</span>
+        <a href="/galeria">Galería de Proyectos</a>
+        <span class="separator">•</span>
+        <a href="/contacto">Contacto y Ubicación</a>
+        <span class="separator">•</span>
+        <a href="/faq">Preguntas Frecuentes</a>
+      </div>
+    </nav>
+
+    <div class="secondary-links">
+      <a href="/configuracion-cookies">Configuración de cookies</a>
+      <span class="separator">•</span>
+      <a href="/privacidad">Política de Privacidad</a>
+      <span class="separator">•</span>
+      <a href="/contacto">Contáctanos / Enviar comentario</a>
+      <span class="separator">•</span>
+      <a href="/accesibilidad">Accesibilidad</a>
+    </div>
+
+    <div class="copyright">
+      <p>© Ébanos Muebles S.A.C. 1999 - 2025</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background-color: #1a1a1a;
+    color: #e5e5e5;
+    padding: 40px 0 24px;
+    margin-top: auto;
+  }
+
+  .footer-container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .footer-nav {
+    width: 100%;
+  }
+
+  .main-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .secondary-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+    font-size: 12px;
+    line-height: 1.4;
+    opacity: 0.8;
+  }
+
+  .footer a {
+    color: #e5e5e5;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .footer a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+  }
+
+  .separator {
+    color: #666;
+    font-size: 12px;
+    user-select: none;
+  }
+
+  .copyright {
+    border-top: 1px solid #333;
+    padding-top: 16px;
+    margin-top: 8px;
+  }
+
+  .copyright p {
+    margin: 0;
+    font-size: 12px;
+    opacity: 0.7;
+    color: #e5e5e5;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .footer {
+      padding: 32px 0 20px;
+    }
+
+    .footer-container {
+      padding: 0 16px;
+      gap: 20px;
+    }
+
+    .main-links,
+    .secondary-links {
+      gap: 12px;
+    }
+
+    .main-links {
+      font-size: 13px;
+    }
+
+    .secondary-links {
+      font-size: 11px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .main-links {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .main-links .separator {
+      display: none;
+    }
+
+    .secondary-links {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .secondary-links .separator {
+      display: none;
+    }
+  }
+</style>

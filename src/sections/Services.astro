@@ -1,0 +1,186 @@
+---
+import SectionContainer from "@/components/SectionContainer.astro";
+import Button from "@/components/Button.astro";
+import ArrowIcon from "@/assets/arrow-up.svg";
+---
+
+<SectionContainer name="services">
+  <div class="services-content">
+    <div class="content-left">
+      <div class="main-content">
+        <h2 class="main-heading">
+          Creamos el mueble exacto que imaginas
+        </h2>
+        
+        <p class="main-description">
+          Fabricamos todo tipo de muebles que maximizan cada centímetro de tu espacio. Desde closets empotrados hasta cocinas integrales y mucho más, transformamos tus ideas en realidad
+        </p>
+        
+        <div class="services-grid">
+          <div class="service-item">
+            <h3 class="service-title">ASESORÍA ESPECIALIZADA</h3>
+            <p class="service-description">
+              Expertos te guían en materiales y diseños que maximizan tu espacio y presupuesto.
+            </p>
+          </div>
+          
+          <div class="service-item">
+            <h3 class="service-title">INSTALACIÓN PROFESIONAL</h3>
+            <p class="service-description">
+              Equipo certificado con más de 30 años de experiencia en instalaciones
+            </p>
+          </div>
+          
+          <div class="service-item">
+            <h3 class="service-title">ENTREGA PUNTUAL</h3>
+            <p class="service-description">
+              Todos los proyectos se entregan en la mayor brevedad posible pactada, se cuenta tiempo fabricación e instalación completa.
+            </p>
+          </div>
+          
+          <div class="service-item">
+            <h3 class="service-title">GARANTÍA EXTENDIDA</h3>
+            <p class="service-description">
+              5 años en estructura y 2 años en sistemas móviles.
+            </p>
+          </div>
+        </div>
+        
+        <div class="cta-button">
+          <Button type="secondary" href="#contact">
+            <ArrowIcon slot="icon-right" />
+            ¡Diseño Personalizado!
+          </Button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="content-right">
+      <div class="image-container">
+        <img 
+          src="/assets/image1.webp" 
+          alt="Persona sentada en un sofá de cuero rojo en un ambiente acogedor"
+          class="hero-image"
+        />
+      </div>
+    </div>
+  </div>
+</SectionContainer>
+
+<style>
+  .services-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    min-height: 80vh;
+  }
+
+  .content-left {
+    padding-right: 2rem;
+  }
+
+  .main-content {
+    max-width: 100%;
+  }
+
+  .main-heading {
+    font-family: "Clash", sans-serif;
+    font-size: var(--fs-xxl);
+    font-weight: 500;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    color: var(--foreground);
+  }
+
+  .main-description {
+    font-size: var(--fs-md);
+    line-height: 1.6;
+    margin-bottom: 3rem;
+    color: var(--foreground);
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .service-item {
+    padding: 0;
+  }
+
+  .service-title {
+    font-family: "Clash", sans-serif;
+    font-size: var(--fs-base);
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--foreground);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .service-description {
+    font-size: var(--fs-sm);
+    line-height: 1.5;
+    color: var(--secondary);
+  }
+
+  .cta-button {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 2rem;
+  }
+
+  .content-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .image-container {
+    width: 100%;
+    max-width: 500px;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    border-radius: 12px;
+  }
+
+  .hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .services-content {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .content-left {
+      padding-right: 0;
+      order: 2;
+    }
+
+    .content-right {
+      order: 1;
+    }
+
+    .main-heading {
+      font-size: var(--fs-xl);
+    }
+
+    .services-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .image-container {
+      max-width: 100%;
+    }
+  }
+</style>

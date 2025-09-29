@@ -2,18 +2,22 @@
 import MainHead from "@/components/MainHead.astro";
 import { SEO } from "astro-seo";
 import { ClientRouter } from "astro:transitions";
+import Footer from "@/components/Footer.astro";
+import Navbar from "@/components/Navbar.astro";
+import Announce from "@/components/Announce.astro";
 
 interface Props {
   title?: string;
+  description?: string;
 }
 
-const { title = "Ebanos Muebles" } = Astro.props;
+const { title = "Ebanos Muebles", description = "Descripción de la página" } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
-    <MainHead title={title} />
+    <MainHead title={title} description={description} />
     <ClientRouter />
   </head>
   <body>
@@ -26,7 +30,10 @@ const { title = "Ebanos Muebles" } = Astro.props;
         style="display:none;visibility:hidden"></iframe></noscript
     >
     <!-- End Google Tag Manager (noscript) -->
+    <Announce />
+    <Navbar />
     <slot />
+    <Footer />
   </body>
 </html>
 
