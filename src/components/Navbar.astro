@@ -15,11 +15,9 @@ const sections = [
 
 <header>
   <nav>
-    <div class="logo">
-      <a href="/">
-        <Logo height={70} width={300} class="logo-svg" />
+      <a href="/" class="logo">
+        <Logo class="logo-svg" />
       </a>
-    </div>
 
     <ul class="nav-links">
       {
@@ -82,6 +80,8 @@ const sections = [
     color: #000;
     position: relative;
     z-index: 50;
+    max-width: 1440px;
+    margin: auto;
   }
 
   nav {
@@ -94,6 +94,17 @@ const sections = [
   .logo {
     height: 100%;
     display: flex;
+  }
+
+  .logo-svg {
+    height: 70px;
+    width: 200px;
+
+    @media (width <= 1024px) {
+      height: 70px;
+      width: 150px;
+    }
+
   }
 
   .nav-links {
@@ -124,20 +135,6 @@ const sections = [
         background-color: black;
       }
 
-      &.selected {
-        position: relative;
-        font-weight: 600;
-      }
-
-      &.selected::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: -3px;
-        width: 100%;
-        height: 1.5px;
-        background-color: black;
-      }
     }
   }
   /* Desktop Buttons */
