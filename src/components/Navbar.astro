@@ -101,8 +101,8 @@ const sections = [
     width: 200px;
 
     @media (width <= 1024px) {
-      height: 70px;
-      width: 150px;
+      height: 30px;
+      width: 100px;
     }
 
   }
@@ -137,7 +137,6 @@ const sections = [
 
     }
   }
-  /* Desktop Buttons */
   .buttons {
     display: none;
     gap: 1rem;
@@ -293,34 +292,27 @@ const sections = [
 
     if (!menuButton || !menuMobileContent) return;
 
-    // Cerrar menú si está abierto (limpieza de estado)
     if (menuMobileContent.classList.contains("open")) {
       toggleMenu(menuButton, menuMobileContent);
     }
 
-    // Click en el botón hamburguesa
     menuButton.addEventListener("click", () => {
       toggleMenu(menuButton, menuMobileContent);
     });
 
-    // Click en enlaces móviles
     menuMobileContent.addEventListener("click", (e) => {
       const target = e.target as HTMLElement;
       
-      // Si es un link o el overlay mismo
       if (target.classList.contains("mobile-nav-link") || target === menuMobileContent) {
         toggleMenu(menuButton, menuMobileContent);
       }
     });
   }
 
-  // Inicializar
   document.addEventListener("astro:page-load", () => {
-    console.log("PAGE");
     initializeNavbar();
   });
 
-  // Cerrar al redimensionar a desktop
   window.addEventListener("resize", () => {
     if (window.innerWidth > 1024) {
       const menuMobileContent = document.getElementById(MOBILE_MENU_CONTENT_ID);
