@@ -85,7 +85,7 @@ import { Image, Picture } from "astro:assets";
 
     & > div:first-of-type {
       border-right: 1px solid var(--secondary);
-      padding-right: 1rem;
+      padding-right: 0.5rem;
       @media (width > 1024px) {
         padding-right: 2.5rem;
       }
@@ -93,7 +93,7 @@ import { Image, Picture } from "astro:assets";
 
     & > div:nth-child(2) {
       border-right: 1px solid var(--secondary);
-      padding-right: 1rem;
+      padding-right: 0.5rem;
 
       @media (width > 1024px) {
         padding-right: 2.5rem;
@@ -104,10 +104,9 @@ import { Image, Picture } from "astro:assets";
   .resalt-point-1 {
     display: flex;
     align-items: center;
-    font-size: var(--fs-sm);
-    gap: 1rem;
+    font-size: var(--fs-base);
+    gap: 10px;
     font-weight: 600;
-    justify-content: center;
 
     @media (width > 1024px) {
       font-size: var(--fs-lg);
@@ -122,8 +121,8 @@ import { Image, Picture } from "astro:assets";
   }
 
   .icon-point {
-    width: 24px;
-    height: 24px;
+    width: 30px;
+    height: 30px;
 
     @media (width > 1024px) {
       width: 50px;
