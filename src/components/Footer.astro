@@ -1,155 +1,363 @@
 ---
-
+import MainLogo from "@/assets/main-logo.svg";
+import Visa from "@/assets/visa.svg";
+import MasterCard from "@/assets/mastercard.svg";
+import Instagram from "@/assets/instagram.svg";
+import Tiktok from "@/assets/tiktok.svg";
+import Facebook from "@/assets/facebook.svg";
+import Youtube from "@/assets/youtube.svg";
 ---
 
 <footer class="footer">
   <div class="footer-container">
-    <nav class="footer-nav">
-      <div class="main-links">
-        <a href="/servicios">Servicios Personalizados</a>
-        <span class="separator">•</span>
-        <a href="/nosotros">Sobre Ébanos Muebles</a>
-        <span class="separator">•</span>
-        <a href="/catalogo">Catálogo de Productos</a>
-        <span class="separator">•</span>
-        <a href="/galeria">Galería de Proyectos</a>
-        <span class="separator">•</span>
-        <a href="/contacto">Contacto y Ubicación</a>
-        <span class="separator">•</span>
-        <a href="/faq">Preguntas Frecuentes</a>
-      </div>
-    </nav>
-
-    <div class="secondary-links">
-      <a href="/configuracion-cookies">Configuración de cookies</a>
-      <span class="separator">•</span>
-      <a href="/privacidad">Política de Privacidad</a>
-      <span class="separator">•</span>
-      <a href="/contacto">Contáctanos / Enviar comentario</a>
-      <span class="separator">•</span>
-      <a href="/accesibilidad">Accesibilidad</a>
+    <div class="footer-brand">
+      <MainLogo class="footer-logo" />
+      <p class="footer-tagline">Muebles para toda la vida.</p>
     </div>
 
-    <div class="copyright">
-      <p>© Ébanos Muebles S.A.C. 1999 - 2025</p>
+    <div class="footer-links">
+      <div class="footer-column">
+        <h3>Sobre la marca</h3>
+        <ul>
+          <li><a href="#origen">Nuestro origen</a></li>
+          <li><a href="#showroom">Proyectos</a></li>
+          <li><a href="#madera">Reseñas</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h3>Ayuda</h3>
+        <ul>
+          <li><a href="#preguntas">Preguntas frecuentes</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+          <li><a href="#envios">Envío y devoluciones</a></li>
+          <li><a href="#formas-pago">Formas de pago</a></li>
+        </ul>
+      </div>
+
+      <!-- Inspiración -->
+      <!-- <div class="footer-column">
+        <h3>Inspiración</h3>
+        <ul>
+          <li><a href="#magazine">Magazine</a></li>
+          <li><a href="#shop">Shop the look</a></li>
+          <li><a href="#sabias">Sabías qué</a></li>
+          <li><a href="#colecciones">Colecciones</a></li>
+          <li><a href="#editorial">Editorial</a></li>
+          <li><a href="#slow-studio">Slow Studio x EBANOS</a></li>
+        </ul>
+      </div> -->
+
+      <div class="footer-column">
+        <h3>Social</h3>
+        <ul>
+          <li>
+            <a href="https://instagram.com" target="_blank" class="social-link">
+              <Instagram width="24" height="24" />
+              Instagram
+            </a>
+          </li>
+          <li>
+            <a href="https://tiktok.com" target="_blank" class="social-link">
+              <Tiktok width="24" height="24" />
+              Tik Tok
+            </a>
+          </li>
+          <li>
+            <a href="https://facebook.com" target="_blank" class="social-link ">
+              <Facebook width="24" height="24" />
+              Facebook
+            </a>
+          </li>
+          <li>
+            <a href="https://youtube.com" target="_blank" class="social-link">
+              <Youtube width="24" height="24" />
+              Youtube
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-contact">
+      <div class="contact-info">
+        <p><strong>Ebanos Muebles S.A.C.</strong></p>
+        <p>Nicaragua 1140</p>
+        <p>14001 Chiclayo (Lambayeque)</p>
+
+        <p class="contact-phone">+51 979 264 871</p>
+        <p class="contact-email">info@ebanosmuebles.com</p>
+
+        <div class="hours">
+          <p><strong>L-V: DE 8:00 A 18:00 h</strong></p>
+          <p><strong>S: DE 8:00 A 18:00 h</strong></p>
+          <a href="#calendario" class="calendar-link"
+            >Consulta aquí el calendario</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-bottom-container">
+      <div class="footer-copyright">
+        <p>© 2025 Ebanos Muebles - Todos los Derechos Reservados</p>
+      </div>
+
+      <div class="payment-methods">
+        <div class="payment-icons">
+          <span class="payment-icon">
+            <Visa width="32" height="20" />
+          </span>
+          <span class="payment-icon">
+            <MasterCard width="32" height="20" />
+          </span>
+        </div>
+      </div>
     </div>
   </div>
 </footer>
 
 <style>
   .footer {
-    background-color: #1a1a1a;
-    color: #e5e5e5;
-    padding: 40px 0 24px;
-    margin-top: auto;
+    border-top: 1px solid #e5e5e5;
+    padding: 3rem 0 0 0;
+    /* margin-top: 4rem; */
   }
 
   .footer-container {
     max-width: 1440px;
     margin: 0 auto;
-    padding: 0 24px;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .footer-brand {
     display: flex;
     flex-direction: column;
-    gap: 24px;
   }
 
-  .footer-nav {
+  .footer-logo {
     width: 100%;
+    height: 70px;
   }
 
-  .main-links {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 16px;
-    font-size: 14px;
+  .footer-tagline {
+    font-size: var(--fs-base);
     line-height: 1.4;
+    text-align: center;
   }
 
-  .secondary-links {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 16px;
-    font-size: 12px;
-    line-height: 1.4;
-    opacity: 0.8;
+  .footer-links {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
   }
 
-  .footer a {
-    color: #e5e5e5;
+  .footer-column h3 {
+    font-size: 0.875rem;
+    font-weight: 650;
+    margin: 0 0 1rem 0;
+    color: var(--foreground);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .footer-column ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .footer-column li {
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-column a {
     text-decoration: none;
+    font-size: 0.875rem;
+    line-height: 1.4;
+    transition: color 0.2s ease;
+  }
+  .footer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .contact-info {
+    font-size: 0.875rem;
+    line-height: 1.4;
+  }
+
+  .contact-info p {
+    margin: 0 0 0.25rem 0;
+  }
+
+  .contact-phone,
+  .contact-email {
+    font-weight: 500;
+    margin: 0.75rem 0 0.25rem 0 !important;
+  }
+
+  .hours {
+    margin-top: 1.5rem;
+  }
+
+  .hours p {
+    font-weight: 500;
+  }
+
+  .schedule-note {
+    font-size: 0.8rem;
+    margin: 0.5rem 0 0.25rem 0 !important;
+  }
+
+  .calendar-link {
+    color: var(--foreground);
+    text-decoration: underline;
+    font-size: 0.8rem;
+  }
+
+
+  .footer-bottom {
+    border-top: 1px solid #e5e5e5;
+    /* background-color: #f0f0f0; */
+    padding: 1.5rem 0;
+    margin-top: 3rem;
+  }
+
+  .footer-bottom-container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-copyright p {
+    margin: 0;
+    font-size: 0.8rem;
+  }
+
+  .footer-legal {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .payment-methods {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .payment-icons {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+  }
+
+
+  .social-link{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #666;
+    text-decoration: none;
+    font-size: 0.875rem;
+    line-height: 1.4;
     transition: color 0.2s ease;
   }
 
-  .footer a:hover {
-    color: #ffffff;
-    text-decoration: underline;
+  @media (max-width: 1024px) {
+    .footer-container {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .footer-links {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+
+    .footer-contact {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
   }
 
-  .separator {
-    color: #666;
-    font-size: 12px;
-    user-select: none;
-  }
-
-  .copyright {
-    border-top: 1px solid #333;
-    padding-top: 16px;
-    margin-top: 8px;
-  }
-
-  .copyright p {
-    margin: 0;
-    font-size: 12px;
-    opacity: 0.7;
-    color: #e5e5e5;
-  }
-
-  /* Responsive Design */
   @media (max-width: 768px) {
     .footer {
-      padding: 32px 0 20px;
+      padding: 2rem 0 0 0;
     }
 
     .footer-container {
-      padding: 0 16px;
-      gap: 20px;
+      padding: 0 1rem;
+      gap: 2rem;
     }
 
-    .main-links,
-    .secondary-links {
-      gap: 12px;
+    .footer-links {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
     }
 
-    .main-links {
-      font-size: 13px;
+    .footer-contact {
+      flex-direction: column;
+      gap: 1.5rem;
     }
 
-    .secondary-links {
-      font-size: 11px;
+    .footer-bottom-container {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 0 1rem;
+    }
+
+    .footer-legal {
+      order: 1;
+    }
+
+    .payment-methods {
+      order: 2;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .payment-icons {
+      flex-wrap: wrap;
     }
   }
 
   @media (max-width: 480px) {
-    .main-links {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 8px;
+    .footer-links {
+      gap: 1rem;
     }
 
-    .main-links .separator {
-      display: none;
+    .footer-column h3 {
+      font-size: 0.8rem;
+      margin-bottom: 0.75rem;
     }
 
-    .secondary-links {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 8px;
+    .footer-column a {
+      font-size: 0.8rem;
     }
 
-    .secondary-links .separator {
-      display: none;
+    .payment-icons {
+      gap: 0.5rem;
+    }
+
+    .payment-icon {
+      font-size: 0.7rem;
+      padding: 0.2rem 0.4rem;
     }
   }
 </style>

@@ -69,19 +69,25 @@ import ArrowIcon from "@/assets/arrow-up.svg";
 
 <style>
   .services-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-direction: row;
     gap: 3rem;
     align-items: center;
-    min-height: 80vh;
+    justify-content: space-between;
+    margin-top: 3rem;
   }
 
   .content-left {
-    padding-right: 2rem;
+    flex: 1;
+    max-width: 50%;
   }
 
-  .main-content {
-    max-width: 100%;
+  .content-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 50%;
   }
 
   .main-heading {
@@ -129,58 +135,92 @@ import ArrowIcon from "@/assets/arrow-up.svg";
 
   .cta-button {
     display: flex;
-    justify-content: flex-start;
+    justify-content: flex-end;
     margin-top: 2rem;
   }
 
-  .content-right {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
   .image-container {
-    width: 100%;
-    max-width: 500px;
-    aspect-ratio: 4/3;
-    overflow: hidden;
-    border-radius: 12px;
+    max-width: 100%;
   }
 
   .hero-image {
     width: 100%;
-    height: 100%;
+    max-width: 500px;
+    height: auto;
+    aspect-ratio: 1;
     object-fit: cover;
     object-position: center;
+    border-radius: 8px;
   }
 
   /* Responsive design */
+  @media (max-width: 1024px) {
+    .services-content {
+      gap: 2rem;
+    }
+    
+    .hero-image {
+      max-width: 400px;
+    }
+  }
+
   @media (max-width: 768px) {
     .services-content {
-      grid-template-columns: 1fr;
+      flex-direction: column;
       gap: 2rem;
+      margin-top: 2rem;
     }
 
     .content-left {
-      padding-right: 0;
+      max-width: 100%;
       order: 2;
     }
 
     .content-right {
+      max-width: 100%;
       order: 1;
     }
 
     .main-heading {
       font-size: var(--fs-xl);
+      text-align: center;
+    }
+
+    .main-description {
+      text-align: center;
+      margin-bottom: 2rem;
     }
 
     .services-grid {
       grid-template-columns: 1fr;
       gap: 1.5rem;
+      margin-bottom: 2rem;
     }
 
-    .image-container {
-      max-width: 100%;
+    .cta-button {
+      justify-content: center;
+    }
+
+    .hero-image {
+      max-width: 300px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .services-grid {
+      gap: 1rem;
+    }
+
+    .service-title {
+      font-size: var(--fs-sm);
+    }
+
+    .service-description {
+      font-size: var(--fs-xs);
+    }
+
+    .hero-image {
+      max-width: 250px;
     }
   }
 </style>
