@@ -1,28 +1,48 @@
 ---
-import Layout from "../layouts/BaseLayout.astro";
+import Layout from "@/layouts/BaseLayout.astro";
+import Button from "@/components/Button.astro";
+import Arrow from "@/assets/arrow-up.svg";
+import Cart from "@/assets/cart.svg";
+
+const title = "404 - Página No Encontrada";
+const description = "La página que buscas no existe.";
 ---
 
-<Layout title="404 - Page Not Found">
+<Layout title={title} description={description}>
   <main class="error-container">
     <h1 class="error-code">404</h1>
-    <h2 class="error-title">Oops! Page Not Found</h2>
+    <h2 class="error-title">¡Ups! Página No Encontrada</h2>
     <p class="error-description">
-      The page you're looking for doesn't exist or has been moved. Let's get you
-      back on track!
+      La página que buscas no existe o ha sido movida. ¡Vamos a llevarte de
+      vuelta al lugar correcto!
     </p>
-    <a href="/" class="home-button"> Return Home </a>
+    <div class="buttons-container">
+      <Button href="mailto:contacto@stephanofer.com" type="secondary">
+        <Arrow slot="icon-right" />
+        ¡Volver al inicio!
+      </Button>
+      <Button href="mailto:contacto@stephanofer.com">
+        <Cart slot="icon-left" />
+
+        ¡Últimos Proyectos!
+      </Button>
+    </div>
   </main>
 </Layout>
 
 <style>
   .error-container {
-    min-height: 70vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 0 1rem;
     text-align: center;
+    height: calc(100dvh - 117.59px);
+
+    @media (width > 1024px) {
+      height: calc(100dvh - 163.09px);
+    }
   }
 
   .error-code {
@@ -105,5 +125,12 @@ import Layout from "../layouts/BaseLayout.astro";
       opacity: 1;
       transform: translateY(0);
     }
+  }
+
+  .buttons-container {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 </style>

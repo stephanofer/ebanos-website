@@ -1,6 +1,5 @@
 ---
 import MainHead from "@/components/MainHead.astro";
-import { SEO } from "astro-seo";
 import { ClientRouter } from "astro:transitions";
 import Footer from "@/components/Footer.astro";
 import Navbar from "@/components/Navbar.astro";
@@ -11,7 +10,8 @@ interface Props {
   description?: string;
 }
 
-const { title = "Ebanos Muebles", description = "Descripción de la página" } = Astro.props;
+const { title = "Ebanos Muebles", description = "Descripción de la página" } =
+  Astro.props;
 ---
 
 <!doctype html>

@@ -6,17 +6,13 @@ import Heart from "@/assets/heart.svg";
 import Calendar from "@/assets/calendar.svg";
 import Shield from "@/assets/shield.svg";
 import Package from "@/assets/package.svg";
-import { Image, Picture } from "astro:assets";
-// import Image1 from "@/assets/image1.webp";
-// import Image2 from "@/assets/image2.webp";
-// import Image3 from "@/assets/image4.webp";
 ---
 
 <div class="container">
   <div class="container-title">
     <div class="badge-trust">
       <Heart width={16} height={16} />
-      <span>Más de 3,000 familias confían en nosotros</span>
+      <span>Muchas familias en todo el país confían en nosotros</span>
     </div>
     <div class="texts">
       <h1>
@@ -26,11 +22,11 @@ import { Image, Picture } from "astro:assets";
       <p>Muebles excepcionales con acabados perfectos y entregas puntuales.</p>
     </div>
     <div class="buttons">
-      <Button href="mailto:contacto@stephanofer.com" type="secondary">
+      <Button href="/proyectos" type="secondary" target="_self">
         <Cart slot="icon-left" />
         ¡Últimos Proyectos!
       </Button>
-      <Button href="mailto:contacto@stephanofer.com">
+      <Button href="https://wa.me/51979264871">
         <Arrow slot="icon-right" />
         ¡Diseño Personalizado!
       </Button>
@@ -56,7 +52,7 @@ import { Image, Picture } from "astro:assets";
       <div class="points-row single">
         <div class="point">
           <div class="resalt-point-1">
-            +3,000
+            +1,000
             <Package class="icon-point" />
           </div>
           <div class="resalt-point-1-2">Entregas Realizadas</div>
@@ -207,7 +203,6 @@ import { Image, Picture } from "astro:assets";
   .container {
     display: flex;
     flex-direction: column;
-    /* gap: 4rem; */
 
     @media (width > 1024px) {
       flex-direction: row;
@@ -220,7 +215,6 @@ import { Image, Picture } from "astro:assets";
   .container-title {
     display: flex;
     flex-direction: column;
-    /* width: 50%; */
     height: 100%;
     justify-content: center;
   }
