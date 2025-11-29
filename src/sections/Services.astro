@@ -4,97 +4,89 @@ import Button from "@/components/Button.astro";
 import ArrowIcon from "@/assets/arrow-up.svg";
 ---
 
-<div class="services-wrapper">
-  <div class="services-content">
-    <div class="content-text">
-      <span class="section-label">Nuestros Servicios</span>
-      <h2 class="main-heading">Creamos el mueble exacto que imaginas</h2>
+<SectionContainer name="servicios">
+  <div class="services-wrapper">
+    <div class="services-content">
+      <div class="content-text">
+        <h2 class="main-heading">Creamos el mueble exacto que imaginas</h2>
 
-      <p class="main-description">
-        Fabricamos todo tipo de muebles que maximizan cada centímetro de tu
-        espacio. Desde closets empotrados hasta cocinas integrales,
-        transformamos tus ideas en realidad.
-      </p>
+        <p class="main-description">
+          Fabricamos todo tipo de muebles que maximizan cada centímetro de tu
+          espacio. Desde closets empotrados hasta cocinas integrales,
+          transformamos tus ideas en realidad.
+        </p>
 
-      <div class="services-grid">
-        <div class="service-item">
-          <div class="service-icon">01</div>
-          <div class="service-info">
-            <h3 class="service-title">Asesoría Especializada</h3>
-            <p class="service-description">
-              Expertos te guían en materiales y diseños que maximizan tu espacio
-              y presupuesto.
-            </p>
+        <div class="services-grid">
+          <div class="service-item">
+            <div class="service-icon">01</div>
+            <div class="service-info">
+              <h3 class="service-title">Asesoría Especializada</h3>
+              <p class="service-description">
+                Expertos te guían en materiales y diseños que maximizan tu
+                espacio y presupuesto.
+              </p>
+            </div>
+          </div>
+
+          <div class="service-item">
+            <div class="service-icon">02</div>
+            <div class="service-info">
+              <h3 class="service-title">Instalación Profesional</h3>
+              <p class="service-description">
+                Equipo certificado con más de 30 años de experiencia en
+                instalaciones.
+              </p>
+            </div>
+          </div>
+
+          <div class="service-item">
+            <div class="service-icon">03</div>
+            <div class="service-info">
+              <h3 class="service-title">Entrega Puntual</h3>
+              <p class="service-description">
+                Proyectos entregados en tiempo pactado, incluyendo fabricación e
+                instalación.
+              </p>
+            </div>
+          </div>
+
+          <div class="service-item">
+            <div class="service-icon">04</div>
+            <div class="service-info">
+              <h3 class="service-title">Garantía Extendida</h3>
+              <p class="service-description">
+                5 años en estructura y 2 años en sistemas móviles.
+              </p>
+            </div>
           </div>
         </div>
 
-        <div class="service-item">
-          <div class="service-icon">02</div>
-          <div class="service-info">
-            <h3 class="service-title">Instalación Profesional</h3>
-            <p class="service-description">
-              Equipo certificado con más de 30 años de experiencia en
-              instalaciones.
-            </p>
-          </div>
-        </div>
-
-        <div class="service-item">
-          <div class="service-icon">03</div>
-          <div class="service-info">
-            <h3 class="service-title">Entrega Puntual</h3>
-            <p class="service-description">
-              Proyectos entregados en tiempo pactado, incluyendo fabricación e
-              instalación.
-            </p>
-          </div>
-        </div>
-
-        <div class="service-item">
-          <div class="service-icon">04</div>
-          <div class="service-info">
-            <h3 class="service-title">Garantía Extendida</h3>
-            <p class="service-description">
-              5 años en estructura y 2 años en sistemas móviles.
-            </p>
-          </div>
-        </div>
+        <!-- <div class="cta-button">
+          <Button type="secondary" href="https://wa.me/51979264871">
+            ¡Diseño Personalizado!
+            <ArrowIcon slot="icon-right" />
+          </Button>
+        </div> -->
       </div>
 
-      <div class="cta-button">
-        <Button type="secondary" href="https://wa.me/51979264871">
-          ¡Diseño Personalizado!
-          <ArrowIcon slot="icon-right" />
-        </Button>
-      </div>
-    </div>
-
-    <div class="content-image">
-      <div class="image-wrapper">
-        <img
-          src="/assets/image1.webp"
-          alt="Muebles de alta calidad fabricados por Ebanos en un ambiente acogedor"
-          class="hero-image"
-          loading="lazy"
-          decoding="async"
-        />
-        <div class="image-accent"></div>
+      <div class="content-image">
+        <div class="image-wrapper">
+          <img
+            src="/assets/image1.webp"
+            alt="Muebles de alta calidad fabricados por Ebanos en un ambiente acogedor"
+            class="hero-image"
+            loading="lazy"
+            decoding="async"
+          />
+          <div class="image-accent"></div>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
+</SectionContainer>
 <style>
   .services-wrapper {
-    padding: 4rem 0;
-
-    @media (width > 768px) {
-      padding: 5rem 0;
-    }
-
-    @media (width > 1024px) {
-      padding: 6rem 0;
-    }
+    margin-top: 3rem;
   }
 
   .services-content {
@@ -144,15 +136,15 @@ import ArrowIcon from "@/assets/arrow-up.svg";
   }
 
   .main-heading {
-    font-family: "Clash", sans-serif;
+    font-family: "Clash";
     font-size: var(--fs-xl);
-    font-weight: 600;
+    font-weight: 450;
     line-height: 1.1;
     margin: 0 0 1rem;
     color: var(--foreground);
 
     @media (width > 768px) {
-      font-size: var(--fs-xxl);
+      font-size: var(--fs-xl);
       margin-bottom: 1.25rem;
     }
   }
@@ -193,10 +185,6 @@ import ArrowIcon from "@/assets/arrow-up.svg";
     border-radius: 0.75rem;
     transition: all 0.3s ease;
 
-    &:hover {
-      background: rgb(69 69 69 / 0.04);
-    }
-
     @media (width > 768px) {
       padding: 1.25rem;
     }
@@ -230,7 +218,7 @@ import ArrowIcon from "@/assets/arrow-up.svg";
   .service-title {
     font-family: "Clash", sans-serif;
     font-size: var(--fs-sm);
-    font-weight: 600;
+    font-weight: 450;
     margin: 0 0 0.35rem;
     color: var(--foreground);
 
@@ -254,15 +242,16 @@ import ArrowIcon from "@/assets/arrow-up.svg";
 
   .cta-button {
     margin-top: 2rem;
-
+    width: 50%;
+    display: flex;
     @media (width > 768px) {
       margin-top: 2.5rem;
     }
   }
 
-  .cta-button :global(.sociallink) {
+  /* .cta-button :global(.sociallink) {
     border-radius: 2rem;
-  }
+  } */
 
   /* Image Section */
   .image-wrapper {

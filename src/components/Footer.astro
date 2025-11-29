@@ -1,7 +1,5 @@
 ---
 import MainLogo from "@/assets/main-logo.svg";
-import Visa from "@/assets/visa.svg";
-import MasterCard from "@/assets/mastercard.svg";
 import Instagram from "@/assets/instagram.svg";
 import Tiktok from "@/assets/tiktok.svg";
 import Facebook from "@/assets/facebook.svg";
@@ -19,81 +17,52 @@ import Youtube from "@/assets/youtube.svg";
       <div class="footer-column">
         <h3>Sobre la marca</h3>
         <ul>
-          <li><a href="#origen">Nuestro origen</a></li>
-          <li><a href="#showroom">Proyectos</a></li>
-          <li><a href="#madera">Reseñas</a></li>
+          <li><a href="/sobre-nosotros">Nuestro origen</a></li>
+          <li><a href="/proyectos">Proyectos</a></li>
+          <li><a href="/experiencias">Experiencias de clientes</a></li>
         </ul>
       </div>
-
-      <div class="footer-column">
-        <h3>Ayuda</h3>
-        <ul>
-          <li><a href="#preguntas">Preguntas frecuentes</a></li>
-          <li><a href="#contacto">Contacto</a></li>
-          <li><a href="#envios">Envío y devoluciones</a></li>
-          <li><a href="#formas-pago">Formas de pago</a></li>
-        </ul>
-      </div>
-
-      <!-- Inspiración -->
-      <!-- <div class="footer-column">
-        <h3>Inspiración</h3>
-        <ul>
-          <li><a href="#magazine">Magazine</a></li>
-          <li><a href="#shop">Shop the look</a></li>
-          <li><a href="#sabias">Sabías qué</a></li>
-          <li><a href="#colecciones">Colecciones</a></li>
-          <li><a href="#editorial">Editorial</a></li>
-          <li><a href="#slow-studio">Slow Studio x EBANOS</a></li>
-        </ul>
-      </div> -->
 
       <div class="footer-column">
         <h3>Social</h3>
         <ul>
           <li>
-            <a href="https://instagram.com" target="_blank" class="social-link">
+            <a href="https://www.instagram.com/ebanosmuebles/" target="_blank" class="social-link">
               <Instagram width="24" height="24" />
               Instagram
             </a>
           </li>
           <li>
-            <a href="https://tiktok.com" target="_blank" class="social-link">
+            <a href="https://www.tiktok.com/@ebanosmuebles" target="_blank" class="social-link">
               <Tiktok width="24" height="24" />
               Tik Tok
             </a>
           </li>
           <li>
-            <a href="https://facebook.com" target="_blank" class="social-link ">
+            <a href="https://www.facebook.com/ebanosmueblesperu" target="_blank" class="social-link">
               <Facebook width="24" height="24" />
               Facebook
             </a>
           </li>
-          <li>
+          <!-- <li>
             <a href="https://youtube.com" target="_blank" class="social-link">
               <Youtube width="24" height="24" />
               Youtube
             </a>
-          </li>
+          </li> -->
         </ul>
       </div>
-    </div>
-
-    <div class="footer-contact">
       <div class="contact-info">
-        <p><strong>Ebanos Muebles S.A.C.</strong></p>
+        <p><strong class="contact-strong-title">Ebanos Muebles S.A.C.</strong></p>
         <p>Nicaragua 1140</p>
         <p>14001 Chiclayo (Lambayeque)</p>
 
-        <p class="contact-phone">+51 979 264 871</p>
-        <p class="contact-email">info@ebanosmuebles.com</p>
+        <p class="contact-phone"><a href="tel:+51979264871">+51 979 264 871</a></p>
+        <p class="contact-email"><a href="mailto:info@ebanosmuebles.com">info@ebanosmuebles.com</a></p>
 
         <div class="hours">
           <p><strong>L-V: DE 8:00 A 18:00 h</strong></p>
-          <p><strong>S: DE 8:00 A 18:00 h</strong></p>
-          <a href="#calendario" class="calendar-link"
-            >Consulta aquí el calendario</a
-          >
+          <p><strong>S-D: DE 8:00 A 18:00 h</strong></p>
         </div>
       </div>
     </div>
@@ -107,12 +76,13 @@ import Youtube from "@/assets/youtube.svg";
 
       <div class="payment-methods">
         <div class="payment-icons">
-          <span class="payment-icon">
-            <Visa width="32" height="20" />
-          </span>
-          <span class="payment-icon">
-            <MasterCard width="32" height="20" />
-          </span>
+          <span class="development"
+            >Desarrollado por <a
+              href="https://stephanofer.com/"
+              target="_blank"
+              rel="noopener noreferrer">Stephanofer</a
+            ></span
+          >
         </div>
       </div>
     </div>
@@ -129,9 +99,9 @@ import Youtube from "@/assets/youtube.svg";
   .footer-container {
     max-width: 1440px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 1rem;
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-columns: 1fr 2fr;
     gap: 3rem;
     align-items: start;
   }
@@ -143,24 +113,25 @@ import Youtube from "@/assets/youtube.svg";
 
   .footer-logo {
     width: 100%;
-    height: 70px;
+    height: 50px;
   }
 
   .footer-tagline {
     font-size: var(--fs-base);
     line-height: 1.4;
     text-align: center;
+    margin-top: 0.7rem;
   }
 
   .footer-links {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
   }
 
   .footer-column h3 {
-    font-size: 0.875rem;
-    font-weight: 650;
+    font-size: var(--fs-base);
+    font-weight: 500;
+    font-family: "Clash", sans-serif;
     margin: 0 0 1rem 0;
     color: var(--foreground);
     text-transform: uppercase;
@@ -196,6 +167,10 @@ import Youtube from "@/assets/youtube.svg";
 
   .contact-info p {
     margin: 0 0 0.25rem 0;
+
+    & strong {
+      font-weight: 500;
+    }
   }
 
   .contact-phone,
@@ -223,7 +198,6 @@ import Youtube from "@/assets/youtube.svg";
     font-size: 0.8rem;
   }
 
-
   .footer-bottom {
     border-top: 1px solid #e5e5e5;
     /* background-color: #f0f0f0; */
@@ -236,6 +210,7 @@ import Youtube from "@/assets/youtube.svg";
     margin: 0 auto;
     padding: 0 2rem;
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
@@ -264,12 +239,10 @@ import Youtube from "@/assets/youtube.svg";
     align-items: center;
   }
 
-
-  .social-link{
+  .social-link {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    color: #666;
     text-decoration: none;
     font-size: 0.875rem;
     line-height: 1.4;
@@ -316,8 +289,7 @@ import Youtube from "@/assets/youtube.svg";
 
     .footer-bottom-container {
       flex-direction: column;
-      align-items: flex-start;
-      gap: 1rem;
+      /* gap: rem; */
       padding: 0 1rem;
     }
 
@@ -343,7 +315,7 @@ import Youtube from "@/assets/youtube.svg";
     }
 
     .footer-column h3 {
-      font-size: 0.8rem;
+      font-size: var(--fs-base);
       margin-bottom: 0.75rem;
     }
 
@@ -359,5 +331,19 @@ import Youtube from "@/assets/youtube.svg";
       font-size: 0.7rem;
       padding: 0.2rem 0.4rem;
     }
+  }
+
+  .development {
+    font-size: var(--fs-sm);
+    color: var(--secondary);
+
+    a {
+      font-weight: 500;
+    }
+  }
+
+  .contact-strong-title{
+    font-family: "Clash", sans-serif;
+    font-size: var(--fs-base);
   }
 </style>
