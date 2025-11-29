@@ -1,58 +1,68 @@
 ---
 import Button from "@/components/Button.astro";
 import Arrow from "@/assets/arrow-up.svg";
+import Cart from "@/assets/cart.svg";
+import SectionContainer from "@/components/SectionContainer.astro";
 ---
 
-<section class="hero-bento">
-  <!-- Card Principal - Imagen grande -->
-  <article class="bento-card bento-main">
-    <img
-      src="/assets/image1.webp"
-      alt="Sala de estar elegante con muebles de madera de alta calidad fabricados por Ebanos"
-      loading="eager"
-      fetchpriority="high"
-      decoding="async"
-      class="bento-bg-image"
-    />
-    <div class="bento-overlay"></div>
-    <div class="bento-content">
-      <h1>Muebles con estilo para todos tus espacios.</h1>
-      <p>
-        Fabricamos mobiliario a medida en Chiclayo. Transformamos tu hogar con
-        madera de primera.
-      </p>
-      <div class="hero-cta">
-        <Button href="/proyectos" type="primary" target="_self">
-          Ver Catálogo 2025
-        </Button>
-      </div>
-    </div>
-  </article>
-
-  <!-- Card CTA - Con imagen de fondo -->
-  <a href="https://wa.me/51979264871" class="bento-card bento-cta">
-    <img
-      src="/assets/image2.webp"
-      alt="Cotiza tu proyecto de muebles"
-      loading="eager"
-      decoding="async"
-      class="cta-bg-image"
-    />
-    <div class="cta-overlay"></div>
-    <div class="cta-content">
-      <div class="cta-center">
-        <h2>Cotiza tu proyecto</h2>
-        <div class="cta-arrow">
-          <Arrow width={20} height={20} />
+<SectionContainer name="hero">
+  <div class="hero-bento">
+    <!-- Card Principal - Imagen grande -->
+    <article class="bento-card bento-main">
+      <img
+        src="/assets/image1.webp"
+        alt="Sala de estar elegante con muebles de madera de alta calidad fabricados por Ebanos"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+        class="bento-bg-image"
+      />
+      <div class="bento-overlay"></div>
+      <div class="bento-content">
+        <h1>Fabricantes de Mobiliario de Alta Calidad.</h1>
+        <p>
+          Mobiliario excepcionales a medida en Chiclayo. Con acabados perfectos
+          y entregas puntuales.
+        </p>
+        <div class="hero-cta">
+          <Button href="mailto:contacto@stephanofer.com" type="primary">
+            ¡Ultimos Proyectos!
+            <Cart slot="icon-right" />
+          </Button>
         </div>
       </div>
-      <div class="cta-footer">
-        <span class="cta-location">Chiclayo, Perú</span>
-      </div>
-    </div>
-  </a>
-</section>
+    </article>
 
+    <!-- Card CTA - Con imagen de fondo -->
+    <a
+      href="https://wa.me/51979264871"
+      target="_blank"
+      rel="noopener noreferrer"
+      role="link"
+      class="bento-card bento-cta"
+    >
+      <img
+        src="/assets/image2.webp"
+        alt="Cotiza tu proyecto de muebles"
+        loading="eager"
+        decoding="async"
+        class="cta-bg-image"
+      />
+      <div class="cta-overlay"></div>
+      <div class="cta-content">
+        <div class="cta-center">
+          <h2>Cotiza tu proyecto</h2>
+          <div class="cta-arrow">
+            <Arrow width={24} height={24} />
+          </div>
+        </div>
+        <div class="cta-footer">
+          <span class="cta-location">Chiclayo, Perú</span>
+        </div>
+      </div>
+    </a>
+  </div>
+</SectionContainer>
 <style>
   /* ===== ANIMATIONS ===== */
   @keyframes fadeIn {
@@ -91,19 +101,19 @@ import Arrow from "@/assets/arrow-up.svg";
     display: grid;
     gap: 0.75rem;
     grid-template-columns: 1fr;
-    min-height: calc(100dvh - 100px);
-    padding: 0.75rem 0;
+    min-height: 100vh;
 
     @media (width > 768px) {
       grid-template-columns: 1.8fr 1fr;
       gap: 1rem;
-      min-height: calc(100dvh - 120px);
+      min-height: calc(100vh - 159.09px);
     }
 
     @media (width > 1024px) {
       grid-template-columns: 2fr 1fr;
-      gap: 1.25rem;
-      min-height: calc(100dvh - 140px);
+      gap: 1rem;
+      min-height: calc(100vh - 159.09px);
+      padding-bottom: 1rem;
     }
   }
 
@@ -187,7 +197,7 @@ import Arrow from "@/assets/arrow-up.svg";
   .bento-main h1 {
     font-family: "Clash";
     font-weight: 600;
-    font-size: clamp(1.75rem, 1rem + 3vw, 3.25rem);
+    font-size: var(--fs-lg);
     line-height: 1.15;
     letter-spacing: -0.02em;
     margin: 0;
@@ -195,6 +205,10 @@ import Arrow from "@/assets/arrow-up.svg";
     text-shadow: 0 2px 16px rgb(0 0 0 / 0.4);
     animation: slideUp 0.5s ease-out 0.15s backwards;
     text-wrap: balance;
+
+    @media (width > 768px) {
+      font-size: var(--fs-xxl);
+    }
   }
 
   .bento-main p {
@@ -219,16 +233,9 @@ import Arrow from "@/assets/arrow-up.svg";
     }
   }
 
-  .hero-cta :global(.sociallink) {
+  /* .hero-cta :global(.sociallink) {
     border-radius: 2rem;
-    font-size: 0.85rem;
-    padding: 0.7rem 1.25rem;
-
-    @media (width > 768px) {
-      font-size: 0.9rem;
-      padding: 0.8rem 1.5rem;
-    }
-  }
+  } */
 
   /* ===== CTA CARD ===== */
   .bento-cta {
@@ -260,16 +267,20 @@ import Arrow from "@/assets/arrow-up.svg";
     transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
-  .cta-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      135deg,
-      rgb(255 215 0 / 0.92) 0%,
-      rgb(255 193 7 / 0.88) 100%
-    );
-    transition: opacity 0.4s ease;
-  }
+.cta-overlay {
+  position: absolute;
+  inset: 0;
+  
+  background: linear-gradient(
+    135deg,
+    rgb(166 109 59 / 0.85) 0%,   
+    rgb(120 53 15 / 0.85) 100%  
+  );
+  
+  backdrop-filter: blur(6px);
+
+  transition: opacity 0.4s ease;
+}
 
   .bento-cta:hover {
     transform: translateY(-3px);
@@ -281,7 +292,7 @@ import Arrow from "@/assets/arrow-up.svg";
   }
 
   .bento-cta:hover .cta-overlay {
-    opacity: 0.85;
+    opacity: 0.65;
   }
 
   .cta-content {
@@ -293,7 +304,7 @@ import Arrow from "@/assets/arrow-up.svg";
     align-items: center;
     height: 100%;
     padding: 1.25rem;
-    color: black;
+    color: white;
     text-align: center;
 
     @media (width > 768px) {
@@ -303,11 +314,12 @@ import Arrow from "@/assets/arrow-up.svg";
 
   .cta-center {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     gap: 1rem;
     flex: 1;
     justify-content: center;
+    font-family: "Clash";
 
     @media (width > 768px) {
       gap: 1.5rem;
@@ -317,34 +329,38 @@ import Arrow from "@/assets/arrow-up.svg";
   .cta-center h2 {
     font-family: "Clash";
     font-weight: 600;
-    font-size: clamp(1.25rem, 1rem + 1.5vw, 2rem);
+    font-size: var(--fs-lg);
     line-height: 1.2;
     letter-spacing: -0.01em;
     margin: 0;
     white-space: nowrap;
+
+    @media (width > 768px) {
+      font-size: var(--fs-xl);
+    }
   }
 
   .cta-arrow {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 44px;
-    height: 44px;
-    background: black;
+    width: 35px;
+    height: 35px;
+    background: white;
     border-radius: 50%;
     flex-shrink: 0;
     transition: transform 0.3s ease;
 
     @media (width > 768px) {
-      width: 52px;
-      height: 52px;
+      width: 40px;
+      height: 40px;
     }
   }
 
   .cta-arrow :global(svg) {
-    color: white;
-    fill: white;
-    stroke: white;
+    color: black;
+    fill: black;
+    stroke: black;
     transform: rotate(45deg);
   }
 
@@ -367,6 +383,6 @@ import Arrow from "@/assets/arrow-up.svg";
     font-family: "Clash";
     font-size: clamp(0.75rem, 0.7rem + 0.2vw, 0.875rem);
     font-weight: 500;
-    opacity: 0.7;
+    opacity: 0.8;
   }
 </style>

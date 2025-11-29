@@ -1,62 +1,66 @@
 ---
 import Button from "@/components/Button.astro";
 import ArrowUp from "@/assets/arrow-up.svg";
+import SectionContainer from "@/components/SectionContainer.astro";
 ---
 
-<div class="container">
-  <div class="titles">
-    <h2>Muebles con estilo para todos los espacios</h2>
-    <p>
-      Taller especializado en fabricación de muebles en Chiclayo.
-      <br />
-      30+ años creando muebles a medida. ¡Cotiza ya!
-    </p>
-  </div>
+<SectionContainer name="categorias">
+  <div class="container">
+    <div class="titles">
+      <h2>Muebles con estilo para todos los espacios</h2>
+      <p>
+        Taller especializado en fabricación de muebles en Chiclayo.
+        <br />
+        30+ años creando muebles a medida. ¡Cotiza ya!
+      </p>
+    </div>
 
-  <div class="images">
-    <div class="category-card">
-      <img src="/assets/DORMITORIO.jpg" alt="Dormitorio" />
-      <div class="category-overlay">
-        <h3>Dormitorio</h3>
-        <span class="category-link">Ver colección</span>
+    <div class="images">
+      <div class="category-card">
+        <img src="/assets/DORMITORIO.jpg" alt="Dormitorio" />
+        <div class="category-overlay">
+          <h3>Dormitorio</h3>
+          <span class="category-link">Ver colección</span>
+        </div>
       </div>
-    </div>
-    <div class="category-card">
-      <img src="/assets/DORMITORIO.jpg" alt="Sala" />
-      <div class="category-overlay">
-        <h3>Sala</h3>
-        <span class="category-link">Conocer más</span>
+      <div class="category-card">
+        <img src="/assets/DORMITORIO.jpg" alt="Sala" />
+        <div class="category-overlay">
+          <h3>Sala</h3>
+          <span class="category-link">Conocer más</span>
+        </div>
       </div>
-    </div>
-    <div class="category-card">
-      <img src="/assets/DORMITORIO.jpg" alt="Comedor" />
-      <div class="category-overlay">
-        <h3>Comedor</h3>
-        <span class="category-link">Ver modelos</span>
+      <div class="category-card">
+        <img src="/assets/DORMITORIO.jpg" alt="Comedor" />
+        <div class="category-overlay">
+          <h3>Comedor</h3>
+          <span class="category-link">Ver modelos</span>
+        </div>
       </div>
-    </div>
-    <!-- <div class="category-card">
+      <!-- <div class="category-card">
       <img src="/assets/DORMITORIO.jpg" alt="Oficina" />
       <div class="category-overlay">
         <h3>Oficina</h3>
         <span class="category-link">Explorar</span>
       </div>
     </div> -->
-  </div>
+    </div>
 
-  <div class="button-container">
-    <Button type="secondary">
-      ¡Visualizar más!
-      <ArrowUp slot="icon-right" />
-    </Button>
+    <div class="button-container">
+      <Button type="secondary">
+        ¡Visualizar más!
+        <ArrowUp slot="icon-right" />
+      </Button>
+    </div>
   </div>
-</div>
+</SectionContainer>
 
 <style>
   .container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 5rem;
   }
 
   .titles {
@@ -159,7 +163,7 @@ import ArrowUp from "@/assets/arrow-up.svg";
   /* Responsive Design */
   @media (max-width: 768px) {
     .container {
-      padding: 2rem 0;
+      margin-top: 5rem;
     }
 
     h2 {
