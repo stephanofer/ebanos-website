@@ -258,10 +258,14 @@ import Arrow from "@/assets/arrow-up.svg";
     cursor: pointer;
     display: flex;
     flex-direction: column;
-    min-height: 180px;
+    min-height: 280px;
     transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
                 box-shadow 0.5s ease;
     animation-delay: 100ms;
+
+    @media (width > 480px) {
+      min-height: 320px;
+    }
 
     @media (width > 768px) {
       min-height: unset;
