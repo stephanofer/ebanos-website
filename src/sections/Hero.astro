@@ -17,7 +17,10 @@ import Arrow from "@/assets/arrow-up.svg";
     <div class="bento-overlay"></div>
     <div class="bento-content">
       <h1>Muebles con estilo para todos tus espacios.</h1>
-      <p>Fabricamos mobiliario a medida en Chiclayo. Transformamos tu hogar con madera de primera.</p>
+      <p>
+        Fabricamos mobiliario a medida en Chiclayo. Transformamos tu hogar con
+        madera de primera.
+      </p>
       <div class="hero-cta">
         <Button href="/proyectos" type="primary" target="_self">
           Ver Catálogo 2025
@@ -184,51 +187,26 @@ import Arrow from "@/assets/arrow-up.svg";
   .bento-main h1 {
     font-family: "Clash";
     font-weight: 600;
-    font-size: 1.6rem;
-    line-height: 1.08;
+    font-size: clamp(1.75rem, 1rem + 3vw, 3.25rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
     margin: 0;
-    max-width: 16ch;
+    max-width: 18ch;
     text-shadow: 0 2px 16px rgb(0 0 0 / 0.4);
     animation: slideUp 0.5s ease-out 0.15s backwards;
-
-    @media (width > 480px) {
-      font-size: 2rem;
-      max-width: 17ch;
-    }
-
-    @media (width > 768px) {
-      font-size: 2.5rem;
-      max-width: 18ch;
-    }
-
-    @media (width > 1024px) {
-      font-size: 3rem;
-    }
+    text-wrap: balance;
   }
 
   .bento-main p {
     font-family: "Inter";
-    font-size: 0.8rem;
+    font-size: clamp(0.875rem, 0.8rem + 0.25vw, 1.0625rem);
     font-weight: 400;
     opacity: 0.9;
     margin: 0;
-    max-width: 38ch;
-    line-height: 1.5;
+    max-width: 48ch;
+    line-height: 1.6;
     animation: slideUp 0.5s ease-out 0.2s backwards;
-
-    @media (width > 480px) {
-      font-size: 0.85rem;
-      max-width: 42ch;
-    }
-
-    @media (width > 768px) {
-      font-size: 0.95rem;
-      max-width: 45ch;
-    }
-
-    @media (width > 1024px) {
-      font-size: 1rem;
-    }
+    text-wrap: pretty;
   }
 
   .hero-cta {
@@ -259,8 +237,9 @@ import Arrow from "@/assets/arrow-up.svg";
     display: flex;
     flex-direction: column;
     min-height: 280px;
-    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                box-shadow 0.5s ease;
+    transition:
+      transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+      box-shadow 0.5s ease;
     animation-delay: 100ms;
 
     @media (width > 480px) {
@@ -338,22 +317,11 @@ import Arrow from "@/assets/arrow-up.svg";
   .cta-center h2 {
     font-family: "Clash";
     font-weight: 600;
-    font-size: 1.25rem;
-    line-height: 1.15;
+    font-size: clamp(1.25rem, 1rem + 1.5vw, 2rem);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
     margin: 0;
     white-space: nowrap;
-
-    @media (width > 480px) {
-      font-size: 1.4rem;
-    }
-
-    @media (width > 768px) {
-      font-size: 1.6rem;
-    }
-
-    @media (width > 1024px) {
-      font-size: 2rem;
-    }
   }
 
   .cta-arrow {
@@ -397,12 +365,8 @@ import Arrow from "@/assets/arrow-up.svg";
 
   .cta-location {
     font-family: "Clash";
-    font-size: 0.75rem;
+    font-size: clamp(0.75rem, 0.7rem + 0.2vw, 0.875rem);
     font-weight: 500;
     opacity: 0.7;
-
-    @media (width > 768px) {
-      font-size: 0.85rem;
-    }
   }
 </style>
