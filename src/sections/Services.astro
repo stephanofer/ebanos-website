@@ -4,223 +4,314 @@ import Button from "@/components/Button.astro";
 import ArrowIcon from "@/assets/arrow-up.svg";
 ---
 
-<SectionContainer name="services">
+<div class="services-wrapper">
   <div class="services-content">
-    <div class="content-left">
-      <div class="main-content">
-        <h2 class="main-heading">
-          Creamos el mueble exacto que imaginas
-        </h2>
-        
-        <p class="main-description">
-          Fabricamos todo tipo de muebles que maximizan cada centímetro de tu espacio. Desde closets empotrados hasta cocinas integrales y mucho más, transformamos tus ideas en realidad
-        </p>
-        
-        <div class="services-grid">
-          <div class="service-item">
-            <h3 class="service-title">ASESORÍA ESPECIALIZADA</h3>
+    <div class="content-text">
+      <span class="section-label">Nuestros Servicios</span>
+      <h2 class="main-heading">Creamos el mueble exacto que imaginas</h2>
+
+      <p class="main-description">
+        Fabricamos todo tipo de muebles que maximizan cada centímetro de tu
+        espacio. Desde closets empotrados hasta cocinas integrales,
+        transformamos tus ideas en realidad.
+      </p>
+
+      <div class="services-grid">
+        <div class="service-item">
+          <div class="service-icon">01</div>
+          <div class="service-info">
+            <h3 class="service-title">Asesoría Especializada</h3>
             <p class="service-description">
-              Expertos te guían en materiales y diseños que maximizan tu espacio y presupuesto.
+              Expertos te guían en materiales y diseños que maximizan tu espacio
+              y presupuesto.
             </p>
           </div>
-          
-          <div class="service-item">
-            <h3 class="service-title">INSTALACIÓN PROFESIONAL</h3>
+        </div>
+
+        <div class="service-item">
+          <div class="service-icon">02</div>
+          <div class="service-info">
+            <h3 class="service-title">Instalación Profesional</h3>
             <p class="service-description">
-              Equipo certificado con más de 30 años de experiencia en instalaciones
+              Equipo certificado con más de 30 años de experiencia en
+              instalaciones.
             </p>
           </div>
-          
-          <div class="service-item">
-            <h3 class="service-title">ENTREGA PUNTUAL</h3>
+        </div>
+
+        <div class="service-item">
+          <div class="service-icon">03</div>
+          <div class="service-info">
+            <h3 class="service-title">Entrega Puntual</h3>
             <p class="service-description">
-              Todos los proyectos se entregan en la mayor brevedad posible pactada, se cuenta tiempo fabricación e instalación completa.
+              Proyectos entregados en tiempo pactado, incluyendo fabricación e
+              instalación.
             </p>
           </div>
-          
-          <div class="service-item">
-            <h3 class="service-title">GARANTÍA EXTENDIDA</h3>
+        </div>
+
+        <div class="service-item">
+          <div class="service-icon">04</div>
+          <div class="service-info">
+            <h3 class="service-title">Garantía Extendida</h3>
             <p class="service-description">
               5 años en estructura y 2 años en sistemas móviles.
             </p>
           </div>
         </div>
-        
-        <div class="cta-button">
-          <Button type="secondary" href="#contact">
-            <ArrowIcon slot="icon-right" />
-            ¡Diseño Personalizado!
-          </Button>
-        </div>
+      </div>
+
+      <div class="cta-button">
+        <Button type="secondary" href="https://wa.me/51979264871">
+          ¡Diseño Personalizado!
+          <ArrowIcon slot="icon-right" />
+        </Button>
       </div>
     </div>
-    
-    <div class="content-right">
-      <div class="image-container">
-        <img 
-          src="/assets/image1.webp" 
-          alt="Persona sentada en un sofá de cuero rojo en un ambiente acogedor"
+
+    <div class="content-image">
+      <div class="image-wrapper">
+        <img
+          src="/assets/image1.webp"
+          alt="Muebles de alta calidad fabricados por Ebanos en un ambiente acogedor"
           class="hero-image"
+          loading="lazy"
+          decoding="async"
         />
+        <div class="image-accent"></div>
       </div>
     </div>
   </div>
-</SectionContainer>
+</div>
 
 <style>
+  .services-wrapper {
+    padding: 4rem 0;
+
+    @media (width > 768px) {
+      padding: 5rem 0;
+    }
+
+    @media (width > 1024px) {
+      padding: 6rem 0;
+    }
+  }
+
   .services-content {
-    display: flex;
-    flex-direction: row;
-    gap: 3rem;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    align-items: stretch;
+
+    @media (width > 768px) {
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+
+    @media (width > 1024px) {
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+    }
   }
 
-  .content-left {
-    flex: 1;
-    max-width: 50%;
-  }
-
-  .content-right {
-    flex: 1;
+  .content-text {
+    order: 1;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    max-width: 50%;
+  }
+
+  .content-image {
+    order: 2;
+  }
+
+  .section-label {
+    display: inline-block;
+    font-family: "Clash", sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--secondary);
+    margin-bottom: 1rem;
+    padding: 0.4rem 1rem;
+    background: rgb(69 69 69 / 0.08);
+    border-radius: 2rem;
+
+    @media (width > 768px) {
+      font-size: 0.8rem;
+    }
   }
 
   .main-heading {
     font-family: "Clash", sans-serif;
-    font-size: var(--fs-xxl);
-    font-weight: 500;
+    font-size: var(--fs-xl);
+    font-weight: 600;
     line-height: 1.1;
-    margin-bottom: 1.5rem;
+    margin: 0 0 1rem;
     color: var(--foreground);
+
+    @media (width > 768px) {
+      font-size: var(--fs-xxl);
+      margin-bottom: 1.25rem;
+    }
   }
 
   .main-description {
-    font-size: var(--fs-md);
-    line-height: 1.6;
-    margin-bottom: 3rem;
-    color: var(--foreground);
+    font-family: "Inter", sans-serif;
+    font-size: var(--fs-sm);
+    line-height: 1.7;
+    margin: 0 0 2rem;
+    color: var(--secondary);
+    max-width: 50ch;
+
+    @media (width > 768px) {
+      font-size: var(--fs-base);
+      margin-bottom: 2.5rem;
+    }
   }
 
   .services-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    margin-bottom: 3rem;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+
+    @media (width > 480px) {
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (width > 768px) {
+      gap: 1.75rem;
+    }
   }
 
   .service-item {
-    padding: 0;
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: rgb(69 69 69 / 0.04);
+    }
+
+    @media (width > 768px) {
+      padding: 1.25rem;
+    }
+  }
+
+  .service-icon {
+    flex-shrink: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--foreground);
+    color: white;
+    font-family: "Clash", sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+
+    @media (width > 768px) {
+      width: 2.75rem;
+      height: 2.75rem;
+      font-size: 0.9rem;
+    }
+  }
+
+  .service-info {
+    flex: 1;
   }
 
   .service-title {
     font-family: "Clash", sans-serif;
-    font-size: var(--fs-base);
+    font-size: var(--fs-sm);
     font-weight: 600;
-    margin-bottom: 0.75rem;
+    margin: 0 0 0.35rem;
     color: var(--foreground);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+
+    @media (width > 768px) {
+      font-size: var(--fs-base);
+      margin-bottom: 0.5rem;
+    }
   }
 
   .service-description {
-    font-size: var(--fs-sm);
+    font-family: "Inter", sans-serif;
+    font-size: 0.8rem;
     line-height: 1.5;
+    margin: 0;
     color: var(--secondary);
+
+    @media (width > 768px) {
+      font-size: var(--fs-sm);
+    }
   }
 
   .cta-button {
-    display: flex;
-    justify-content: flex-end;
     margin-top: 2rem;
+
+    @media (width > 768px) {
+      margin-top: 2.5rem;
+    }
   }
 
-  .image-container {
-    max-width: 100%;
+  .cta-button :global(.sociallink) {
+    border-radius: 2rem;
+  }
+
+  /* Image Section */
+  .image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
   }
 
   .hero-image {
     width: 100%;
-    max-width: 500px;
     height: auto;
-    aspect-ratio: 1;
+    min-height: 350px;
+    aspect-ratio: 16 / 10;
     object-fit: cover;
     object-position: center;
-    border-radius: 8px;
-  }
+    border-radius: 1rem;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 8px 32px rgb(0 0 0 / 0.1);
 
-  /* Responsive design */
-  @media (max-width: 1024px) {
-    .services-content {
-      gap: 2rem;
-    }
-    
-    .hero-image {
-      max-width: 400px;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .services-content {
-      flex-direction: column;
-      gap: 2rem;
-      margin-top: 2rem;
+    @media (width > 480px) {
+      min-height: 400px;
+      aspect-ratio: 16 / 9;
     }
 
-    .content-left {
-      max-width: 100%;
-      order: 2;
+    @media (width > 768px) {
+      min-height: unset;
+      aspect-ratio: 3 / 4;
+      border-radius: 1.25rem;
     }
 
-    .content-right {
-      max-width: 100%;
-      order: 1;
-    }
-
-    .main-heading {
-      font-size: var(--fs-xl);
-      text-align: center;
-    }
-
-    .main-description {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-
-    .services-grid {
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-    }
-
-    .cta-button {
-      justify-content: center;
-    }
-
-    .hero-image {
-      max-width: 300px;
+    @media (width > 1024px) {
+      aspect-ratio: 4 / 5;
     }
   }
 
-  @media (max-width: 480px) {
-    .services-grid {
-      gap: 1rem;
-    }
+  .image-accent {
+    position: absolute;
+    inset: 1rem;
+    border: 2px solid var(--foreground);
+    border-radius: 1rem;
+    z-index: 1;
+    opacity: 0.15;
+    transform: translate(1rem, 1rem);
 
-    .service-title {
-      font-size: var(--fs-sm);
-    }
-
-    .service-description {
-      font-size: var(--fs-xs);
-    }
-
-    .hero-image {
-      max-width: 250px;
+    @media (width > 768px) {
+      inset: 1.5rem;
+      border-radius: 1.25rem;
+      transform: translate(1.5rem, 1.5rem);
     }
   }
 </style>

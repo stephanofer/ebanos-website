@@ -1,0 +1,221 @@
+---
+// src/components/HeroBento.astro
+---
+
+<section class="hero-container">
+  
+  <article class="bento-item main-feature">
+    <img 
+      src="https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&q=80" 
+      alt="Sala moderna diseñada por Ebanos Muebles Chiclayo" 
+    />
+    <div class="overlay">
+      <span class="badge">Diseño & Fabricación</span>
+      <h1>Muebles con estilo <br>para todos tus espacios.</h1>
+      <p class="subtitle">Transformamos tu hogar en Chiclayo con madera de primera.</p>
+      <a href="/catalogo" class="btn-primary">Ver Catálogo 2025</a>
+    </div>
+  </article>
+
+  <article class="bento-item detail-box">
+    <div class="content-center">
+      <h3>Sillas de Roble</h3>
+      <p>Ergonomía y durabilidad</p>
+      <span class="price-tag">Desde S/ 350</span>
+    </div>
+    <img 
+      src="https://images.unsplash.com/photo-1592078615290-033ee584e267?auto=format&fit=crop&q=80" 
+      alt="Detalle de acabado en madera" 
+    />
+  </article>
+
+  <article class="bento-item brand-box">
+    <div class="content-bottom">
+      <span class="year-badge">Desde 1995</span>
+      <h3>30+ Años <br>Creando a Medida</h3>
+      <p>Taller especializado. Garantía real en cada pieza entregada.</p>
+    </div>
+  </article>
+
+  <article class="bento-item cta-box">
+    <h3>¿Tienes un diseño?</h3>
+    <p>Lo fabricamos para ti.</p>
+    <a href="/cotizar" class="btn-outline">Cotizar ahora &rarr;</a>
+  </article>
+
+</section>
+
+<style>
+  /* --- CONFIGURACIÓN DE LA GRILLA (CSS Grid) --- */
+  .hero-container {
+    display: grid;
+    grid-template-columns: 1fr; /* Móvil: 1 columna */
+    gap: 1rem;
+    padding: 1.5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    min-height: 85vh; /* Ocupa buena parte de la pantalla */
+  }
+
+  /* Escritorio */
+  @media (min-width: 900px) {
+    .hero-container {
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      padding: 2rem;
+    }
+
+    /* Distribución de las cajas (El Tetris) */
+    .main-feature { grid-column: span 2; grid-row: span 2; } 
+    .detail-box   { grid-column: span 1; grid-row: span 1; }
+    .brand-box    { grid-column: span 1; grid-row: span 2; } 
+    .cta-box      { grid-column: span 1; grid-row: span 1; }
+  }
+
+  /* --- ESTILOS VISUALES --- */
+  .bento-item {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    background-color: #f0ece9; /* Un gris cálido por si falla la imagen */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .bento-item:hover { 
+    transform: translateY(-4px); 
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  }
+
+  /* Imágenes de fondo */
+  .bento-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0; left: 0;
+    z-index: 1;
+    transition: transform 0.7s ease;
+  }
+
+  .bento-item:hover img { transform: scale(1.05); }
+
+  /* Capas de texto */
+  .overlay, .content-center, .content-bottom {
+    position: relative;
+    z-index: 2;
+    padding: 2rem;
+    height: 100%;
+  }
+
+  /* Caja Principal */
+  .main-feature .overlay {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%);
+    color: white;
+  }
+  
+  .main-feature h1 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    line-height: 1.1;
+    margin: 0.5rem 0;
+    font-weight: 700;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    color: #e5e5e5;
+    margin-bottom: 1.5rem;
+    max-width: 400px;
+  }
+
+  .badge {
+    background-color: #d97706; /* Color ámbar/madera */
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* Caja Detalle */
+  .detail-box .content-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: rgba(255,255,255,0.85);
+    backdrop-filter: blur(4px);
+  }
+  
+  .detail-box h3 { margin: 0; font-size: 1.5rem; color: #1a1a1a; }
+  .detail-box p { color: #666; margin: 0.5rem 0; font-size: 0.9rem;}
+  .price-tag { font-weight: 700; color: #431407; font-size: 1.1rem; }
+
+  /* Caja Marca (Vertical) */
+  .brand-box { 
+    background-color: #431407; /* Marrón oscuro Ebanos */
+    color: white; 
+  }
+  .brand-box .content-bottom {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  .year-badge {
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    width: fit-content;
+    margin-bottom: 1rem;
+  }
+  .brand-box h3 { font-size: 2rem; margin: 0 0 1rem 0; line-height: 1; }
+  .brand-box p { color: #d6d3d1; font-size: 0.95rem; }
+
+  /* Caja CTA */
+  .cta-box { 
+    background-color: #171717; 
+    color: white; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 1rem;
+  }
+  .cta-box h3 { font-size: 1.25rem; margin-bottom: 0.25rem; }
+  .cta-box p { color: #888; margin-bottom: 1rem; font-size: 0.9rem; }
+
+  /* --- BOTONES --- */
+  .btn-primary {
+    background: white; 
+    color: black; 
+    padding: 12px 24px; 
+    border-radius: 30px;
+    text-decoration: none; 
+    font-weight: 600; 
+    transition: background 0.2s;
+  }
+  .btn-primary:hover { background-color: #f3f4f6; }
+  
+  .btn-outline {
+    border: 1px solid rgba(255,255,255,0.4); 
+    color: white; 
+    padding: 8px 20px; 
+    border-radius: 8px;
+    text-decoration: none; 
+    font-size: 0.9rem;
+    transition: all 0.2s;
+  }
+  .btn-outline:hover { 
+    background-color: white; 
+    color: black; 
+    border-color: white;
+  }
+</style>
