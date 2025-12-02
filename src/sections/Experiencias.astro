@@ -1,7 +1,21 @@
 ---
-import Button from "@/components/Button.astro";
-import ArrowIcon from "@/assets/arrow-up.svg";
+import { getCollection, type CollectionEntry } from "astro:content";
 import SectionContainer from "@/components/SectionContainer.astro";
+import TestimonialCard from "@/components/TestimonialCard.astro";
+
+const testimonios: CollectionEntry<"testimonios">[] = await getCollection("testimonios");
+
+// Ordenar por fecha (más recientes primero) y luego por puntuación
+const testimoniosOrdenados = testimonios.sort((a, b) => {
+  // Primero por puntuación (mayor primero)
+  if (b.data.puntuacion !== a.data.puntuacion) {
+    return b.data.puntuacion - a.data.puntuacion;
+  }
+  // Luego por fecha si existe
+  const fechaA = a.data.fecha?.getTime() ?? 0;
+  const fechaB = b.data.fecha?.getTime() ?? 0;
+  return fechaB - fechaA;
+});
 ---
 
 <SectionContainer name="testimonios">
@@ -13,81 +27,46 @@ import SectionContainer from "@/components/SectionContainer.astro";
       </p>
     </div>
 
-    <div class="testimonials-grid">
-      <article class="testimonial-card">
-        <div class="testimonial-image">
-          <img
-            src="/assets/image1.webp"
-            alt="Hogar Ebanos - Emily Johnson"
-          />
-        </div>
-        <div class="testimonial-content">
-          <div class="testimonial-tag">¡Mueble a medida!</div>
-          <h3>Transformación completa de mi sala</h3>
-          <p>
-            Los muebles de Ebanos transformaron completamente mi sala. La calidad de la madera y el acabado son excepcionales.
-          </p>
-          <div class="testimonial-author">
-            <div class="author-avatar">
-              <img src="/assets/image2.webp" alt="Emily Johnson" />
-            </div>
-            <div class="author-info">
-              <span class="author-name">Emily Johnson</span>
-              <span class="author-location">Chiclayo, Perú</span>
-            </div>
+    <!-- Marquee Container - respeta el max-width del padre -->
+    <div class="marquee-wrapper">
+      <div class="marquee-container">
+        <div class="marquee-track" aria-label="Testimonios de clientes">
+          <!-- Primera fila de testimonios -->
+          <div class="marquee-content">
+            {testimoniosOrdenados.map((testimonio) => (
+              <TestimonialCard
+                nombre={testimonio.data.nombre}
+                ubicacion={testimonio.data.ubicacion}
+                titulo={testimonio.data.titulo}
+                descripcion={testimonio.body ?? ""}
+                tag={testimonio.data.tag}
+                imagenProyecto={testimonio.data.imagenProyecto}
+                imagenAvatar={testimonio.data.imagenAvatar}
+                puntuacion={testimonio.data.puntuacion}
+              />
+            ))}
+          </div>
+          <!-- Duplicamos para el efecto infinito -->
+          <div class="marquee-content" aria-hidden="true">
+            {testimoniosOrdenados.map((testimonio) => (
+              <TestimonialCard
+                nombre={testimonio.data.nombre}
+                ubicacion={testimonio.data.ubicacion}
+                titulo={testimonio.data.titulo}
+                descripcion={testimonio.body ?? ""}
+                tag={testimonio.data.tag}
+                imagenProyecto={testimonio.data.imagenProyecto}
+                imagenAvatar={testimonio.data.imagenAvatar}
+                puntuacion={testimonio.data.puntuacion}
+              />
+            ))}
           </div>
         </div>
-      </article>
-
-      <article class="testimonial-card">
-        <div class="testimonial-image">
-          <img
-            src="/assets/image4.webp"
-            alt="Hogar Ebanos - Sara"
-          />
-        </div>
-        <div class="testimonial-content">
-          <div class="testimonial-tag">¡Mueble a medida!</div>
-          <h3>Calidad y diseño impecable</h3>
-          <p>
-            Desde el primer contacto hasta la instalación, todo fue perfecto. Los muebles tienen un diseño moderno y funcional.
-          </p>
-          <div class="testimonial-author">
-            <div class="author-avatar">
-              <img src="/assets/image1.webp" alt="Sara" />
-            </div>
-            <div class="author-info">
-              <span class="author-name">Sara Rodríguez</span>
-              <span class="author-location">Lima, Perú</span>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <article class="testimonial-card">
-        <div class="testimonial-image">
-          <img
-            src="/assets/DORMITORIO.jpg"
-            alt="Hogar Ebanos - Rakib"
-          />
-        </div>
-        <div class="testimonial-content">
-          <div class="testimonial-tag">¡Mueble a medida!</div>
-          <h3>Mi dormitorio soñado hecho realidad</h3>
-          <p>
-            La atención al detalle y la experiencia de más de 30 años se nota en cada pieza. Totalmente recomendados.
-          </p>
-          <div class="testimonial-author">
-            <div class="author-avatar">
-              <img src="/assets/image4.webp" alt="Rakib Roni" />
-            </div>
-            <div class="author-info">
-              <span class="author-name">Rakib Roni</span>
-              <span class="author-location">Trujillo, Perú</span>
-            </div>
-          </div>
-        </div>
-      </article>
+      </div>
+      
+      <!-- Gradientes para fade effect en los bordes -->
+      <div class="fade-overlay fade-left"></div>
+      <div class="fade-overlay fade-right"></div>
     </div>
   </div>
 </SectionContainer>
@@ -95,15 +74,16 @@ import SectionContainer from "@/components/SectionContainer.astro";
 <style>
   .testimonials-section {
     margin: 4rem 0;
+    position: relative;
   }
 
   .testimonials-header {
-    margin-bottom: 3rem;
+    margin-bottom: 2.5rem;
   }
 
   h2 {
     font-family: "Clash";
-    font-weight: 450;
+    font-weight: 500;
     font-size: var(--fs-xl);
     line-height: 1.2;
     color: var(--foreground);
@@ -111,7 +91,7 @@ import SectionContainer from "@/components/SectionContainer.astro";
     letter-spacing: -0.02em;
   }
 
-  p {
+  .testimonials-header p {
     font-family: "Inter", sans-serif;
     font-size: var(--fs-base);
     line-height: 1.6;
@@ -121,145 +101,87 @@ import SectionContainer from "@/components/SectionContainer.astro";
     margin: 0;
   }
 
-  .testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
-  }
-
-  .testimonial-card {
-    background: white;
-    border-radius: 8px;
-    overflow: hidden;
-    border: 1px solid #e5e5e5;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-    cursor: pointer;
-  }
-
-  .testimonial-image {
+  /* Marquee Wrapper - contenedor con overflow y gradientes */
+  .marquee-wrapper {
     position: relative;
-    width: 100%;
-    height: 350px;
     overflow: hidden;
+    border-radius: 12px;
   }
 
-  .testimonial-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    transition: transform 0.3s ease;
-  }
-
-  .testimonial-card:hover .testimonial-image img {
-    transform: scale(1.05);
-  }
-
-  .testimonial-content {
-    padding: 1.5rem;
-  }
-
-  .testimonial-tag {
-    display: inline-block;
-    background-color: var(--foreground);
-    color: white;
-    font-family: "Inter", sans-serif;
-    font-size: 0.75rem;
-    font-weight: 450;
-    padding: 0.375rem 0.75rem;
-    border-radius: 4px;
-    margin-bottom: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-
-  .testimonial-content h3 {
-    font-family: "Clash", sans-serif;
-    font-size: var(--fs-md);
-    font-weight: 450;
-    color: var(--foreground);
-    margin: 0 0 0.75rem 0;
-    line-height: 1.3;
-    letter-spacing: -0.01em;
-  }
-
-  .testimonial-content > p {
-    font-family: "Inter", sans-serif;
-    font-size: var(--fs-sm);
-    line-height: 1.6;
-    color: var(--secondary);
-    margin-bottom: 1.5rem;
-  }
-
-  .testimonial-author {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding-top: 1rem;
-    border-top: 1px solid #e5e5e5;
-  }
-
-  .author-avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
+  /* Marquee Container */
+  .marquee-container {
     overflow: hidden;
-    flex-shrink: 0;
+    position: relative;
   }
 
-  .author-avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .author-info {
+  .marquee-track {
     display: flex;
-    flex-direction: column;
-    gap: 0.125rem;
+    width: max-content;
+    animation: marquee 45s linear infinite;
   }
 
-  .author-name {
-    font-family: "Inter", sans-serif;
-    font-size: var(--fs-sm);
-    font-weight: 500;
-    color: var(--foreground);
+  .marquee-container:hover .marquee-track {
+    animation-play-state: paused;
   }
 
-  .author-location {
-    font-family: "Inter", sans-serif;
-    font-size: 0.8rem;
-    color: var(--secondary);
+  .marquee-content {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1rem 0.75rem;
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* Fade overlays para bordes suaves */
+  .fade-overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 60px;
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  .fade-left {
+    left: 0;
+    background: linear-gradient(to right, white 0%, transparent 100%);
+  }
+
+  .fade-right {
+    right: 0;
+    background: linear-gradient(to left, white 0%, transparent 100%);
   }
 
   @media (max-width: 768px) {
     .testimonials-section {
-      margin-top: 4rem;
+      margin-top: 3rem;
     }
 
     h2 {
       font-size: var(--fs-lg);
     }
 
-    p {
+    .testimonials-header p {
       font-size: var(--fs-sm);
     }
 
-    .testimonials-grid {
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
+    .marquee-content {
+      gap: 1rem;
     }
 
-    .testimonial-image {
-      height: 280px;
+    .marquee-track {
+      animation-duration: 35s;
     }
 
-    .testimonial-content {
-      padding: 1.25rem;
-    }
-
-    .testimonial-content h3 {
-      font-size: var(--fs-base);
+    .fade-overlay {
+      width: 40px;
     }
   }
 
@@ -268,22 +190,55 @@ import SectionContainer from "@/components/SectionContainer.astro";
       font-size: var(--fs-lg);
     }
 
-    .testimonial-image {
-      height: 240px;
+    .marquee-content {
+      gap: 0.75rem;
+      padding: 0.5rem;
     }
 
-    .testimonial-content {
-      padding: 1rem;
+    .marquee-track {
+      animation-duration: 30s;
     }
 
-    .testimonial-tag {
-      font-size: 0.7rem;
-      padding: 0.25rem 0.5rem;
+    .fade-overlay {
+      width: 24px;
+    }
+  }
+
+  /* Reduced motion support para accesibilidad */
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+      animation: none;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
-    .author-avatar {
-      width: 36px;
-      height: 36px;
+    .marquee-content:nth-child(2) {
+      display: none;
+    }
+
+    .marquee-container {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .fade-overlay {
+      display: none;
     }
   }
 </style>
+
+<script>
+  // Mejora de accesibilidad: permite scroll manual con el teclado
+  document.addEventListener('DOMContentLoaded', () => {
+    const marqueeContainer = document.querySelector('.marquee-container');
+    if (marqueeContainer) {
+      marqueeContainer.addEventListener('keydown', (e) => {
+        const event = e as KeyboardEvent;
+        if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+          const scrollAmount = event.key === 'ArrowLeft' ? -200 : 200;
+          marqueeContainer.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        }
+      });
+    }
+  });
+</script>
