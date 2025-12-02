@@ -24,12 +24,6 @@ import SectionContainer from "@/components/SectionContainer.astro";
           Mobiliario excepcionales a medida en Chiclayo. Con acabados perfectos
           y entregas puntuales.
         </p>
-        <div class="hero-cta">
-          <Button href="mailto:contacto@stephanofer.com" type="primary">
-            ¡Ultimos Proyectos!
-            <Cart slot="icon-right" />
-          </Button>
-        </div>
       </div>
     </article>
 
@@ -106,13 +100,13 @@ import SectionContainer from "@/components/SectionContainer.astro";
     @media (width > 768px) {
       grid-template-columns: 1.8fr 1fr;
       gap: 1rem;
-      min-height: calc(100vh - 159.09px);
+      min-height: calc(100vh - 143.09px);
     }
 
     @media (width > 1024px) {
       grid-template-columns: 2fr 1fr;
       gap: 1rem;
-      min-height: calc(100vh - 159.09px);
+      min-height: calc(100vh - 143.09px);
       padding-bottom: 1rem;
     }
   }
@@ -120,13 +114,9 @@ import SectionContainer from "@/components/SectionContainer.astro";
   /* ===== BASE CARD STYLES ===== */
   .bento-card {
     position: relative;
-    border-radius: 0.75rem;
+    border-radius: 0.5rem;
     overflow: hidden;
     animation: fadeIn 0.6s ease-out backwards;
-
-    @media (width > 768px) {
-      border-radius: 1rem;
-    }
   }
 
   /* ===== MAIN CARD ===== */
@@ -268,20 +258,20 @@ import SectionContainer from "@/components/SectionContainer.astro";
     transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
-.cta-overlay {
-  position: absolute;
-  inset: 0;
-  
-  background: linear-gradient(
-    135deg,
-    rgb(166 109 59 / 0.85) 0%,   
-    rgb(120 53 15 / 0.85) 100%  
-  );
-  
-  backdrop-filter: blur(6px);
+  .cta-overlay {
+    position: absolute;
+    inset: 0;
 
-  transition: opacity 0.4s ease;
-}
+    background: linear-gradient(
+      135deg,
+      rgb(166 109 59 / 0.85) 0%,
+      rgb(120 53 15 / 0.85) 100%
+    );
+
+    backdrop-filter: blur(6px);
+
+    transition: opacity 0.4s ease;
+  }
 
   .bento-cta:hover {
     transform: translateY(-3px);

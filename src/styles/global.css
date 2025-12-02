@@ -1,4 +1,21 @@
+:root {
+  color-scheme: light;
+  --fs-sm: clamp(0.8rem, -0.09vi + 0.82rem, 0.75rem);
+  --fs-base: clamp(1rem, 0vi + 1rem, 1rem);
+  --fs-md: clamp(1.2rem, 0.15vi + 1.21rem, 1.33rem);
+  --fs-lg: clamp(1.56rem, 0.39vi + 1.47rem, 1.78rem);
+  --fs-xl: clamp(1.95rem, 0.76vi + 1.76rem, 2.37rem);
+  --fs-xxl: clamp(2.44rem, 1.3vi + 2.12rem, 3.16rem);
+  --fs-xxxl: clamp(3.05rem, 2.1vi + 2.53rem, 6.21rem);
+  --foreground: rgb(0, 0, 0);
+  --secondary: rgb(69 69 69);
+}
 
+body {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
 a {
   text-decoration: none;
