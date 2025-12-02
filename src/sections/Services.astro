@@ -63,8 +63,8 @@ import SectionContainer from "@/components/SectionContainer.astro";
       <div class="content-image">
         <div class="image-wrapper">
           <img
-            src="/assets/image1.webp"
-            alt="Muebles de alta calidad fabricados por Ebanos en un ambiente acogedor"
+            src="/assets/experto.webp"
+            alt="Experto carpintero junto en un mueble de melamina finalizado"
             class="hero-image"
             loading="lazy"
             decoding="async"
@@ -253,7 +253,7 @@ import SectionContainer from "@/components/SectionContainer.astro";
   .hero-image {
     width: 100%;
     height: auto;
-    min-height: 350px;
+    min-height: 500px;
     aspect-ratio: 16 / 10;
     object-fit: cover;
     object-position: center;
@@ -270,12 +270,30 @@ import SectionContainer from "@/components/SectionContainer.astro";
     @media (width > 768px) {
       min-height: unset;
       aspect-ratio: 3 / 4;
-      border-radius: .5rem;
+      border-radius: 0.5rem;
     }
 
     @media (width > 1024px) {
       aspect-ratio: 4 / 5;
     }
+  }
+
+  .image-wrapper::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 40%;
+    background: linear-gradient(
+      to bottom,
+      rgb(0 0 0 / 0.25) 0%,
+      rgb(0 0 0 / 0.1) 40%,
+      transparent 100%
+    );
+    border-radius: 0.5rem 0.5rem 0 0;
+    z-index: 3;
+    pointer-events: none;
   }
 
   .image-accent {
