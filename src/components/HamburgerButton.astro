@@ -45,22 +45,39 @@ const { class: className, id = "" } = Astro.props
     background: #000;
     border-radius: 10px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    transform-origin: 1px;
+    position: absolute;
+    left: 0;
+    transform-origin: center;
+  }
+
+  .hamburger-button span:first-child {
+    top: 4px;
+  }
+
+  .hamburger-button span:nth-child(2) {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .hamburger-button span:nth-child(3) {
+    bottom: 4px;
   }
 
   .hamburger-button.open span:first-child {
-    transform: rotate(45deg);
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
     background: #000;
   }
 
   .hamburger-button.open span:nth-child(2) {
     opacity: 0;
-    transform: translateX(20px);
+    transform: translateY(-50%) scaleX(0);
   }
 
   .hamburger-button.open span:nth-child(3) {
-    transform: rotate(-45deg);
+    bottom: auto;
+    top: 50%;
+    transform: translateY(-50%) rotate(-45deg);
     background: #000;
   }
 
