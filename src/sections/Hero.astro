@@ -3,6 +3,7 @@ import Button from "@/components/Button.astro";
 import Arrow from "@/assets/arrow-up.svg";
 import Cart from "@/assets/cart.svg";
 import SectionContainer from "@/components/SectionContainer.astro";
+import { whatsAppLink } from "@/const";
 ---
 
 <SectionContainer name="hero">
@@ -29,7 +30,7 @@ import SectionContainer from "@/components/SectionContainer.astro";
 
     <!-- Card CTA - Con imagen de fondo -->
     <a
-      href="https://wa.me/51979264871"
+      href={whatsAppLink}
       target="_blank"
       rel="noopener noreferrer"
       role="link"
