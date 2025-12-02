@@ -10,9 +10,11 @@
   --foreground: rgb(0, 0, 0);
   --secondary: rgb(69 69 69);
 }
+html {
+  scroll-behavior: smooth;
+}
 
 body {
-  scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

@@ -4,12 +4,12 @@ import ArrowUp from "@/assets/arrow-up.svg";
 import SectionContainer from "@/components/SectionContainer.astro";
 ---
 
-<SectionContainer name="categorias">
+<SectionContainer name="proyectos">
   <div class="container">
     <div class="titles">
-      <h2>Muebles con estilo para todos los espacios</h2>
+      <h2>Nuestros mas recientes trabajos</h2>
       <p>
-        Contamos con +30 años creando muebles a medida. ¡Cotiza ya!
+        Contamos con <strong>+30 años</strong> creando muebles a medida. ¡Cotiza ya!
       </p>
     </div>
 
@@ -38,7 +38,7 @@ import SectionContainer from "@/components/SectionContainer.astro";
     </div>
 
     <div class="button-container">
-      <Button type="secondary">
+      <Button type="secondary" href="/proyectos" target="_self">
         ¡Visualizar más!
         <ArrowUp slot="icon-right" />
       </Button>
@@ -51,7 +51,7 @@ import SectionContainer from "@/components/SectionContainer.astro";
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 5rem;
+    margin-top: 4rem;
   }
 
   .titles {
@@ -155,7 +155,7 @@ import SectionContainer from "@/components/SectionContainer.astro";
   /* Responsive Design */
   @media (max-width: 768px) {
     .container {
-      margin-top: 5rem;
+      margin-top: 4rem;
     }
 
     h2 {
