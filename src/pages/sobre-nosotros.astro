@@ -3,13 +3,14 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import SectionContainer from "@/components/SectionContainer.astro";
 
 const title = "Sobre Nosotros | Ebanos Muebles Perú";
-const description = "Conoce la historia de Ebanos Muebles. Más de 30 años creando muebles a medida con madera de calidad en Chiclayo, Perú.";
+const description =
+  "Conoce la historia de Ebanos Muebles. Más de 30 años creando muebles a medida con madera de calidad en Chiclayo, Perú.";
 
 // Datos del fundador
 const fundador = {
-  nombre: "Huildor Fernandez Cayau",
+  nombre: "Huildor Fernandez Cayao",
   cargo: "Fundador de Ebanos Muebles",
-  firma: "/assets/firma-fundador.png" // Placeholder para la firma
+  firma: "/assets/huildorfirma.png",
 };
 ---
 
@@ -18,9 +19,7 @@ const fundador = {
     {/* Hero / Declaración principal */}
     <SectionContainer name="sobre-hero">
       <div class="hero-statement reveal">
-        <h1>
-          Bueno para tu casa, bueno para el planeta. En Ebanos, trabajamos desde el sincero convencimiento de que trabajar con madera maciza natural es la mejor decisión posible para amueblar con estilo y sostenibilidad.
-        </h1>
+        <h1>Más de 30 Años de Experiencia</h1>
       </div>
     </SectionContainer>
 
@@ -32,30 +31,45 @@ const fundador = {
           <div class="text-columns">
             <div class="text-column reveal">
               <p>
-                Los árboles crecen según el azar que dicta la naturaleza.
+                Todo inició en el año 1990, en un viaje para visitar a mi
+                hermano Abdías Fernández en Nueva Cajamarca. Él tenía un pequeño
+                taller de carpintería y, mirando cómo trabajaba, <strong
+                  >me puse a ayudarlo</strong
+                >. Al ver que <strong>me desenvolvía muy bien</strong>, me
+                propuso trabajar como socios.
               </p>
               <p>
-                Basta un breve paseo por un bosque para comprobar que no hay dos árboles iguales.
+                Estuvimos dos años entregando trabajos y mejorando cada día,
+                hasta que nos trasladamos a la ciudad de Chiclayo para conocer
+                mejor el mercado en nuestro rubro.
               </p>
+              <h3 class="section-subtitle">Creciendo con Esfuerzo</h3>
               <p>
-                La madera es un producto vivo y natural. Y con sus nudos imperfectos y sus vetas de formas abstractas... es uno de los materiales más bellos que existen.
-              </p>
-              <p>
-                Pero no solo bello.
-              </p>
-              <p>
-                Por eso en Ebanos estamos tan orgullosos de diseñar y fabricar muebles de madera de verdad que cualquiera se pueda permitir pero que no tengan un diseño cualquiera.
+                Para 1995, después de tres años juntos, decidimos separarnos
+                como socios para <strong
+                  >consolidarnos cada uno con su taller propio</strong
+                >. Fue una etapa de mucho trabajo a pedido, donde fui mejorando
+                mi maquinaria y asistiendo a capacitaciones constante.
               </p>
             </div>
             <div class="text-column reveal">
               <p>
-                Y de hacerlo de forma sostenible, siendo respetuosos con nuestro entorno y con el planeta.
+                Un gran paso fue en 1998, cuando empecé a fabricar para una
+                tienda autorizada de <strong>'Singer'</strong>. Durante 12 años,
+                fabriqué un promedio de <strong>27,000 muebles</strong> para máquinas
+                de coser.
               </p>
               <p>
-                Desde 1990 que iniciamos este sueño, no hemos parado de diseñar pero tampoco de cortar, lijar o martillear.
+                Más allá de los números, nuestra mayor satisfacción ha sido
+                acompañar a <strong>miles de familias y empresas</strong>,
+                fabricando <strong>proyectos únicos</strong> para sus hogares y negocios
+                con la misma dedicación del primer día.
               </p>
               <p>
-                En Ebanos nos manchamos de serrín cada día y esperamos que así siga siendo.
+                Hoy, gracias a ese camino, tenemos un taller mejorado, con una
+                amplia maquinaria del momento, listos para realizar cualquier
+                trabajo con la experiencia adquirida durante el tiempo
+                transcurrido.
               </p>
             </div>
           </div>
@@ -76,8 +90,8 @@ const fundador = {
         {/* Imagen lateral */}
         <div class="content-image reveal">
           <div class="image-wrapper">
-            <img 
-              src="/assets/sobre-nosotros.webp" 
+            <img
+              src="/assets/sobre-nosotros.webp"
               alt="Taller de Ebanos Muebles - Artesanos trabajando la madera"
               loading="lazy"
               decoding="async"
@@ -86,7 +100,6 @@ const fundador = {
         </div>
       </div>
     </SectionContainer>
-
   </main>
 </BaseLayout>
 
@@ -144,6 +157,19 @@ const fundador = {
     margin-bottom: 0;
   }
 
+  .text-column p strong {
+    color: var(--foreground);
+    font-weight: 600;
+  }
+
+  .section-subtitle {
+    font-family: "Clash", sans-serif;
+    font-size: var(--fs-md);
+    font-weight: 500;
+    color: var(--foreground);
+    margin: 1.5rem 0 1rem;
+  }
+
   /* Firma del fundador */
   .fundador-firma {
     margin-top: auto;
@@ -171,7 +197,7 @@ const fundador = {
   }
 
   .firma-imagen {
-    max-width: 180px;
+    max-width: 200px;
     opacity: 0.8;
   }
 
@@ -272,8 +298,9 @@ const fundador = {
   .reveal {
     opacity: 0;
     transform: translateY(30px);
-    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    transition:
+      opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .reveal.active {
@@ -282,14 +309,26 @@ const fundador = {
   }
 
   /* Staggered delays for valor cards */
-  .valor-card.reveal:nth-child(1) { transition-delay: 0s; }
-  .valor-card.reveal:nth-child(2) { transition-delay: 0.1s; }
-  .valor-card.reveal:nth-child(3) { transition-delay: 0.2s; }
-  .valor-card.reveal:nth-child(4) { transition-delay: 0.3s; }
+  .valor-card.reveal:nth-child(1) {
+    transition-delay: 0s;
+  }
+  .valor-card.reveal:nth-child(2) {
+    transition-delay: 0.1s;
+  }
+  .valor-card.reveal:nth-child(3) {
+    transition-delay: 0.2s;
+  }
+  .valor-card.reveal:nth-child(4) {
+    transition-delay: 0.3s;
+  }
 
   /* Staggered delays for text columns */
-  .text-column.reveal:nth-child(1) { transition-delay: 0.1s; }
-  .text-column.reveal:nth-child(2) { transition-delay: 0.2s; }
+  .text-column.reveal:nth-child(1) {
+    transition-delay: 0.1s;
+  }
+  .text-column.reveal:nth-child(2) {
+    transition-delay: 0.2s;
+  }
 
   /* Reduce motion for accessibility */
   @media (prefers-reduced-motion: reduce) {
@@ -326,11 +365,11 @@ const fundador = {
 
     .content-image {
       position: static;
-      order: 2;
+      order: 1;
     }
 
     .content-text {
-      order: 1;
+      order: 2;
     }
 
     .text-columns {
@@ -390,23 +429,26 @@ const fundador = {
 <script>
   // Scroll Reveal Animation
   function initScrollReveal() {
-    const reveals = document.querySelectorAll('.reveal');
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-        }
-      });
-    }, {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    });
+    const reveals = document.querySelectorAll(".reveal");
 
-    reveals.forEach(el => observer.observe(el));
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      }
+    );
+
+    reveals.forEach((el) => observer.observe(el));
   }
 
   // Run on page load and after Astro page transitions
-  document.addEventListener('DOMContentLoaded', initScrollReveal);
-  document.addEventListener('astro:page-load', initScrollReveal);
+  document.addEventListener("DOMContentLoaded", initScrollReveal);
+  document.addEventListener("astro:page-load", initScrollReveal);
 </script>
