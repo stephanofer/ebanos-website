@@ -4,6 +4,7 @@ import { ClientRouter } from "astro:transitions";
 import Footer from "@/components/Footer.astro";
 import Navbar from "@/components/Navbar.astro";
 import Announce from "@/components/Announce.astro";
+import Experiencias from "@/sections/Experiencias.astro";
 import "@/styles/global.css";
 
 interface Props {
@@ -72,6 +73,7 @@ const { title = "Ebanos Muebles", description = "Descripción de la página" } =
     <Announce />
     <Navbar />
     <slot />
+    <Experiencias />
     <Footer />
   </body>
 </html>
