@@ -1,11 +1,412 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import SectionContainer from "@/components/SectionContainer.astro";
 
-const title = "Ebanos Muebles Perú - Muebles a Medida y Diseñados para ti";
-const description =
-  "Especialistas creando muebles de alta calidad, diseñados para ti en Chiclayo.";
+const title = "Sobre Nosotros | Ebanos Muebles Perú";
+const description = "Conoce la historia de Ebanos Muebles. Más de 30 años creando muebles a medida con madera de calidad en Chiclayo, Perú.";
+
+// Datos del fundador
+const fundador = {
+  nombre: "Huildor Fernandez Cayau",
+  cargo: "Fundador de Ebanos Muebles",
+  firma: "/assets/firma-fundador.png" // Placeholder para la firma
+};
 ---
 
 <BaseLayout title={title} description={description}>
-    <h1>Sobre Nosotros</h1>
+  <main class="sobre-nosotros-page">
+    {/* Hero / Declaración principal */}
+    <SectionContainer name="sobre-hero">
+      <div class="hero-statement reveal">
+        <h1>
+          Bueno para tu casa, bueno para el planeta. En Ebanos, trabajamos desde el sincero convencimiento de que trabajar con madera maciza natural es la mejor decisión posible para amueblar con estilo y sostenibilidad.
+        </h1>
+      </div>
+    </SectionContainer>
+
+    {/* Contenido principal */}
+    <SectionContainer name="sobre-content">
+      <div class="content-layout">
+        {/* Texto en dos columnas */}
+        <div class="content-text">
+          <div class="text-columns">
+            <div class="text-column reveal">
+              <p>
+                Los árboles crecen según el azar que dicta la naturaleza.
+              </p>
+              <p>
+                Basta un breve paseo por un bosque para comprobar que no hay dos árboles iguales.
+              </p>
+              <p>
+                La madera es un producto vivo y natural. Y con sus nudos imperfectos y sus vetas de formas abstractas... es uno de los materiales más bellos que existen.
+              </p>
+              <p>
+                Pero no solo bello.
+              </p>
+              <p>
+                Por eso en Ebanos estamos tan orgullosos de diseñar y fabricar muebles de madera de verdad que cualquiera se pueda permitir pero que no tengan un diseño cualquiera.
+              </p>
+            </div>
+            <div class="text-column reveal">
+              <p>
+                Y de hacerlo de forma sostenible, siendo respetuosos con nuestro entorno y con el planeta.
+              </p>
+              <p>
+                Desde 1990 que iniciamos este sueño, no hemos parado de diseñar pero tampoco de cortar, lijar o martillear.
+              </p>
+              <p>
+                En Ebanos nos manchamos de serrín cada día y esperamos que así siga siendo.
+              </p>
+            </div>
+          </div>
+
+          {/* Firma del fundador */}
+          <div class="fundador-firma reveal">
+            <div class="firma-info">
+              <span class="firma-nombre">{fundador.nombre}</span>
+              <span class="firma-cargo">{fundador.cargo}</span>
+            </div>
+            <div class="firma-imagen">
+              {/* Placeholder para la firma - reemplazar con imagen real */}
+              <img src={fundador.firma} alt={`Firma de ${fundador.nombre}`} />
+            </div>
+          </div>
+        </div>
+
+        {/* Imagen lateral */}
+        <div class="content-image reveal">
+          <div class="image-wrapper">
+            <img 
+              src="/assets/sobre-nosotros.webp" 
+              alt="Taller de Ebanos Muebles - Artesanos trabajando la madera"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </div>
+      </div>
+    </SectionContainer>
+
+  </main>
 </BaseLayout>
+
+<style>
+  .sobre-nosotros-page {
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+  }
+
+  /* Hero Statement */
+  .hero-statement {
+    max-width: 1000px;
+    margin-bottom: 4rem;
+  }
+
+  .hero-statement h1 {
+    font-family: "Clash", sans-serif;
+    font-weight: 500;
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    line-height: 1.3;
+    color: var(--foreground);
+    letter-spacing: -0.02em;
+  }
+
+  /* Content Layout */
+  .content-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .content-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Text Columns */
+  .text-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .text-column p {
+    font-family: "Inter", sans-serif;
+    font-size: var(--fs-base);
+    line-height: 1.8;
+    color: var(--secondary);
+    margin-bottom: 1.25rem;
+  }
+
+  .text-column p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Firma del fundador */
+  .fundador-firma {
+    margin-top: auto;
+    padding-top: 2rem;
+  }
+
+  .firma-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .firma-nombre {
+    font-family: "Inter", sans-serif;
+    font-size: var(--fs-base);
+    font-weight: 600;
+    color: var(--foreground);
+  }
+
+  .firma-cargo {
+    font-family: "Inter", sans-serif;
+    font-size: var(--fs-sm);
+    color: var(--secondary);
+  }
+
+  .firma-imagen {
+    max-width: 180px;
+    opacity: 0.8;
+  }
+
+  .firma-imagen img {
+    width: 100%;
+    height: auto;
+  }
+
+  /* Imagen lateral */
+  .content-image {
+    position: sticky;
+    top: 2rem;
+  }
+
+  .image-wrapper {
+    border-radius: 16px;
+    overflow: hidden;
+    background: #f5f5f5;
+  }
+
+  .image-wrapper img {
+    width: 100%;
+    height: auto;
+    display: block;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+  }
+
+  /* Sección de valores */
+  .valores-section {
+    margin-top: 6rem;
+    padding-top: 4rem;
+    border-top: 1px solid #e5e5e5;
+  }
+
+  .valores-section h2 {
+    font-family: "Clash", sans-serif;
+    font-size: var(--fs-xl);
+    font-weight: 500;
+    color: var(--foreground);
+    margin-bottom: 2.5rem;
+    text-align: center;
+  }
+
+  .valores-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+
+  .valor-card {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    background: #fafafa;
+    border: 1px solid #e5e5e5;
+    border-radius: 16px;
+    transition: all 0.3s ease;
+  }
+
+  .valor-card:hover {
+    border-color: #d0d0d0;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    transform: translateY(-4px);
+  }
+
+  .valor-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border: 1px solid #e5e5e5;
+    border-radius: 16px;
+    color: var(--foreground);
+  }
+
+  .valor-card h3 {
+    font-family: "Clash", sans-serif;
+    font-size: var(--fs-md);
+    font-weight: 500;
+    color: var(--foreground);
+    margin-bottom: 0.75rem;
+  }
+
+  .valor-card p {
+    font-family: "Inter", sans-serif;
+    font-size: var(--fs-sm);
+    line-height: 1.6;
+    color: var(--secondary);
+    margin: 0;
+  }
+
+  /* ==================== */
+  /* Scroll Reveal Animations */
+  /* ==================== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Staggered delays for valor cards */
+  .valor-card.reveal:nth-child(1) { transition-delay: 0s; }
+  .valor-card.reveal:nth-child(2) { transition-delay: 0.1s; }
+  .valor-card.reveal:nth-child(3) { transition-delay: 0.2s; }
+  .valor-card.reveal:nth-child(4) { transition-delay: 0.3s; }
+
+  /* Staggered delays for text columns */
+  .text-column.reveal:nth-child(1) { transition-delay: 0.1s; }
+  .text-column.reveal:nth-child(2) { transition-delay: 0.2s; }
+
+  /* Reduce motion for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+
+  /* Responsive */
+  @media (max-width: 1200px) {
+    .valores-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .content-layout {
+      gap: 3rem;
+    }
+
+    .text-columns {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .content-layout {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .content-image {
+      position: static;
+      order: 2;
+    }
+
+    .content-text {
+      order: 1;
+    }
+
+    .text-columns {
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .sobre-nosotros-page {
+      padding-top: 1rem;
+    }
+
+    .hero-statement {
+      margin-bottom: 3rem;
+    }
+
+    .hero-statement h1 {
+      font-size: var(--fs-xl);
+    }
+
+    .text-columns {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    .valores-section {
+      margin-top: 4rem;
+      padding-top: 3rem;
+    }
+
+    .valores-grid {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+
+    .valor-card {
+      padding: 1.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero-statement h1 {
+      font-size: var(--fs-lg);
+    }
+
+    .fundador-firma {
+      text-align: center;
+    }
+
+    .firma-imagen {
+      margin: 0 auto;
+    }
+  }
+</style>
+
+<script>
+  // Scroll Reveal Animation
+  function initScrollReveal() {
+    const reveals = document.querySelectorAll('.reveal');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    reveals.forEach(el => observer.observe(el));
+  }
+
+  // Run on page load and after Astro page transitions
+  document.addEventListener('DOMContentLoaded', initScrollReveal);
+  document.addEventListener('astro:page-load', initScrollReveal);
+</script>

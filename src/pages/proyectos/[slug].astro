@@ -1,0 +1,792 @@
+---
+import { getCollection, type CollectionEntry, render } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import SectionContainer from "@/components/SectionContainer.astro";
+import type { GetStaticPaths } from "astro";
+import { whatsAppLink } from "@/const";
+
+export const getStaticPaths = (async () => {
+  const proyectos = await getCollection("proyectos", ({ data }) => {
+    return data.publicado === true;
+  });
+
+  return proyectos.map((proyecto) => ({
+    params: { slug: proyecto.data.slug },
+    props: { proyecto },
+  }));
+}) satisfies GetStaticPaths;
+
+interface Props {
+  proyecto: CollectionEntry<"proyectos">;
+}
+
+const { proyecto } = Astro.props;
+const { Content } = await render(proyecto);
+
+const {
+  titulo,
+  categoria,
+  descripcionCorta,
+  imagenPortada,
+  imagenPortadaAlt,
+  galeria,
+  cliente,
+  ubicacionProyecto,
+  fechaEntrega,
+  materiales,
+  colores,
+  acabados,
+  dimensiones,
+  tiempoFabricacion,
+  muebles,
+  satisfaccionCliente,
+  metaTitle,
+  metaDescription,
+} = proyecto.data;
+
+// SEO
+const pageTitle = metaTitle || `${titulo} | Ebanos Muebles`;
+const pageDescription = metaDescription || descripcionCorta;
+
+// Formatear fecha
+const fechaFormateada = fechaEntrega.toLocaleDateString("es-PE", {
+  year: "numeric",
+  month: "long",
+});
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <main class="proyecto-detalle">
+    {/* Navegación - arriba del hero */}
+    <SectionContainer name="proyecto-nav-top">
+      <div class="proyecto-nav-top">
+        <a href="/proyectos" class="nav-back">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M15 18l-6-6 6-6"></path>
+          </svg>
+          Ver todos los proyectos
+        </a>
+      </div>
+    </SectionContainer>
+
+    {/* Hero del proyecto */}
+    <SectionContainer name="proyecto-hero">
+      <section class="proyecto-hero reveal">
+        <div class="hero-image">
+          <img src={imagenPortada} alt={imagenPortadaAlt} />
+          <div class="hero-overlay">
+            <div class="hero-content">
+              <span class="proyecto-categoria">{categoria}</span>
+              <h1>{titulo}</h1>
+              <p class="proyecto-ubicacion">{ubicacionProyecto || "Perú"}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </SectionContainer>
+
+    <SectionContainer name="proyecto-content">
+      <div class="proyecto-layout">
+        {/* Sidebar con detalles - en mobile aparece primero */}
+        <aside class="proyecto-sidebar reveal">
+          <div class="sidebar-card">
+            <h3>Detalles del proyecto</h3>
+
+            {/* Satisfacción del cliente - posicionado estratégicamente arriba para generar confianza inmediata (psicología de la prueba social) */}
+            {satisfaccionCliente && (
+              <div class="client-satisfaction">
+                <div class="satisfaction-header">
+                  <span class="satisfaction-label">Satisfacción del cliente</span>
+                  <div class="satisfaction-badge">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+                    </svg>
+                    Verificado
+                  </div>
+                </div>
+                <div class="satisfaction-stars">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill={star <= satisfaccionCliente ? "#F59E0B" : "none"}
+                      stroke="#F59E0B"
+                      stroke-width="2"
+                      class="star-icon"
+                    >
+                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                    </svg>
+                  ))}
+                  <span class="satisfaction-text">{satisfaccionCliente}/5</span>
+                </div>
+                <p class="satisfaction-note">El cliente nos recomienda</p>
+              </div>
+            )}
+
+            <div class="detail-group">
+              <div class="detail-item">
+                <span class="detail-label">Cliente</span>
+                <span class="detail-value">{cliente}</span>
+              </div>
+
+              {
+                ubicacionProyecto && (
+                  <div class="detail-item">
+                    <span class="detail-label">Ubicación</span>
+                    <span class="detail-value">{ubicacionProyecto}</span>
+                  </div>
+                )
+              }
+
+              <div class="detail-item">
+                <span class="detail-label">Fecha de entrega</span>
+                <span class="detail-value">{fechaFormateada}</span>
+              </div>
+
+              {
+                tiempoFabricacion && (
+                  <div class="detail-item">
+                    <span class="detail-label">Tiempo de fabricación</span>
+                    <span class="detail-value">{tiempoFabricacion}</span>
+                  </div>
+                )
+              }
+
+              {
+                dimensiones && (
+                  <div class="detail-item">
+                    <span class="detail-label">Dimensiones</span>
+                    <span class="detail-value">{dimensiones}</span>
+                  </div>
+                )
+              }
+            </div>
+
+            {
+              muebles && muebles.length > 0 && (
+                <div class="detail-section">
+                  <h4>Muebles incluidos</h4>
+                  <ul class="detail-list">
+                    {muebles.map((mueble) => (
+                      <li>{mueble}</li>
+                    ))}
+                  </ul>
+                </div>
+              )
+            }
+
+            {
+              materiales && materiales.length > 0 && (
+                <div class="detail-section">
+                  <h4>Materiales</h4>
+                  <div class="detail-tags">
+                    {materiales.map((material) => (
+                      <span class="detail-tag">{material}</span>
+                    ))}
+                  </div>
+                </div>
+              )
+            }
+
+            {
+              colores && colores.length > 0 && (
+                <div class="detail-section">
+                  <h4>Colores</h4>
+                  <div class="detail-tags">
+                    {colores.map((color) => (
+                      <span class="detail-tag">{color}</span>
+                    ))}
+                  </div>
+                </div>
+              )
+            }
+
+            {
+              acabados && acabados.length > 0 && (
+                <div class="detail-section">
+                  <h4>Acabados</h4>
+                  <div class="detail-tags">
+                    {acabados.map((acabado) => (
+                      <span class="detail-tag">{acabado}</span>
+                    ))}
+                  </div>
+                </div>
+              )
+            }
+          </div>
+
+          {/* CTA */}
+          <div class="sidebar-cta">
+            <p>¿Te gustaría un proyecto similar?</p>
+            <a
+              href={whatsAppLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="cta-button">Solicitar cotización</a
+            >
+          </div>
+        </aside>
+
+        {/* Contenido principal - descripción y galería */}
+        <div class="proyecto-main">
+          {/* Descripción */}
+          <div class="proyecto-descripcion reveal">
+            <div class="content-prose">
+              <Content />
+            </div>
+          </div>
+
+          {/* Galería de imágenes - vertical, una imagen por fila */}
+          {
+            galeria && galeria.length > 0 && (
+              <div class="proyecto-galeria">
+                <h2 class="reveal">Galería del proyecto</h2>
+                <div class="galeria-grid">
+                  {galeria.map((imagen) => (
+                    <div class="galeria-item reveal">
+                      <img
+                        src={imagen.src}
+                        alt={imagen.alt}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )
+          }
+        </div>
+      </div>
+    </SectionContainer>
+  </main>
+</BaseLayout>
+
+<style>
+  .proyecto-detalle {
+    padding-bottom: 4rem;
+  }
+
+  /* Navegación superior */
+  .proyecto-nav-top {
+    padding-top: 1.5rem;
+  }
+
+  .nav-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: "Inter", sans-serif;
+    font-size: var(--fs-sm);
+    font-weight: 500;
+    color: var(--foreground);
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .nav-back:hover {
+    opacity: 0.7;
+  }
+
+  /* Hero Section - respeta max-width */
+  .proyecto-hero {
+    position: relative;
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 1.5rem;
+  }
+
+  .hero-image {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+  }
+
+  .hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.7) 0%,
+      rgba(0, 0, 0, 0.3) 50%,
+      rgba(0, 0, 0, 0.1) 100%
+    );
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .hero-content {
+    color: white;
+    padding: 2rem;
+  }
+
+  .proyecto-categoria {
+    display: inline-block;
+    font-family: "Inter", sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+  }
+
+  .hero-content h1 {
+    font-family: "Clash", sans-serif;
+    font-size: var(--fs-xxl);
+    font-weight: 500;
+    line-height: 1.2;
+    margin: 0 0 0.75rem 0;
+    letter-spacing: -0.02em;
+  }
+
+  .proyecto-ubicacion {
+    font-family: "Inter", sans-serif;
+    font-size: var(--fs-base);
+    opacity: 0.9;
+    margin: 0;
+  }
+
+  /* Layout principal - en desktop: main izq, sidebar der */
+  .proyecto-layout {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 3rem;
+    margin-top: 3rem;
+  }
+
+  /* Contenido principal */
+  .proyecto-main {
+    min-width: 0;
+    order: 1;
+  }
+
+  /* En desktop el sidebar va a la derecha */
+  .proyecto-sidebar {
+    order: 2;
+  }
+
+  .proyecto-descripcion {
+    margin-bottom: 3rem;
+  }
+
+  .content-prose {
+    font-family: "Inter", sans-serif;
+    font-size: var(--fs-base);
+    line-height: 1.8;
+    color: var(--secondary);
+  }
+
+  .content-prose :global(p) {
+    margin-bottom: 1.5rem;
+  }
+
+  .content-prose :global(p:last-child) {
+    margin-bottom: 0;
+  }
+
+  /* Galería - vertical, una imagen por fila */
+  .proyecto-galeria h2 {
+    font-family: "Clash", sans-serif;
+    font-size: var(--fs-lg);
+    font-weight: 500;
+    color: var(--foreground);
+    margin-bottom: 1.5rem;
+  }
+
+  .galeria-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .galeria-item {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .galeria-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .galeria-item:hover img {
+    transform: scale(1.02);
+  }
+
+  /* Sidebar - sticky en desktop */
+  .proyecto-sidebar {
+    position: sticky;
+    top: 2rem;
+    height: fit-content;
+    order: 2;
+  }
+
+  .sidebar-card {
+    background: #fafafa;
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .sidebar-card h3 {
+    font-family: "Clash", sans-serif;
+    font-size: var(--fs-md);
+    font-weight: 500;
+    color: var(--foreground);
+    margin: 0 0 1.5rem 0;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+  /* Satisfacción del cliente */
+  .client-satisfaction {
+    background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+    border: 1px solid #fcd34d;
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .satisfaction-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .satisfaction-label {
+    font-family: "Inter", sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #92400e;
+  }
+
+  .satisfaction-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-family: "Inter", sans-serif;
+    font-size: 0.65rem;
+    font-weight: 500;
+    color: #166534;
+    background: #dcfce7;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+  }
+
+  .satisfaction-stars {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .star-icon {
+    flex-shrink: 0;
+  }
+
+  .satisfaction-text {
+    font-family: "Inter", sans-serif;
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    color: #92400e;
+    margin-left: 0.5rem;
+  }
+
+  .satisfaction-note {
+    font-family: "Inter", sans-serif;
+    font-size: 0.75rem;
+    color: #a16207;
+    margin: 0;
+  }
+
+  .detail-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .detail-label {
+    font-family: "Inter", sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--secondary);
+  }
+
+  .detail-value {
+    font-family: "Inter", sans-serif;
+    font-size: var(--fs-sm);
+    color: var(--foreground);
+  }
+
+  .detail-section {
+    margin-bottom: 1.5rem;
+  }
+
+  .detail-section:last-child {
+    margin-bottom: 0;
+  }
+
+  .detail-section h4 {
+    font-family: "Inter", sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--foreground);
+    margin: 0 0 0.75rem 0;
+  }
+
+  .detail-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .detail-list li {
+    font-family: "Inter", sans-serif;
+    font-size: var(--fs-sm);
+    color: var(--secondary);
+    padding-left: 1rem;
+    position: relative;
+  }
+
+  .detail-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--foreground);
+  }
+
+  .detail-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .detail-tag {
+    font-family: "Inter", sans-serif;
+    font-size: 0.75rem;
+    color: var(--foreground);
+    background: white;
+    border: 1px solid #e5e5e5;
+    padding: 0.375rem 0.75rem;
+    border-radius: 4px;
+  }
+
+  /* CTA */
+  .sidebar-cta {
+    background: #454545;
+    color: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  .sidebar-cta p {
+    font-family: "Inter", sans-serif;
+    font-size: var(--fs-sm);
+    margin: 0 0 1rem 0;
+    opacity: 0.9;
+  }
+
+  .cta-button {
+    display: inline-block;
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+    font-family: "Inter", sans-serif;
+    font-size: var(--fs-sm);
+    font-weight: 500;
+    color: var(--foreground);
+    background: white;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .cta-button:hover {
+    background: #f5f5f5;
+    transform: translateY(-2px);
+  }
+
+  /* ==================== */
+  /* Scroll Reveal Animations */
+  /* ==================== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Staggered delays for gallery items */
+  .galeria-item.reveal:nth-child(1) { transition-delay: 0s; }
+  .galeria-item.reveal:nth-child(2) { transition-delay: 0.1s; }
+  .galeria-item.reveal:nth-child(3) { transition-delay: 0.2s; }
+  .galeria-item.reveal:nth-child(4) { transition-delay: 0.15s; }
+  .galeria-item.reveal:nth-child(5) { transition-delay: 0.2s; }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .proyecto-layout {
+      grid-template-columns: 1fr 320px;
+      gap: 2rem;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .proyecto-layout {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    /* En mobile: sidebar (detalles) primero, luego descripción y galería */
+    .proyecto-sidebar {
+      position: static;
+      order: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .proyecto-main {
+      order: 2;
+    }
+
+    .sidebar-card,
+    .sidebar-cta {
+      margin-bottom: 0;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .proyecto-hero {
+      border-radius: 8px;
+      margin-top: 1rem;
+    }
+
+    .hero-image {
+      aspect-ratio: 4/3;
+    }
+
+    .hero-content h1 {
+      font-size: var(--fs-xl);
+    }
+
+    .hero-content {
+      padding: 1.5rem;
+    }
+
+    .proyecto-layout {
+      margin-top: 2rem;
+    }
+
+    .galeria-grid {
+      gap: 1rem;
+    }
+
+    .galeria-item {
+      border-radius: 8px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero-image {
+      aspect-ratio: 3/4;
+    }
+
+    .hero-content h1 {
+      font-size: var(--fs-lg);
+    }
+
+    .hero-content {
+      padding: 1.25rem;
+    }
+
+    .proyecto-categoria {
+      font-size: 0.7rem;
+      padding: 0.375rem 0.75rem;
+    }
+
+    .sidebar-card {
+      padding: 1.25rem;
+    }
+  }
+
+  /* Reduce motion for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  // Scroll Reveal Animation
+  function initScrollReveal() {
+    const reveals = document.querySelectorAll('.reveal');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    reveals.forEach(el => observer.observe(el));
+  }
+
+  // Run on page load and after Astro page transitions
+  document.addEventListener('DOMContentLoaded', initScrollReveal);
+  document.addEventListener('astro:page-load', initScrollReveal);
+</script>

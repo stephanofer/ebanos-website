@@ -1,0 +1,232 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import SectionContainer from "@/components/SectionContainer.astro";
+import ProjectCard from "@/components/ProjectCard.astro";
+import Pagination from "@/components/Pagination.astro";
+import type { GetStaticPaths, Page } from "astro";
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const allProyectos = await getCollection("proyectos", ({ data }) => {
+    return data.publicado === true;
+  });
+
+  // Ordenar por orden (menor primero), luego por fecha (más reciente primero)
+  const proyectosOrdenados = allProyectos.sort((a, b) => {
+    if (a.data.orden !== b.data.orden) {
+      return a.data.orden - b.data.orden;
+    }
+    return b.data.fechaEntrega.getTime() - a.data.fechaEntrega.getTime();
+  });
+
+  // Paginar con 12 proyectos por página
+  return paginate(proyectosOrdenados, { pageSize: 12 });
+}) satisfies GetStaticPaths;
+
+interface Props {
+  page: Page<CollectionEntry<"proyectos">>;
+}
+
+const { page } = Astro.props;
+const proyectos = page.data;
+
+// SEO
+const pageTitle =
+  page.currentPage === 1
+    ? "Proyectos | Ebanos Muebles"
+    : `Proyectos - Página ${page.currentPage} | Ebanos Muebles`;
+const pageDescription =
+  "Descubre nuestros proyectos de muebles a medida: dormitorios, salas, comedores, cocinas y más. +30 años de experiencia en fabricación de muebles de calidad.";
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <main class="proyectos-page">
+    <SectionContainer name="proyectos-header">
+      <div class="page-header reveal">
+        <h1 class="text-4xl font-bold mb-4">Nuestros Proyectos</h1>
+        <p class="text-lg text-gray-600">
+          Explora nuestro catálogo de proyectos más recientes. Aquí encontrarás
+          una selección de los últimos trabajos de mobiliario que hemos
+          fabricado e instalado.
+        </p>
+      </div>
+    </SectionContainer>
+
+    <SectionContainer name="proyectos-grid">
+      <div class="projects-grid">
+        {
+          proyectos.map((proyecto, index) => (
+            <div
+              class="project-wrapper reveal"
+              style={`--delay: ${index * 0.08}s`}
+            >
+              <ProjectCard
+                titulo={proyecto.data.titulo}
+                slug={proyecto.data.slug}
+                categoria={proyecto.data.categoria}
+                imagenPortada={proyecto.data.imagenPortada}
+                imagenPortadaAlt={proyecto.data.imagenPortadaAlt}
+              />
+            </div>
+          ))
+        }
+      </div>
+
+      {
+        page.lastPage > 1 && (
+          <Pagination
+            currentPage={page.currentPage}
+            totalPages={page.lastPage}
+            baseUrl="/proyectos"
+          />
+        )
+      }
+    </SectionContainer>
+  </main>
+</BaseLayout>
+
+<style>
+  .proyectos-page {
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+  }
+
+  .page-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  h1 {
+    font-family: "Clash", sans-serif;
+    font-weight: 500;
+    font-size: var(--fs-xxl);
+    line-height: 1.2;
+    color: var(--foreground);
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .page-header p {
+    font-family: "Inter", sans-serif;
+    font-size: var(--fs-base);
+    line-height: 1.7;
+    color: var(--secondary);
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  /* Grid de proyectos - 3 columnas en desktop */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .projects-grid :global(.project-card) {
+    aspect-ratio: 4/5;
+  }
+
+  .projects-grid :global(.project-image) {
+    min-height: unset;
+    height: 100%;
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .projects-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .proyectos-page {
+      padding-top: 1rem;
+    }
+
+    h1 {
+      font-size: var(--fs-xl);
+    }
+
+    .page-header p {
+      font-size: var(--fs-sm);
+    }
+
+    .page-header {
+      margin-bottom: 2rem;
+    }
+
+    /* En mobile: siempre 1 columna */
+    .projects-grid {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+
+    .projects-grid :global(.project-card) {
+      aspect-ratio: 4/5;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .projects-grid :global(.project-card) {
+      aspect-ratio: 3/4;
+    }
+  }
+
+  /* ==================== */
+  /* Scroll Reveal Animations */
+  /* ==================== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition:
+      opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Staggered animation for project cards */
+  .project-wrapper.reveal {
+    transition-delay: var(--delay, 0s);
+  }
+
+  /* Reduce motion for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  // Scroll Reveal Animation
+  function initScrollReveal() {
+    const reveals = document.querySelectorAll(".reveal");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      }
+    );
+
+    reveals.forEach((el) => observer.observe(el));
+  }
+
+  // Run on page load and after Astro page transitions
+  document.addEventListener("DOMContentLoaded", initScrollReveal);
+  document.addEventListener("astro:page-load", initScrollReveal);
+</script>

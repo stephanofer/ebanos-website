@@ -1,0 +1,222 @@
+---
+interface Props {
+  currentPage: number;
+  totalPages: number;
+  baseUrl: string;
+}
+
+const { currentPage, totalPages, baseUrl } = Astro.props;
+
+// Generar array de páginas para mostrar
+const generatePageNumbers = () => {
+  const pages: (number | string)[] = [];
+  const delta = 2; // Páginas a mostrar alrededor de la actual
+  
+  for (let i = 1; i <= totalPages; i++) {
+    if (
+      i === 1 || // Primera página
+      i === totalPages || // Última página
+      (i >= currentPage - delta && i <= currentPage + delta) // Páginas cercanas
+    ) {
+      pages.push(i);
+    } else if (pages[pages.length - 1] !== '...') {
+      pages.push('...');
+    }
+  }
+  
+  return pages;
+};
+
+const pageNumbers = generatePageNumbers();
+const prevPage = currentPage > 1 ? currentPage - 1 : null;
+const nextPage = currentPage < totalPages ? currentPage + 1 : null;
+
+const getPageUrl = (page: number) => {
+  return page === 1 ? baseUrl : `${baseUrl}/${page}`;
+};
+---
+
+<nav class="pagination" aria-label="Navegación de páginas">
+  {/* Botón anterior */}
+  {prevPage ? (
+    <a href={getPageUrl(prevPage)} class="pagination-btn pagination-prev" aria-label="Página anterior">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M15 18l-6-6 6-6"/>
+      </svg>
+      <span class="pagination-btn-text">Anterior</span>
+    </a>
+  ) : (
+    <span class="pagination-btn pagination-prev disabled" aria-disabled="true">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M15 18l-6-6 6-6"/>
+      </svg>
+      <span class="pagination-btn-text">Anterior</span>
+    </span>
+  )}
+
+  {/* Números de página */}
+  <div class="pagination-numbers">
+    {pageNumbers.map((page) => (
+      page === '...' ? (
+        <span class="pagination-ellipsis">...</span>
+      ) : (
+        <a
+          href={getPageUrl(page as number)}
+          class={`pagination-number ${currentPage === page ? 'active' : ''}`}
+          aria-current={currentPage === page ? 'page' : undefined}
+          aria-label={`Página ${page}`}
+        >
+          {page}
+        </a>
+      )
+    ))}
+  </div>
+
+  {/* Botón siguiente */}
+  {nextPage ? (
+    <a href={getPageUrl(nextPage)} class="pagination-btn pagination-next" aria-label="Página siguiente">
+      <span class="pagination-btn-text">Siguiente</span>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M9 18l6-6-6-6"/>
+      </svg>
+    </a>
+  ) : (
+    <span class="pagination-btn pagination-next disabled" aria-disabled="true">
+      <span class="pagination-btn-text">Siguiente</span>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M9 18l6-6-6-6"/>
+      </svg>
+    </span>
+  )}
+</nav>
+
+<style>
+  .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 3rem;
+    padding: 1rem 0;
+  }
+
+  .pagination-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1rem;
+    font-family: "Inter", sans-serif;
+    font-size: var(--fs-sm);
+    font-weight: 500;
+    color: var(--foreground);
+    background: white;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+
+  .pagination-btn:hover:not(.disabled) {
+    background: var(--foreground);
+    color: white;
+    border-color: var(--foreground);
+  }
+
+  .pagination-btn.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  .pagination-btn svg {
+    flex-shrink: 0;
+  }
+
+  .pagination-numbers {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .pagination-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    font-family: "Inter", sans-serif;
+    font-size: var(--fs-sm);
+    font-weight: 500;
+    color: var(--foreground);
+    background: white;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .pagination-number:hover:not(.active) {
+    background: #f5f5f5;
+    border-color: #d0d0d0;
+  }
+
+  .pagination-number.active {
+    background: var(--foreground);
+    color: white;
+    border-color: var(--foreground);
+  }
+
+  .pagination-ellipsis {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    font-family: "Inter", sans-serif;
+    font-size: var(--fs-sm);
+    color: var(--secondary);
+  }
+
+  @media (max-width: 768px) {
+    .pagination {
+      gap: 0.375rem;
+    }
+
+    .pagination-btn-text {
+      display: none;
+    }
+
+    .pagination-btn {
+      padding: 0.625rem;
+    }
+
+    .pagination-number,
+    .pagination-ellipsis {
+      width: 36px;
+      height: 36px;
+      font-size: 0.8rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .pagination-numbers {
+      gap: 0.125rem;
+    }
+
+    .pagination-number,
+    .pagination-ellipsis {
+      width: 32px;
+      height: 32px;
+      font-size: 0.75rem;
+    }
+
+    .pagination-btn {
+      padding: 0.5rem;
+    }
+
+    .pagination-btn svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+</style>

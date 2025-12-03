@@ -1,11 +1,513 @@
 ---
+import ArrowUp from '@/assets/arrow-up.svg';
+import Email from '@/assets/email.svg';
+import Facebook from '@/assets/facebook.svg';
+import Instagram from '@/assets/instagram.svg';
+import Location from '@/assets/location.svg';
+import Phone from '@/assets/phone.svg';
+import Tiktok from '@/assets/tiktok.svg';
+import Whatsapp from '@/assets/whatsapp.svg';
+import SectionContainer from "@/components/SectionContainer.astro";
+import {
+    address,
+    email,
+    googleMapsEmbedUrl,
+    googleMapsLink,
+    horarios,
+    phoneNumber,
+    socialLinks,
+    whatsAppLink
+} from "@/const";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
-const title = "Ebanos Muebles Perú - Muebles a Medida y Diseñados para ti";
-const description =
-  "Especialistas creando muebles de alta calidad, diseñados para ti en Chiclayo.";
+const title = "Contacto | Ebanos Muebles Perú";
+const description = "Contáctanos para cotizar tus muebles a medida. Estamos en Chiclayo, Perú. Llámanos, escríbenos por WhatsApp o visítanos.";
+
+// Formatear número para tel: link
+const phoneFormatted = phoneNumber.replace(/\s/g, '');
 ---
 
 <BaseLayout title={title} description={description}>
-    <h1>Contacto</h1>
+  <main class="contacto-page">
+    {/* Header */}
+    <SectionContainer name="contacto-header">
+      <div class="page-header reveal">
+        <h1>Contacto</h1>
+        <p>
+          ¿Tienes alguna pregunta o deseas cotizar un proyecto? Estamos aquí para ayudarte.<br />
+          Escríbenos a llámanos al <a href={`tel:${phoneFormatted}`} class="link-highlight">{phoneNumber}</a>
+        </p>
+      </div>
+    </SectionContainer>
+
+    {/* Contenido principal */}
+    <SectionContainer name="contacto-content">
+      <div class="contacto-layout">
+        {/* Mapa de Google */}
+        <div class="mapa-container reveal">
+          <div class="mapa-wrapper">
+            <iframe
+              src={googleMapsEmbedUrl}
+              width="100%"
+              height="100%"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Ubicación de Ebanos Muebles en Chiclayo"
+            ></iframe>
+          </div>
+          <div class="mapa-overlay">
+            <span class="mapa-label">Ebanos Muebles</span>
+            <a href={googleMapsLink} target="_blank" rel="noopener noreferrer" class="mapa-link">
+              Ver en Google Maps
+              <ArrowUp/>
+            </a>
+          </div>
+        </div>
+
+        {/* Información de contacto */}
+        <div class="contacto-info">
+          {/* Correo electrónico */}
+          <div class="info-card reveal">
+            <div class="info-icon">
+              <Email/>
+            </div>
+            <div class="info-content">
+              <span class="info-label">Correo electrónico:</span>
+              <a href={`mailto:${email}`} class="info-value info-link">
+                {email}
+              </a>
+            </div>
+          </div>
+
+          {/* Teléfono / WhatsApp */}
+          <div class="info-card reveal">
+            <div class="info-icon">
+              <Phone/>
+            </div>
+            <div class="info-content">
+              <span class="info-label">Atención al cliente:</span>
+              <a href={`tel:${phoneFormatted}`} class="info-value info-link phone-number">
+                {phoneNumber}
+              </a>
+              <div class="horarios">
+                <span>{horarios.semana}</span>
+                <span>{horarios.domingo}</span>
+              </div>
+              <a href={whatsAppLink} target="_blank" rel="noopener noreferrer" class="whatsapp-btn">
+                <Whatsapp/>
+                Escríbenos por WhatsApp
+              </a>
+            </div>
+          </div>
+
+          {/* Ubicación */}
+          <div class="info-card reveal">
+            <div class="info-icon">
+              <Location/>
+            </div>
+            <div class="info-content">
+              <span class="info-label">Ubicación:</span>
+              <a href={googleMapsLink} target="_blank" rel="noopener noreferrer" class="info-value info-link">
+                {address}
+              </a>
+              <span class="info-note">Atendemos proyectos en todo el Perú</span>
+            </div>
+          </div>
+
+          {/* Redes sociales */}
+          <div class="info-card reveal">
+
+            <div class="info-content">
+              <span class="info-label">Síguenos en redes:</span>
+              <div class="social-links">
+                <a href={socialLinks.facebook} target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">
+                  <Facebook/>
+                </a>
+                <a href={socialLinks.instagram} target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
+                  <Instagram/>
+                </a>
+                <a href={socialLinks.tiktok} target="_blank" rel="noopener noreferrer" class="social-link" aria-label="TikTok">
+                  <Tiktok/>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </SectionContainer>
+  </main>
 </BaseLayout>
+
+<style>
+  .contacto-page {
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+  }
+
+  /* Header */
+  .page-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  h1 {
+    font-family: "Clash", sans-serif;
+    font-weight: 500;
+    font-size: var(--fs-xxl);
+    line-height: 1.2;
+    color: var(--foreground);
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .page-header p {
+    font-family: "Inter", sans-serif;
+    font-size: var(--fs-base);
+    line-height: 1.7;
+    color: var(--secondary);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .link-highlight {
+    color: var(--foreground);
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: opacity 0.2s ease;
+  }
+
+  .link-highlight:hover {
+    opacity: 0.7;
+  }
+
+  /* Layout principal */
+  .contacto-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  /* Mapa */
+  .mapa-container {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #f5f5f5;
+  }
+
+  .mapa-wrapper {
+    aspect-ratio: 4/5;
+    width: 100%;
+  }
+
+  .mapa-wrapper iframe {
+    width: 100%;
+    height: 100%;
+  }
+
+  .mapa-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .mapa-label {
+    font-family: "Clash", sans-serif;
+    font-size: var(--fs-xl);
+    font-weight: 500;
+    color: white;
+  }
+
+  .mapa-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: "Inter", sans-serif;
+    font-size: var(--fs-sm);
+    font-weight: 500;
+    color: white;
+    text-decoration: none;
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(10px);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: background 0.2s ease;
+  }
+
+  .mapa-link:hover {
+    background: rgba(255,255,255,0.3);
+  }
+
+  /* Info cards */
+  .contacto-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .info-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: #fafafa;
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .info-card:hover {
+    border-color: #d0d0d0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  }
+
+  .info-icon {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+    color: var(--foreground);
+  }
+
+  .info-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .info-label {
+    font-family: "Clash", sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--secondary);
+  }
+
+  .info-value {
+    font-family: "Inter", sans-serif;
+    font-size: var(--fs-base);
+    color: var(--foreground);
+    font-weight: 500;
+  }
+
+  .info-link {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    transition: opacity 0.2s ease;
+  }
+
+  .info-link:hover {
+    opacity: 0.7;
+  }
+
+  .phone-number {
+    font-size: var(--fs-lg);
+    font-weight: 600;
+  }
+
+  .horarios {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.125rem;
+    margin-top: 0.5rem;
+  }
+
+  .horarios span {
+    font-family: "Inter", sans-serif;
+    font-size: 0.8rem;
+    color: var(--secondary);
+  }
+
+  .info-note {
+    font-family: "Inter", sans-serif;
+    font-size: 0.8rem;
+    color: var(--secondary);
+    margin-top: 0.25rem;
+  }
+
+  /* WhatsApp button */
+  .whatsapp-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding: 0.75rem 1.25rem;
+    font-family: "Inter", sans-serif;
+    font-size: var(--fs-sm);
+    font-weight: 500;
+    color: white;
+    background: #25D366;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+
+  .whatsapp-btn:hover {
+    background: #20bd5a;
+    transform: translateY(-2px);
+  }
+
+  /* Social links */
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+  }
+
+  .social-link {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    color: var(--foreground);
+    transition: all 0.2s ease;
+  }
+
+  .social-link:hover {
+    background: var(--foreground);
+    color: white;
+    border-color: var(--foreground);
+    transform: translateY(-2px);
+  }
+
+  /* ==================== */ */
+  /* Scroll Reveal Animations */
+  /* ==================== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Staggered delays for info cards */
+  .info-card.reveal:nth-child(1) { transition-delay: 0s; }
+  .info-card.reveal:nth-child(2) { transition-delay: 0.1s; }
+  .info-card.reveal:nth-child(3) { transition-delay: 0.2s; }
+  .info-card.reveal:nth-child(4) { transition-delay: 0.3s; }
+
+  /* Reduce motion for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .contacto-layout {
+      gap: 2rem;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .contacto-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .mapa-wrapper {
+      aspect-ratio: 4/3;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .contacto-page {
+      padding-top: 1rem;
+    }
+
+    h1 {
+      font-size: var(--fs-xl);
+    }
+
+    .page-header p {
+      font-size: var(--fs-sm);
+    }
+
+    .page-header {
+      margin-bottom: 2rem;
+    }
+
+    .info-card {
+      padding: 1.25rem;
+    }
+
+    .mapa-wrapper {
+      aspect-ratio: 1/1;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .whatsapp-btn {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .mapa-overlay {
+      flex-direction: column;
+      gap: 0.5rem;
+      align-items: flex-start;
+    }
+
+    .mapa-link {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>
+
+<script>
+  // Scroll Reveal Animation
+  function initScrollReveal() {
+    const reveals = document.querySelectorAll('.reveal');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    reveals.forEach(el => observer.observe(el));
+  }
+
+  // Run on page load and after Astro page transitions
+  document.addEventListener('DOMContentLoaded', initScrollReveal);
+  document.addEventListener('astro:page-load', initScrollReveal);
+</script>

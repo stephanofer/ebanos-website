@@ -1,0 +1,140 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import Button from "@/components/Button.astro";
+import ArrowUp from "@/assets/arrow-up.svg";
+import SectionContainer from "@/components/SectionContainer.astro";
+import ProjectCard from "@/components/ProjectCard.astro";
+
+// Obtener proyectos destacados, ordenados por 'orden' y limitados a 2
+const allProyectos = await getCollection("proyectos", ({ data }) => {
+  return data.publicado === true && data.destacado === true;
+});
+
+const proyectosDestacados = allProyectos
+  .sort((a, b) => a.data.orden - b.data.orden)
+  .slice(0, 2);
+---
+
+<SectionContainer name="proyectos">
+  <div class="container">
+    <div class="titles">
+      <h2>Nuestros más recientes trabajos</h2>
+      <p>
+        Contamos con <strong>+30 años</strong> creando muebles a medida. ¡Cotiza ya!
+      </p>
+    </div>
+
+    <div class="projects-grid">
+      {proyectosDestacados.map((proyecto) => (
+        <ProjectCard
+          titulo={proyecto.data.titulo}
+          slug={proyecto.data.slug}
+          categoria={proyecto.data.categoria}
+          imagenPortada={proyecto.data.imagenPortada}
+          imagenPortadaAlt={proyecto.data.imagenPortadaAlt}
+        />
+      ))}
+    </div>
+
+    <div class="button-container">
+      <Button type="secondary" href="/proyectos" target="_self">
+        ¡Visualizar más!
+        <ArrowUp slot="icon-right" />
+      </Button>
+    </div>
+  </div>
+</SectionContainer>
+
+<style>
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 3rem;
+  }
+
+  .titles {
+    align-self: start;
+    margin-bottom: 1.5rem;
+  }
+
+  h2 {
+    font-family: "Clash";
+    font-weight: 450;
+    font-size: var(--fs-xl);
+    line-height: 1.2;
+    color: var(--foreground);
+    letter-spacing: -0.02em;
+  }
+
+  p {
+    font-family: "Inter", sans-serif;
+    font-size: var(--fs-base);
+    line-height: 1.6;
+    color: var(--secondary);
+    max-width: 600px;
+    font-weight: 400;
+  }
+
+  .button-container {
+    width: 250px;
+    margin-top: 1.5rem;
+  }
+
+  /* Grid de proyectos - 2 columnas en desktop */
+  .projects-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .projects-grid :global(.project-card) {
+    aspect-ratio: 4/4;
+  }
+
+  .projects-grid :global(.project-image) {
+    min-height: unset;
+    height: 100%;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .container {
+      margin-top: 3rem;
+    }
+
+    h2 {
+      font-size: var(--fs-xl);
+      line-height: 1.3;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      font-size: var(--fs-sm);
+      line-height: 1.7;
+    }
+
+    /* En mobile: columna vertical, una por fila, sin scroll */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+      overflow: visible;
+    }
+
+    .projects-grid :global(.project-card) {
+      aspect-ratio: 4/4;
+    }
+  }
+
+  @media (max-width: 480px) {
+    h2 {
+      font-size: var(--fs-lg);
+    }
+
+    .projects-grid :global(.project-card) {
+      aspect-ratio: 3/4;
+    }
+  }
+</style>
