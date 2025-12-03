@@ -4,12 +4,23 @@ import { SEO } from "astro-seo";
 interface Props {
   title?: string;
   description?: string;
+  image?: string;
+  type?: "website" | "article";
+  noindex?: boolean;
 }
 
 const {
-  description = "Especialistas creando muebles exclusivos de alta calidad, diseñados para ti.",
+  description = "Especialistas creando muebles exclusivos de alta calidad en Chiclayo, Perú. Diseño personalizado para cocinas, closets, dormitorios y más.",
   title = "Ebanos Muebles",
+  image = "/assets/og-image.webp",
+  type = "website",
+  noindex = false,
 } = Astro.props;
+
+const siteUrl = "https://ebanosmuebles.com";
+const fullTitle = title === "Ebanos Muebles" ? title : `${title} | Ebanos Muebles`;
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
+const ogImageUrl = image.startsWith("http") ? image : `${siteUrl}${image}`;
 ---
 
 <meta charset="UTF-8" />
@@ -35,17 +46,80 @@ const {
   crossorigin="anonymous"
 />
 
-<SEO title={title} description={description} />
+<SEO
+  title={fullTitle}
+  description={description}
+  canonical={canonicalUrl}
+  noindex={noindex}
+  openGraph={{
+    basic: {
+      title: title,
+      type: type,
+      image: ogImageUrl,
+      url: canonicalUrl,
+    },
+    optional: {
+      description: description,
+      locale: "es_PE",
+      siteName: "Ebanos Muebles",
+    },
+    image: {
+      alt: "Ebanos Muebles - Muebles de alta calidad en Chiclayo",
+      width: 1200,
+      height: 630,
+    },
+  }}
+  twitter={{
+    card: "summary_large_image",
+    site: "@ebanosmuebles",
+    creator: "@ebanosmuebles",
+    title: title,
+    image: ogImageUrl,
+    imageAlt: "Ebanos Muebles - Muebles de alta calidad en Chiclayo",
+    description: description,
+  }}
+  extend={{
+    meta: [
+      { name: "author", content: "Ebanos Muebles" },
+      { name: "geo.region", content: "PE-LAM" },
+      { name: "geo.placename", content: "Chiclayo" },
+      { name: "theme-color", content: "#1a1a1a" },
+    ],
+  }}
+/>
 
+<!-- Google Tag Manager - Carga diferida para mejor performance -->
 <script is:inline>
-  (function (w, d, s, l, i) {
-    w[l] = w[l] || [];
-    w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
-    var f = d.getElementsByTagName(s)[0],
-      j = d.createElement(s),
-      dl = l != "dataLayer" ? "&l=" + l : "";
-    j.async = true;
-    j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
-    f.parentNode.insertBefore(j, f);
-  })(window, document, "script", "dataLayer", "GTM-KF6L4554");
+  window.dataLayer = window.dataLayer || [];
+  
+  function loadGTM() {
+    console.log("carga");
+    if (window.gtmLoaded) return;
+    window.gtmLoaded = true;
+    
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-KF6L4554';
+    document.head.appendChild(script);
+    
+    window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+  }
+  
+  if (document.readyState === 'complete') {
+    loadGTM();
+  } else {
+    window.addEventListener('load', function() {
+      setTimeout(loadGTM, 100);
+    });
+  }
+  
+  document.addEventListener('astro:page-load', function() {
+    if (window.gtmLoaded) {
+      window.dataLayer.push({
+        event: 'page_view',
+        page_path: window.location.pathname,
+        page_title: document.title
+      });
+    }
+  });
 </script>
