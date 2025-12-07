@@ -29,7 +29,9 @@ const categoriasProyecto = z.enum([
   "Estudio",
   "Exterior",
   "Baño",
-  "Otros"
+  "Otros",
+  "Mobiliario Comercial",
+  "Mobiliario Religioso",
 ]);
 
 const proyectos = defineCollection({
