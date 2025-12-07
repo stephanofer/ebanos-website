@@ -5,14 +5,17 @@ import ArrowUp from "@/assets/arrow-up.svg";
 import SectionContainer from "@/components/SectionContainer.astro";
 import ProjectCard from "@/components/ProjectCard.astro";
 
-// Obtener proyectos destacados, ordenados por 'orden' y limitados a 2
-const allProyectos = await getCollection("proyectos", ({ data }) => {
-  return data.publicado === true && data.destacado === true;
+const slugsDestacados = [
+  "porton-puerta-principal-interiores-cedro-chiclayo",
+  "cama-cedro-moderna-veladores-chiclayo"
+];
+
+const allProyectos = await getCollection("proyectos", ({ id, data }) => {
+  const fileSlug = id.replace(".md", ""); // convertir archivo a slug real
+
+  return data.publicado === true && slugsDestacados.includes(fileSlug);
 });
 
-const proyectosDestacados = allProyectos
-  .sort((a, b) => a.data.orden - b.data.orden)
-  .slice(0, 2);
 ---
 
 <SectionContainer name="proyectos">
@@ -25,7 +28,7 @@ const proyectosDestacados = allProyectos
     </div>
 
     <div class="projects-grid">
-      {proyectosDestacados.map((proyecto) => (
+      {allProyectos.map((proyecto) => (
         <ProjectCard
           titulo={proyecto.data.titulo}
           slug={proyecto.data.slug}
