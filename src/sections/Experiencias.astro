@@ -29,6 +29,13 @@ const testimoniosOrdenados = testimonios.sort((a, b) => {
 
     <!-- Marquee Container - respeta el max-width del padre -->
     <div class="marquee-wrapper">
+      <button id="prev-btn" class="nav-btn prev" aria-label="Anterior testimonio">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <button id="next-btn" class="nav-btn next" aria-label="Siguiente testimonio">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+
       <div class="marquee-container">
         <div class="marquee-track" aria-label="Testimonios de clientes">
           <!-- Primera fila de testimonios -->
@@ -110,34 +117,63 @@ const testimoniosOrdenados = testimonios.sort((a, b) => {
 
   /* Marquee Container */
   .marquee-container {
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: hidden;
     position: relative;
+    /* Ocultar scrollbars pero mantener funcionalidad */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+    /* Evitar comportamientos de scroll nativo que interfieran con el JS suave */
+    scroll-behavior: auto;
+  }
+
+  .marquee-container::-webkit-scrollbar {
+    display: none;
   }
 
   .marquee-track {
     display: flex;
     width: max-content;
-    animation: marquee 45s linear infinite;
-  }
-
-  .marquee-container:hover .marquee-track {
-    animation-play-state: paused;
+    /* Eliminamos la animación CSS pura para dar control al usuario */
   }
 
   .marquee-content {
     display: flex;
     gap: 1.5rem;
     padding: 1rem 0.75rem;
+    /* Aseguramos que el contenido no se rompa */
+    flex-shrink: 0;
   }
 
-  @keyframes marquee {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
+  /* Navigation Buttons */
+  .nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 20;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: all 0.2s ease;
+    opacity: 1;
+    color: var(--foreground);
   }
+
+  .nav-btn:hover {
+    background: var(--foreground);
+    color: white;
+    scale: 1.1;
+  }
+
+  .prev { left: 1rem; }
+  .next { right: 1rem; }
 
   /* Fade overlays para bordes suaves */
   .fade-overlay {
@@ -160,6 +196,10 @@ const testimoniosOrdenados = testimonios.sort((a, b) => {
   }
 
   @media (max-width: 768px) {
+    .nav-btn {
+      display: none;
+    }
+
     .testimonials-section {
       margin-top: 3rem;
     }
@@ -174,10 +214,6 @@ const testimoniosOrdenados = testimonios.sort((a, b) => {
 
     .marquee-content {
       gap: 1rem;
-    }
-
-    .marquee-track {
-      animation-duration: 35s;
     }
 
     .fade-overlay {
@@ -195,50 +231,84 @@ const testimoniosOrdenados = testimonios.sort((a, b) => {
       padding: 0.5rem;
     }
 
-    .marquee-track {
-      animation-duration: 30s;
-    }
-
     .fade-overlay {
       width: 24px;
-    }
-  }
-
-  /* Reduced motion support para accesibilidad */
-  @media (prefers-reduced-motion: reduce) {
-    .marquee-track {
-      animation: none;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .marquee-content:nth-child(2) {
-      display: none;
-    }
-
-    .marquee-container {
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .fade-overlay {
-      display: none;
     }
   }
 </style>
 
 <script>
-  // Mejora de accesibilidad: permite scroll manual con el teclado
-  document.addEventListener('DOMContentLoaded', () => {
-    const marqueeContainer = document.querySelector('.marquee-container');
-    if (marqueeContainer) {
-      marqueeContainer.addEventListener('keydown', (e) => {
-        const event = e as KeyboardEvent;
-        if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
-          const scrollAmount = event.key === 'ArrowLeft' ? -200 : 200;
-          marqueeContainer.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-        }
+  // UX Improvement: Interactive Infinite Scroll
+  // Permite al usuario detener, arrastrar y navegar libremente por los testimonios
+  // mientras mantiene el movimiento automático atractivo cuando está inactivo.
+  
+  function initMarquee() {
+    const container = document.querySelector('.marquee-container') as HTMLElement;
+    const content = document.querySelector('.marquee-content') as HTMLElement;
+    
+    if (!container || !content) return;
+
+    let isPaused = false;
+    let autoScrollSpeed = 0.5; // Velocidad base (px/frame)
+    
+    // Configuración de interacción
+    const pause = () => isPaused = true;
+    const resume = () => isPaused = false;
+
+    // Botones de navegación
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+
+    if (prevBtn && nextBtn) {
+      // Pausar al interactuar con los botones
+      prevBtn.addEventListener('mouseenter', pause);
+      prevBtn.addEventListener('mouseleave', resume);
+      nextBtn.addEventListener('mouseenter', pause);
+      nextBtn.addEventListener('mouseleave', resume);
+
+      prevBtn.addEventListener('click', () => {
+        container.scrollBy({ left: -350, behavior: 'smooth' });
+      });
+      nextBtn.addEventListener('click', () => {
+        container.scrollBy({ left: 350, behavior: 'smooth' });
       });
     }
-  });
+
+    // --- Eventos de Hover (Pausa simple) ---
+    container.addEventListener('mouseenter', pause);
+    container.addEventListener('mouseleave', resume);
+    
+    // --- Eventos Táctiles (Móvil) ---
+    container.addEventListener('touchstart', pause, { passive: true });
+    container.addEventListener('touchend', () => {
+      setTimeout(resume, 1500);
+    }, { passive: true });
+
+    // Loop de animación
+    function animate() {
+      if (!isPaused) {
+        // Movimiento automático
+        container.scrollLeft += autoScrollSpeed;
+      }
+
+      // Lógica de Loop Infinito
+      // Si llegamos al final del primer set, saltamos al inicio (sin animación)
+      if (container.scrollLeft >= content.offsetWidth) {
+        container.scrollLeft -= content.offsetWidth;
+      } 
+      // Si el usuario hace scroll manual hacia atrás más allá del inicio
+      else if (container.scrollLeft <= 0) {
+        container.scrollLeft += content.offsetWidth;
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    // Iniciar animación
+    requestAnimationFrame(animate);
+  }
+
+  // Inicializar
+  document.addEventListener('astro:page-load', initMarquee);
+  document.addEventListener('DOMContentLoaded', initMarquee);
 </script>

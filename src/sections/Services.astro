@@ -69,12 +69,12 @@ import SectionContainer from "@/components/SectionContainer.astro";
             loading="lazy"
             decoding="async"
           />
-          <div class="image-accent"></div>
         </div>
       </div>
     </div>
   </div>
 </SectionContainer>
+
 <style>
   .services-wrapper {
     margin-top: 4rem;
@@ -84,12 +84,7 @@ import SectionContainer from "@/components/SectionContainer.astro";
     display: grid;
     grid-template-columns: 1fr;
     gap: 2.5rem;
-    align-items: stretch;
-
-    @media (width > 768px) {
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-    }
+    align-items: center;
 
     @media (width > 1024px) {
       grid-template-columns: 1fr 1fr;
@@ -106,24 +101,6 @@ import SectionContainer from "@/components/SectionContainer.astro";
 
   .content-image {
     order: 2;
-  }
-
-  .section-label {
-    display: inline-block;
-    font-family: "Clash", sans-serif;
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--secondary);
-    margin-bottom: 1rem;
-    padding: 0.4rem 1rem;
-    background: rgb(69 69 69 / 0.08);
-    border-radius: 2rem;
-
-    @media (width > 768px) {
-      font-size: 0.8rem;
-    }
   }
 
   .main-heading {
@@ -230,85 +207,22 @@ import SectionContainer from "@/components/SectionContainer.astro";
     }
   }
 
-  .cta-button {
-    margin-top: 2rem;
-    width: 50%;
-    display: flex;
-    @media (width > 768px) {
-      margin-top: 2.5rem;
-    }
-  }
-
-  /* .cta-button :global(.sociallink) {
-    border-radius: 2rem;
-  } */
-
-  /* Image Section */
+  /* Image Section - Optimizado */
   .image-wrapper {
     position: relative;
     width: 100%;
-    height: 100%;
   }
 
   .hero-image {
     width: 100%;
-    height: auto;
-    min-height: 500px;
-    aspect-ratio: 16 / 10;
+    max-height: 650px;
+    display: block;
     object-fit: cover;
-    object-position: center;
     border-radius: 0.5rem;
-    position: relative;
-    z-index: 2;
     box-shadow: 0 8px 32px rgb(0 0 0 / 0.1);
 
-    @media (width > 480px) {
-      min-height: 400px;
-      aspect-ratio: 16 / 9;
-    }
-
     @media (width > 768px) {
-      min-height: unset;
-      aspect-ratio: 3 / 4;
-      border-radius: 0.5rem;
-    }
-
-    @media (width > 1024px) {
-      aspect-ratio: 4 / 5;
-    }
-  }
-
-  .image-wrapper::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 40%;
-    background: linear-gradient(
-      to bottom,
-      rgb(0 0 0 / 0.25) 0%,
-      rgb(0 0 0 / 0.1) 40%,
-      transparent 100%
-    );
-    border-radius: 0.5rem 0.5rem 0 0;
-    z-index: 3;
-    pointer-events: none;
-  }
-
-  .image-accent {
-    position: absolute;
-    inset: 1rem;
-    border: 2px solid var(--foreground);
-    border-radius: 1rem;
-    z-index: 1;
-    opacity: 0.15;
-    transform: translate(1rem, 1rem);
-
-    @media (width > 768px) {
-      inset: 1.5rem;
-      border-radius: 1.25rem;
-      transform: translate(1.5rem, 1.5rem);
+      max-height: 650px;
     }
   }
 </style>
