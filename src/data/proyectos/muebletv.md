@@ -76,5 +76,5 @@ keywords:
 </p>
 
 <p>
-  <a href="https://wa.me/51992166341" target="_blank" rel="noopener noreferrer"><strong>👉 ¡Cotizar Mueble de Alta Gama por WhatsApp!</strong></a>
+  <a href="https://wa.me/51979264871" target="_blank" rel="noopener noreferrer"><strong>👉 ¡Cotizar Mueble de Alta Gama por WhatsApp!</strong></a>
 </p>

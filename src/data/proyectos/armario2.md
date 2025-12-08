@@ -76,7 +76,3 @@ keywords:
 <p>
   <strong>¡Diseña el interior de tu ropero!</strong> Cuéntanos qué necesitas guardar y nosotros creamos los espacios perfectos.
 </p>
-
-<p>
-  <a href="https://wa.me/51992166341" target="_blank" rel="noopener noreferrer"><strong>👉 ¡Cotizar Armario con Estantes por WhatsApp!</strong></a>
-</p>
