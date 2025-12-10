@@ -20,16 +20,19 @@ import {
 } from "@/const";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
-const title = "Contacto | Ebanos Muebles Perú";
-const description = "Contáctanos para cotizar tus muebles a medida. Estamos en Chiclayo, Perú. Llámanos, escríbenos por WhatsApp o visítanos.";
+const title = "Contacto - Cotiza tus Muebles en Chiclayo";
+const description = "¿Buscas muebles a medida en Chiclayo? Contáctanos al +51 979 264 871 o visítanos en Nicaragua 1140. Cotización gratis. Atendemos de L-S 8am-6pm.";
 
-// Formatear número para tel: link
+const breadcrumbs = [
+  { name: "Inicio", url: "/" },
+  { name: "Contacto", url: "/contacto" }
+];
+
 const phoneFormatted = phoneNumber.replace(/\s/g, '');
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} pageType="contact" breadcrumbs={breadcrumbs}>
   <main class="contacto-page">
-    {/* Header */}
     <SectionContainer name="contacto-header">
       <div class="page-header reveal">
         <h1>Contacto</h1>
@@ -40,10 +43,8 @@ const phoneFormatted = phoneNumber.replace(/\s/g, '');
       </div>
     </SectionContainer>
 
-    {/* Contenido principal */}
     <SectionContainer name="contacto-content">
       <div class="contacto-layout">
-        {/* Mapa de Google */}
         <div class="mapa-container reveal">
           <div class="mapa-wrapper">
             <iframe
@@ -66,9 +67,7 @@ const phoneFormatted = phoneNumber.replace(/\s/g, '');
           </div>
         </div>
 
-        {/* Información de contacto */}
         <div class="contacto-info">
-          {/* Correo electrónico */}
           <div class="info-card reveal">
             <div class="info-icon">
               <Email/>
@@ -81,7 +80,6 @@ const phoneFormatted = phoneNumber.replace(/\s/g, '');
             </div>
           </div>
 
-          {/* Teléfono / WhatsApp */}
           <div class="info-card reveal">
             <div class="info-icon">
               <Phone/>
@@ -102,7 +100,6 @@ const phoneFormatted = phoneNumber.replace(/\s/g, '');
             </div>
           </div>
 
-          {/* Ubicación */}
           <div class="info-card reveal">
             <div class="info-icon">
               <Location/>
@@ -116,7 +113,6 @@ const phoneFormatted = phoneNumber.replace(/\s/g, '');
             </div>
           </div>
 
-          {/* Redes sociales */}
           <div class="info-card reveal">
 
             <div class="info-content">
@@ -146,7 +142,6 @@ const phoneFormatted = phoneNumber.replace(/\s/g, '');
     padding-bottom: 4rem;
   }
 
-  /* Header */
   .page-header {
     text-align: center;
     margin-bottom: 3rem;
@@ -183,7 +178,6 @@ const phoneFormatted = phoneNumber.replace(/\s/g, '');
     opacity: 0.7;
   }
 
-  /* Layout principal */
   .contacto-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -191,7 +185,6 @@ const phoneFormatted = phoneNumber.replace(/\s/g, '');
     align-items: start;
   }
 
-  /* Mapa */
   .mapa-container {
     position: relative;
     border-radius: 16px;
@@ -248,7 +241,6 @@ const phoneFormatted = phoneNumber.replace(/\s/g, '');
     background: rgba(255,255,255,0.3);
   }
 
-  /* Info cards */
   .contacto-info {
     display: flex;
     flex-direction: column;
@@ -346,7 +338,6 @@ const phoneFormatted = phoneNumber.replace(/\s/g, '');
     margin-top: 0.25rem;
   }
 
-  /* WhatsApp button */
   .whatsapp-btn {
     display: inline-flex;
     align-items: center;
@@ -368,7 +359,6 @@ const phoneFormatted = phoneNumber.replace(/\s/g, '');
     transform: translateY(-2px);
   }
 
-  /* Social links */
   .social-links {
     display: flex;
     justify-content: center;
@@ -396,9 +386,6 @@ const phoneFormatted = phoneNumber.replace(/\s/g, '');
     transform: translateY(-2px);
   }
 
-  /* ==================== */ */
-  /* Scroll Reveal Animations */
-  /* ==================== */
   .reveal {
     opacity: 0;
     transform: translateY(30px);
@@ -410,14 +397,11 @@ const phoneFormatted = phoneNumber.replace(/\s/g, '');
     opacity: 1;
     transform: translateY(0);
   }
-
-  /* Staggered delays for info cards */
   .info-card.reveal:nth-child(1) { transition-delay: 0s; }
   .info-card.reveal:nth-child(2) { transition-delay: 0.1s; }
   .info-card.reveal:nth-child(3) { transition-delay: 0.2s; }
   .info-card.reveal:nth-child(4) { transition-delay: 0.3s; }
 
-  /* Reduce motion for accessibility */
   @media (prefers-reduced-motion: reduce) {
     .reveal {
       opacity: 1;
@@ -426,7 +410,6 @@ const phoneFormatted = phoneNumber.replace(/\s/g, '');
     }
   }
 
-  /* Responsive */
   @media (max-width: 1024px) {
     .contacto-layout {
       gap: 2rem;
@@ -489,7 +472,6 @@ const phoneFormatted = phoneNumber.replace(/\s/g, '');
 </style>
 
 <script>
-  // Scroll Reveal Animation
   function initScrollReveal() {
     const reveals = document.querySelectorAll('.reveal');
     
@@ -507,7 +489,6 @@ const phoneFormatted = phoneNumber.replace(/\s/g, '');
     reveals.forEach(el => observer.observe(el));
   }
 
-  // Run on page load and after Astro page transitions
   document.addEventListener('DOMContentLoaded', initScrollReveal);
   document.addEventListener('astro:page-load', initScrollReveal);
 </script>

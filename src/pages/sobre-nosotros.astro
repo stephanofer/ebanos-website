@@ -2,11 +2,14 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import SectionContainer from "@/components/SectionContainer.astro";
 
-const title = "Sobre Nosotros | Ebanos Muebles Perú";
-const description =
-  "Conoce la historia de Ebanos Muebles. Más de 30 años creando muebles a medida con madera de calidad en Chiclayo, Perú.";
+const title = "Sobre Nosotros - Mueblería con +30 Años en Chiclayo";
+const description = "Conoce la historia de Ebanos Muebles. Desde 1990 fabricando muebles a medida de alta calidad en Chiclayo, Perú. Empresa familiar con experiencia comprobada.";
 
-// Datos del fundador
+const breadcrumbs = [
+  { name: "Inicio", url: "/" },
+  { name: "Sobre Nosotros", url: "/sobre-nosotros" }
+];
+
 const fundador = {
   nombre: "Huildor Fernandez Cayao",
   cargo: "Fundador de Ebanos Muebles",
@@ -14,19 +17,16 @@ const fundador = {
 };
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} pageType="about" breadcrumbs={breadcrumbs}>
   <main class="sobre-nosotros-page">
-    {/* Hero / Declaración principal */}
     <SectionContainer name="sobre-hero">
       <div class="hero-statement reveal">
         <h1>Más de 30 Años de Experiencia</h1>
       </div>
     </SectionContainer>
 
-    {/* Contenido principal */}
     <SectionContainer name="sobre-content">
       <div class="content-layout">
-        {/* Texto en dos columnas */}
         <div class="content-text">
           <div class="text-columns">
             <div class="text-column reveal">
@@ -74,20 +74,17 @@ const fundador = {
             </div>
           </div>
 
-          {/* Firma del fundador */}
           <div class="fundador-firma reveal">
             <div class="firma-info">
               <span class="firma-nombre">{fundador.nombre}</span>
               <span class="firma-cargo">{fundador.cargo}</span>
             </div>
             <div class="firma-imagen">
-              {/* Placeholder para la firma - reemplazar con imagen real */}
               <img src={fundador.firma} alt={`Firma de ${fundador.nombre}`} />
             </div>
           </div>
         </div>
 
-        {/* Imagen lateral */}
         <div class="content-image reveal">
           <div class="image-wrapper">
             <img
@@ -109,7 +106,6 @@ const fundador = {
     padding-bottom: 4rem;
   }
 
-  /* Hero Statement */
   .hero-statement {
     max-width: 1000px;
     margin-bottom: 4rem;
@@ -124,7 +120,6 @@ const fundador = {
     letter-spacing: -0.02em;
   }
 
-  /* Content Layout */
   .content-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -137,7 +132,6 @@ const fundador = {
     flex-direction: column;
   }
 
-  /* Text Columns */
   .text-columns {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -170,7 +164,6 @@ const fundador = {
     margin: 1.5rem 0 1rem;
   }
 
-  /* Firma del fundador */
   .fundador-firma {
     margin-top: auto;
     padding-top: 2rem;
@@ -206,7 +199,6 @@ const fundador = {
     height: auto;
   }
 
-  /* Imagen lateral */
   .content-image {
     position: sticky;
     top: 2rem;
@@ -226,7 +218,6 @@ const fundador = {
     object-fit: cover;
   }
 
-  /* Sección de valores */
   .valores-section {
     margin-top: 6rem;
     padding-top: 4rem;
@@ -292,10 +283,7 @@ const fundador = {
     margin: 0;
   }
 
-  /* ==================== */
-  /* Scroll Reveal Animations */
-  /* ==================== */
-  .reveal {
+   .reveal {
     opacity: 0;
     transform: translateY(30px);
     transition:
@@ -308,7 +296,6 @@ const fundador = {
     transform: translateY(0);
   }
 
-  /* Staggered delays for valor cards */
   .valor-card.reveal:nth-child(1) {
     transition-delay: 0s;
   }
@@ -322,7 +309,6 @@ const fundador = {
     transition-delay: 0.3s;
   }
 
-  /* Staggered delays for text columns */
   .text-column.reveal:nth-child(1) {
     transition-delay: 0.1s;
   }
@@ -330,7 +316,6 @@ const fundador = {
     transition-delay: 0.2s;
   }
 
-  /* Reduce motion for accessibility */
   @media (prefers-reduced-motion: reduce) {
     .reveal {
       opacity: 1;
@@ -339,7 +324,6 @@ const fundador = {
     }
   }
 
-  /* Responsive */
   @media (max-width: 1200px) {
     .valores-grid {
       grid-template-columns: repeat(2, 1fr);
@@ -427,7 +411,6 @@ const fundador = {
 </style>
 
 <script>
-  // Scroll Reveal Animation
   function initScrollReveal() {
     const reveals = document.querySelectorAll(".reveal");
 
@@ -448,7 +431,6 @@ const fundador = {
     reveals.forEach((el) => observer.observe(el));
   }
 
-  // Run on page load and after Astro page transitions
   document.addEventListener("DOMContentLoaded", initScrollReveal);
   document.addEventListener("astro:page-load", initScrollReveal);
 </script>

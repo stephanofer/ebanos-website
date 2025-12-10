@@ -1,5 +1,6 @@
 ---
 import { SEO } from "astro-seo";
+import Schema from "@/components/Schema.astro";
 
 interface Props {
   title?: string;
@@ -7,14 +8,18 @@ interface Props {
   image?: string;
   type?: "website" | "article";
   noindex?: boolean;
+  pageType?: "home" | "page" | "project" | "contact" | "about";
+  breadcrumbs?: Array<{ name: string; url: string }>;
 }
 
 const {
-  description = "Especialistas creando muebles exclusivos de alta calidad en Chiclayo, Perú. Diseño personalizado para cocinas, closets, dormitorios y más.",
+  description = "Fábrica de muebles a medida en Chiclayo, Perú. +30 años de experiencia. Closets, cocinas, dormitorios, comedores y más. ¡Cotiza gratis!",
   title = "Ebanos Muebles",
   image = "/assets/og-image.webp",
   type = "website",
   noindex = false,
+  pageType = "page",
+  breadcrumbs = [],
 } = Astro.props;
 
 const siteUrl = "https://ebanosmuebles.com";
@@ -28,7 +33,6 @@ const ogImageUrl = image.startsWith("http") ? image : `${siteUrl}${image}`;
 <link rel="icon" type="image/svg+xml" href="favicon.svg" />
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
 
-<!-- Sitemap discovery para crawlers -->
 <link rel="sitemap" href="/sitemap-index.xml" />
 
 <link
@@ -82,13 +86,24 @@ const ogImageUrl = image.startsWith("http") ? image : `${siteUrl}${image}`;
     meta: [
       { name: "author", content: "Ebanos Muebles" },
       { name: "geo.region", content: "PE-LAM" },
-      { name: "geo.placename", content: "Chiclayo" },
+      { name: "geo.placename", content: "Chiclayo, Lambayeque" },
+      { name: "geo.position", content: "-6.7713;-79.8408" },
+      { name: "ICBM", content: "-6.7713, -79.8408" },
       { name: "theme-color", content: "#1a1a1a" },
+      { name: "robots", content: noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" },
+      { name: "googlebot", content: "index, follow" },
+      { name: "bingbot", content: "index, follow" },
     ],
   }}
 />
 
-<!-- Google Tag Manager - Carga diferida para mejor performance -->
+<Schema 
+  type={pageType} 
+  pageTitle={fullTitle} 
+  pageDescription={description}
+  breadcrumbs={breadcrumbs}
+/>
+
 <script is:inline>
   window.dataLayer = window.dataLayer || [];
   

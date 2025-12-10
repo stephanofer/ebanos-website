@@ -2,15 +2,48 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Hero from "@/sections/Hero.astro";
 import Projects from "@/sections/Projects.astro";
-import Services from "@/sections/Services.astro"
+import Services from "@/sections/Services.astro";
+import FAQSchema from "@/components/FAQSchema.astro";
+import SectionContainer from "@/components/SectionContainer.astro";
 
-const title = "Ebanos Muebles Perú - Muebles a Medida y Diseñados para ti";
+const title = "Muebles a Medida en Chiclayo | Ebanos Muebles Perú";
 const description =
-  "Especialistas creando muebles de alta calidad, diseñados para ti en Chiclayo.";
+  "Fabricamos muebles a medida en Chiclayo con +30 años de experiencia. Closets, cocinas, dormitorios, comedores y puertas de madera. ¡Cotiza gratis hoy!";
+
+const faqs = [
+  {
+    question: "¿Dónde está ubicada la mueblería Ebanos Muebles?",
+    answer:
+      "Ebanos Muebles está ubicada en Nicaragua 1140, Chiclayo, Lambayeque, Perú. Atendemos de lunes a sábado de 8:00 AM a 6:00 PM. También atendemos proyectos en todo el Perú.",
+  },
+  {
+    question: "¿Cuánto tiempo demora fabricar un mueble a medida?",
+    answer:
+      "El tiempo de fabricación siempre varía según el proyecto. Un mueble pequeño puede estar listo en 7-15 días, mientras que proyectos más grandes como cocinas integrales o closets completos pueden tomar mucho mas tiempo. Lo importante es que al momento de la cotización te damos una fecha exacta de entrega que siempre cumplimos.",
+  },
+  {
+    question: "¿Qué tipos de muebles fabrican en Ebanos Muebles?",
+    answer:
+      "Fabricamos todo tipo de muebles a medida: closets y roperos, cocinas integrales, muebles de dormitorio (camas, veladores), comedores, muebles de sala, escritorios, muebles de TV, puertas de madera, portones y más.",
+  },
+  {
+    question: "¿Cómo puedo cotizar un mueble personalizado?",
+    answer:
+      "Puedes cotizar gratis por WhatsApp al +51 979 264 871 o visitarnos en nuestro taller en Chiclayo. Te asesoramos sin compromiso sobre diseños, materiales y te damos un presupuesto detallado según tus necesidades y espacio.",
+  },
+  {
+    question: "¿Ofrecen garantía por los muebles?",
+    answer:
+      "Sí, todos nuestros muebles tienen garantía. Respondemos por la calidad de nuestro trabajo. Si surge cualquier problema de fabricación, nosotros nos hacemos cargo sin costo adicional.",
+  },
+];
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} pageType="home">
   <Hero />
   <Projects />
   <Services />
+  <SectionContainer name="faq">
+    <FAQSchema faqs={faqs} showOnPage={true} />
+  </SectionContainer>
 </BaseLayout>

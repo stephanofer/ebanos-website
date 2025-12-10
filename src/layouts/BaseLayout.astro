@@ -10,10 +10,16 @@ import "@/styles/global.css";
 interface Props {
   title?: string;
   description?: string;
+  pageType?: "home" | "page" | "project" | "contact" | "about";
+  breadcrumbs?: Array<{ name: string; url: string }>;
 }
 
-const { title = "Ebanos Muebles", description = "Descripción de la página" } =
-  Astro.props;
+const {
+  title = "Ebanos Muebles",
+  description = "Fábrica de muebles a medida en Chiclayo, Perú. +30 años creando muebles de calidad.",
+  pageType = "page",
+  breadcrumbs = [],
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -59,7 +65,12 @@ const { title = "Ebanos Muebles", description = "Descripción de la página" } =
           sans-serif;
       }
     </style>
-    <MainHead title={title} description={description} />
+    <MainHead
+      title={title}
+      description={description}
+      pageType={pageType}
+      breadcrumbs={breadcrumbs}
+    />
     <ClientRouter />
   </head>
   <body>

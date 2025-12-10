@@ -2,21 +2,30 @@
 import { getCollection, type CollectionEntry } from "astro:content";
 import SectionContainer from "@/components/SectionContainer.astro";
 import TestimonialCard from "@/components/TestimonialCard.astro";
+import ReviewSchema from "@/components/ReviewSchema.astro";
 
 const testimonios: CollectionEntry<"testimonios">[] = await getCollection("testimonios");
 
-// Ordenar por fecha (más recientes primero) y luego por puntuación
 const testimoniosOrdenados = testimonios.sort((a, b) => {
-  // Primero por puntuación (mayor primero)
   if (b.data.puntuacion !== a.data.puntuacion) {
     return b.data.puntuacion - a.data.puntuacion;
   }
-  // Luego por fecha si existe
   const fechaA = a.data.fecha?.getTime() ?? 0;
   const fechaB = b.data.fecha?.getTime() ?? 0;
   return fechaB - fechaA;
 });
+
+const reviewsForSchema = testimoniosOrdenados.map((t) => ({
+  nombre: t.data.nombre,
+  ubicacion: t.data.ubicacion,
+  titulo: t.data.titulo,
+  descripcion: t.body ?? "",
+  puntuacion: t.data.puntuacion,
+  fecha: t.data.fecha
+}));
 ---
+
+<ReviewSchema reviews={reviewsForSchema} />
 
 <SectionContainer name="testimonios">
   <div class="testimonials-section">
@@ -27,7 +36,6 @@ const testimoniosOrdenados = testimonios.sort((a, b) => {
       </p>
     </div>
 
-    <!-- Marquee Container - respeta el max-width del padre -->
     <div class="marquee-wrapper">
       <button id="prev-btn" class="nav-btn prev" aria-label="Anterior testimonio">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
@@ -38,7 +46,6 @@ const testimoniosOrdenados = testimonios.sort((a, b) => {
 
       <div class="marquee-container">
         <div class="marquee-track" aria-label="Testimonios de clientes">
-          <!-- Primera fila de testimonios -->
           <div class="marquee-content">
             {testimoniosOrdenados.map((testimonio) => (
               <TestimonialCard
@@ -53,7 +60,6 @@ const testimoniosOrdenados = testimonios.sort((a, b) => {
               />
             ))}
           </div>
-          <!-- Duplicamos para el efecto infinito -->
           <div class="marquee-content" aria-hidden="true">
             {testimoniosOrdenados.map((testimonio) => (
               <TestimonialCard
@@ -71,7 +77,6 @@ const testimoniosOrdenados = testimonios.sort((a, b) => {
         </div>
       </div>
       
-      <!-- Gradientes para fade effect en los bordes -->
       <div class="fade-overlay fade-left"></div>
       <div class="fade-overlay fade-right"></div>
     </div>

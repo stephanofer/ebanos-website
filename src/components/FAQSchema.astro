@@ -1,0 +1,178 @@
+---
+
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  faqs: FAQItem[];
+  showOnPage?: boolean; 
+}
+
+const { faqs, showOnPage = true } = Astro.props;
+
+const siteUrl = "https://ebanosmuebles.com";
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map((faq) => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+{showOnPage && (
+  <section class="faq-section">
+    <div class="faq-header">
+      <h2>Preguntas Frecuentes</h2>
+      <p>Resolvemos tus dudas sobre nuestros muebles a medida</p>
+    </div>
+    <div class="faq-list">
+      {faqs.map((faq, index) => (
+        <details class="faq-item">
+          <summary class="faq-question">
+            <span class="faq-number">{String(index + 1).padStart(2, '0')}</span>
+            <span class="faq-text">{faq.question}</span>
+            <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 9l6 6 6-6"/>
+            </svg>
+          </summary>
+          <div class="faq-answer">
+            <p>{faq.answer}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </section>
+)}
+
+<style>
+  .faq-section {
+    margin-top: 4rem;
+    padding-top: 3rem;
+    border-top: 1px solid #e5e5e5;
+  }
+
+  .faq-header {
+    margin-bottom: 2rem;
+  }
+
+  .faq-header h2 {
+    font-family: "Clash", sans-serif;
+    font-weight: 500;
+    font-size: var(--fs-xl);
+    line-height: 1.2;
+    color: var(--foreground);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+  }
+
+  .faq-header p {
+    font-family: "Inter", sans-serif;
+    font-size: var(--fs-base);
+    line-height: 1.6;
+    color: var(--secondary);
+    margin: 0;
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .faq-item {
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: border-color 0.2s ease;
+  }
+
+  .faq-item:hover {
+    border-color: #ccc;
+  }
+
+  .faq-item[open] {
+    border-color: var(--foreground);
+  }
+
+  .faq-question {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    cursor: pointer;
+    list-style: none;
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    font-size: var(--fs-base);
+    color: var(--foreground);
+    transition: background-color 0.2s ease;
+  }
+
+  .faq-question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-question:hover {
+    background-color: #fafafa;
+  }
+
+  .faq-number {
+    font-family: "Clash", sans-serif;
+    font-size: var(--fs-sm);
+    color: var(--secondary);
+    min-width: 24px;
+  }
+
+  .faq-text {
+    flex: 1;
+  }
+
+  .faq-icon {
+    transition: transform 0.3s ease;
+    color: var(--secondary);
+    flex-shrink: 0;
+  }
+
+  .faq-item[open] .faq-icon {
+    transform: rotate(180deg);
+  }
+
+  .faq-answer {
+    padding: 0 1.5rem 1.5rem 4rem;
+  }
+
+  .faq-answer p {
+    font-family: "Inter", sans-serif;
+    font-size: var(--fs-sm);
+    line-height: 1.7;
+    color: var(--secondary);
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .faq-question {
+      padding: 1rem 1.25rem;
+      font-size: var(--fs-sm);
+      gap: 0.75rem;
+    }
+
+    .faq-answer {
+      padding: 0 1.25rem 1.25rem 3rem;
+    }
+
+    .faq-header h2 {
+      font-size: var(--fs-lg);
+    }
+  }
+</style>

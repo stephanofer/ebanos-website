@@ -1,0 +1,53 @@
+---
+interface Review {
+  nombre: string;
+  ubicacion: string;
+  titulo: string;
+  descripcion: string;
+  puntuacion: number;
+  fecha?: Date;
+}
+
+interface Props {
+  reviews: Review[];
+}
+
+const { reviews } = Astro.props;
+
+const siteUrl = "https://ebanosmuebles.com";
+
+const totalRating = reviews.reduce((acc, r) => acc + r.puntuacion, 0);
+const averageRating = (totalRating / reviews.length).toFixed(1);
+
+const aggregateRatingSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": `${siteUrl}/#organization`,
+  "name": "Ebanos Muebles",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": averageRating,
+    "reviewCount": reviews.length,
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "review": reviews.slice(0, 10).map((review) => ({
+    "@type": "Review",
+    "author": {
+      "@type": "Person",
+      "name": review.nombre
+    },
+    "reviewRating": {
+      "@type": "Rating",
+      "ratingValue": review.puntuacion,
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "name": review.titulo,
+    "reviewBody": review.descripcion,
+    "datePublished": review.fecha?.toISOString().split('T')[0] || new Date().toISOString().split('T')[0]
+  }))
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(aggregateRatingSchema)} />
