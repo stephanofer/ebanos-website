@@ -7,7 +7,6 @@
 Proyecto full-stack moderno con:
 - **SSG de alto rendimiento** con Astro 
 - **SEO optimizado** (sitemap, robots.txt, meta tags)
-- **Error tracking** con Sentry
 - **Responsive design** y UX excelente
 
 ## 🚀 Stack técnico
@@ -18,7 +17,6 @@ Proyecto full-stack moderno con:
 | **Styling** | CSS + Responsive |
 | **CMS** | Content Collections (Markdown) |
 | **Optimización** | Sharp para imágenes |
-| **Monitoreo** | Sentry |
 | **Hosting** | Cloudflare (Wrangler) |
 
 ## 📊 Características
@@ -53,7 +51,6 @@ src/
 - **Colecciones de contenido tipado** con Zod para validación
 - **Componentes atómicos** de Astro para máximo rendimiento
 - **Rutas catch-all** para paginación de proyectos (`[...page].astro`)
-- **Integración Sentry** para monitoreo en producción
 - **Configuración robusta** de sitemap y SEO automático
 
 ---
