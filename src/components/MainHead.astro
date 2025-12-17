@@ -36,6 +36,15 @@ const ogImageUrl = image.startsWith("http") ? image : `${siteUrl}${image}`;
 
 <link rel="sitemap" href="/sitemap-index.xml" />
 
+<!-- Preload LCP image para mejorar rendimiento -->
+<link
+  rel="preload"
+  href="/assets/image1.webp"
+  as="image"
+  type="image/webp"
+  fetchpriority="high"
+/>
+
 <link
   rel="preload"
   href="/fonts/Inter.woff2"
@@ -128,13 +137,16 @@ const ogImageUrl = image.startsWith("http") ? image : `${siteUrl}${image}`;
     });
   }
 
-  if (document.readyState === "complete") {
-    loadGTM();
-  } else {
-    window.addEventListener("load", function () {
-      setTimeout(loadGTM, 100);
-    });
-  }
+  // Cargar GTM después de interacción o después de 3 segundos (lo que ocurra primero)
+  var gtmTimeout = setTimeout(loadGTM, 3000);
+  
+  ['scroll', 'click', 'touchstart', 'mousemove', 'keydown'].forEach(function(event) {
+    document.addEventListener(event, function handler() {
+      clearTimeout(gtmTimeout);
+      loadGTM();
+      document.removeEventListener(event, handler);
+    }, { once: true, passive: true });
+  });
 
   document.addEventListener("astro:page-load", function () {
     if (window.gtmLoaded) {
