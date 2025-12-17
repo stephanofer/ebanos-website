@@ -9,14 +9,14 @@ interface Props {
   showCategory?: boolean;
 }
 
-const { 
-  titulo, 
-  slug, 
-  categoria, 
-  imagenPortada, 
+const {
+  titulo,
+  slug,
+  categoria,
+  imagenPortada,
   imagenPortadaAlt,
   descripcionCorta,
-  showCategory = true 
+  showCategory = true,
 } = Astro.props;
 ---
 
@@ -63,7 +63,6 @@ const {
     transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  /* Efecto de zoom interno al hover */
   .project-card:hover .project-image img {
     transform: scale(1.08);
   }

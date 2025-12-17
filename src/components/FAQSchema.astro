@@ -1,5 +1,4 @@
 ---
-
 interface FAQItem {
   question: string;
   answer: string;
@@ -7,7 +6,7 @@ interface FAQItem {
 
 interface Props {
   faqs: FAQItem[];
-  showOnPage?: boolean; 
+  showOnPage?: boolean;
 }
 
 const { faqs, showOnPage = true } = Astro.props;
@@ -17,43 +16,55 @@ const siteUrl = "https://ebanosmuebles.com";
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "mainEntity": faqs.map((faq) => ({
+  mainEntity: faqs.map((faq) => ({
     "@type": "Question",
-    "name": faq.question,
-    "acceptedAnswer": {
+    name: faq.question,
+    acceptedAnswer: {
       "@type": "Answer",
-      "text": faq.answer
-    }
-  }))
+      text: faq.answer,
+    },
+  })),
 };
 ---
 
 <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 
-{showOnPage && (
-  <section class="faq-section">
-    <div class="faq-header">
-      <h2>Preguntas Frecuentes</h2>
-      <p>Resolvemos tus dudas sobre nuestros muebles a medida</p>
-    </div>
-    <div class="faq-list">
-      {faqs.map((faq, index) => (
-        <details class="faq-item">
-          <summary class="faq-question">
-            <span class="faq-number">{String(index + 1).padStart(2, '0')}</span>
-            <span class="faq-text">{faq.question}</span>
-            <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M6 9l6 6 6-6"/>
-            </svg>
-          </summary>
-          <div class="faq-answer">
-            <p>{faq.answer}</p>
-          </div>
-        </details>
-      ))}
-    </div>
-  </section>
-)}
+{
+  showOnPage && (
+    <section class="faq-section">
+      <div class="faq-header">
+        <h2>Preguntas Frecuentes</h2>
+        <p>Resolvemos tus dudas sobre nuestros muebles a medida</p>
+      </div>
+      <div class="faq-list">
+        {faqs.map((faq, index) => (
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span class="faq-number">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <span class="faq-text">{faq.question}</span>
+              <svg
+                class="faq-icon"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M6 9l6 6 6-6" />
+              </svg>
+            </summary>
+            <div class="faq-answer">
+              <p>{faq.answer}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </section>
+  )
+}
 
 <style>
   .faq-section {

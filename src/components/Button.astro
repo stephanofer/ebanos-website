@@ -45,7 +45,6 @@ const typeClass = type === "secondary" ? "secondary" : "primary";
       border-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  /* Estilos para los iconos SVG */
   .sociallink :global(svg) {
     width: 1.25rem;
     height: 1.25rem;
@@ -60,7 +59,6 @@ const typeClass = type === "secondary" ? "secondary" : "primary";
     border-color: black;
     color: black;
 
-    /* Iconos en estado normal para primary */
     :global(svg) {
       fill: black;
       stroke: black;
@@ -71,7 +69,6 @@ const typeClass = type === "secondary" ? "secondary" : "primary";
       color: white;
     }
 
-    /* Asegurar que los iconos cambien de color en hover */
     &:hover :global(svg) {
       fill: white;
       stroke: white;
@@ -88,13 +85,11 @@ const typeClass = type === "secondary" ? "secondary" : "primary";
       color: black;
     }
 
-    /* Asegurar que los iconos cambien de color en hover */
     &:hover :global(svg) {
       fill: black;
       stroke: black;
     }
 
-    /* Iconos en estado normal para secondary */
     :global(svg) {
       fill: white;
       stroke: white;

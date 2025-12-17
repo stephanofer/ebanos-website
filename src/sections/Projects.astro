@@ -7,7 +7,7 @@ import ProjectCard from "@/components/ProjectCard.astro";
 
 const slugsDestacados = [
   "porton-puerta-principal-interiores-cedro-chiclayo",
-  "cama-cedro-moderna-veladores-chiclayo"
+  "cama-cedro-moderna-veladores-chiclayo",
 ];
 
 const allProyectos = await getCollection("proyectos", ({ id, data }) => {
@@ -15,7 +15,6 @@ const allProyectos = await getCollection("proyectos", ({ id, data }) => {
 
   return data.publicado === true && slugsDestacados.includes(fileSlug);
 });
-
 ---
 
 <SectionContainer name="proyectos">
@@ -28,15 +27,17 @@ const allProyectos = await getCollection("proyectos", ({ id, data }) => {
     </div>
 
     <div class="projects-grid">
-      {allProyectos.map((proyecto) => (
-        <ProjectCard
-          titulo={proyecto.data.titulo}
-          slug={proyecto.data.slug}
-          categoria={proyecto.data.categoria}
-          imagenPortada={proyecto.data.imagenPortada}
-          imagenPortadaAlt={proyecto.data.imagenPortadaAlt}
-        />
-      ))}
+      {
+        allProyectos.map((proyecto) => (
+          <ProjectCard
+            titulo={proyecto.data.titulo}
+            slug={proyecto.data.slug}
+            categoria={proyecto.data.categoria}
+            imagenPortada={proyecto.data.imagenPortada}
+            imagenPortadaAlt={proyecto.data.imagenPortadaAlt}
+          />
+        ))
+      }
     </div>
 
     <div class="button-container">
@@ -84,7 +85,6 @@ const allProyectos = await getCollection("proyectos", ({ id, data }) => {
     margin-top: 1.5rem;
   }
 
-  /* Grid de proyectos - 2 columnas en desktop */
   .projects-grid {
     width: 100%;
     display: grid;
@@ -101,7 +101,6 @@ const allProyectos = await getCollection("proyectos", ({ id, data }) => {
     height: 100%;
   }
 
-  /* Responsive Design */
   @media (max-width: 768px) {
     .container {
       margin-top: 3rem;
@@ -118,7 +117,6 @@ const allProyectos = await getCollection("proyectos", ({ id, data }) => {
       line-height: 1.7;
     }
 
-    /* En mobile: columna vertical, una por fila, sin scroll */
     .projects-grid {
       display: grid;
       grid-template-columns: 1fr;

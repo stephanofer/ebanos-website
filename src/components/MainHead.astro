@@ -23,7 +23,8 @@ const {
 } = Astro.props;
 
 const siteUrl = "https://ebanosmuebles.com";
-const fullTitle = title === "Ebanos Muebles" ? title : `${title} | Ebanos Muebles`;
+const fullTitle =
+  title === "Ebanos Muebles" ? title : `${title} | Ebanos Muebles`;
 const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
 const ogImageUrl = image.startsWith("http") ? image : `${siteUrl}${image}`;
 ---
@@ -90,49 +91,57 @@ const ogImageUrl = image.startsWith("http") ? image : `${siteUrl}${image}`;
       { name: "geo.position", content: "-6.7713;-79.8408" },
       { name: "ICBM", content: "-6.7713, -79.8408" },
       { name: "theme-color", content: "#1a1a1a" },
-      { name: "robots", content: noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" },
+      {
+        name: "robots",
+        content: noindex
+          ? "noindex, nofollow"
+          : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      },
       { name: "googlebot", content: "index, follow" },
       { name: "bingbot", content: "index, follow" },
     ],
   }}
 />
 
-<Schema 
-  type={pageType} 
-  pageTitle={fullTitle} 
+<Schema
+  type={pageType}
+  pageTitle={fullTitle}
   pageDescription={description}
   breadcrumbs={breadcrumbs}
 />
 
 <script is:inline>
   window.dataLayer = window.dataLayer || [];
-  
+
   function loadGTM() {
     if (window.gtmLoaded) return;
     window.gtmLoaded = true;
-    
-    var script = document.createElement('script');
+
+    var script = document.createElement("script");
     script.async = true;
-    script.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-KF6L4554';
+    script.src = "https://www.googletagmanager.com/gtm.js?id=GTM-KF6L4554";
     document.head.appendChild(script);
-    
-    window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+
+    window.dataLayer.push({
+      "gtm.start": new Date().getTime(),
+      event: "gtm.js",
+    });
   }
-  
-  if (document.readyState === 'complete') {
+
+  if (document.readyState === "complete") {
     loadGTM();
   } else {
-    window.addEventListener('load', function() {
+    window.addEventListener("load", function () {
       setTimeout(loadGTM, 100);
     });
   }
-  
-  document.addEventListener('astro:page-load', function() {
+
+  document.addEventListener("astro:page-load", function () {
     if (window.gtmLoaded) {
       window.dataLayer.push({
-        event: 'page_view',
+        event: "page_view",
         page_path: window.location.pathname,
-        page_title: document.title
+        page_title: document.title,
       });
     }
   });

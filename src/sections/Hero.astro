@@ -8,7 +8,6 @@ import { whatsAppLink } from "@/const";
 
 <SectionContainer name="hero">
   <div class="hero-bento">
-    <!-- Card Principal - Imagen grande -->
     <article class="bento-card bento-main">
       <img
         src="/assets/image1.webp"
@@ -28,7 +27,6 @@ import { whatsAppLink } from "@/const";
       </div>
     </article>
 
-    <!-- Card CTA - Con imagen de fondo -->
     <a
       href={whatsAppLink}
       target="_blank"
@@ -40,8 +38,7 @@ import { whatsAppLink } from "@/const";
         src="/assets/image2.webp"
         alt="Cotiza tu proyecto de muebles"
         loading="eager"
-          fetchpriority="high"
-
+        fetchpriority="high"
         decoding="async"
         class="cta-bg-image"
       />
@@ -61,7 +58,6 @@ import { whatsAppLink } from "@/const";
   </div>
 </SectionContainer>
 <style>
-  /* ===== ANIMATIONS ===== */
   @keyframes fadeIn {
     from {
       opacity: 0;
@@ -93,7 +89,6 @@ import { whatsAppLink } from "@/const";
     }
   }
 
-  /* ===== BENTO GRID LAYOUT ===== */
   .hero-bento {
     display: grid;
     gap: 0.75rem;
@@ -114,7 +109,6 @@ import { whatsAppLink } from "@/const";
     }
   }
 
-  /* ===== BASE CARD STYLES ===== */
   .bento-card {
     position: relative;
     border-radius: 0.5rem;
@@ -122,7 +116,6 @@ import { whatsAppLink } from "@/const";
     animation: fadeIn 0.6s ease-out backwards;
   }
 
-  /* ===== MAIN CARD ===== */
   .bento-main {
     min-height: 400px;
     animation-delay: 0ms;
@@ -228,10 +221,8 @@ import { whatsAppLink } from "@/const";
 
   .hero-cta :global(.sociallink) {
     border-radius: 0.5rem;
-    /* border: 0px  */
   }
 
-  /* ===== CTA CARD ===== */
   .bento-cta {
     text-decoration: none;
     cursor: pointer;

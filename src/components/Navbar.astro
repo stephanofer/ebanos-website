@@ -16,9 +16,9 @@ const sections = [
 
 <header>
   <nav>
-      <a href="/" class="logo">
-        <Logo class="logo-svg" />
-      </a>
+    <a href="/" class="logo">
+      <Logo class="logo-svg" />
+    </a>
 
     <ul class="nav-links">
       {
@@ -105,7 +105,6 @@ const sections = [
       height: 30px;
       width: 100px;
     }
-
   }
 
   .nav-links {
@@ -135,7 +134,6 @@ const sections = [
         height: 1.5px;
         background-color: black;
       }
-
     }
   }
   .buttons {
@@ -160,7 +158,8 @@ const sections = [
     overflow-x: auto;
     backdrop-filter: blur(20px) saturate(180%);
     background: rgba(255, 255, 255, 0.85);
-    background-image: radial-gradient(
+    background-image:
+      radial-gradient(
         at 40% 20%,
         rgba(120, 119, 198, 0.1) 0px,
         transparent 50%
@@ -271,10 +270,7 @@ const sections = [
 <script>
   import { MOBILE_MENU_CONTENT_ID } from "@/consts/mobile-menu";
 
-  function toggleMenu(
-    menuButton: HTMLElement,
-    menuMobileContent: HTMLElement
-  ) {
+  function toggleMenu(menuButton: HTMLElement, menuMobileContent: HTMLElement) {
     const isOpen = menuMobileContent.classList.toggle("open");
     menuButton.classList.toggle("open");
     document.body.classList.toggle("overflow-hidden");
@@ -289,7 +285,9 @@ const sections = [
 
   function initializeNavbar() {
     const menuButton = document.querySelector("#menuButton") as HTMLElement;
-    const menuMobileContent = document.getElementById(MOBILE_MENU_CONTENT_ID) as HTMLElement;
+    const menuMobileContent = document.getElementById(
+      MOBILE_MENU_CONTENT_ID
+    ) as HTMLElement;
 
     if (!menuButton || !menuMobileContent) return;
 
@@ -303,8 +301,11 @@ const sections = [
 
     menuMobileContent.addEventListener("click", (e) => {
       const target = e.target as HTMLElement;
-      
-      if (target.classList.contains("mobile-nav-link") || target === menuMobileContent) {
+
+      if (
+        target.classList.contains("mobile-nav-link") ||
+        target === menuMobileContent
+      ) {
         toggleMenu(menuButton, menuMobileContent);
       }
     });

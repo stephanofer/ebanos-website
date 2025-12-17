@@ -1,44 +1,54 @@
 ---
-import ArrowUp from '@/assets/arrow-up.svg';
-import Email from '@/assets/email.svg';
-import Facebook from '@/assets/facebook.svg';
-import Instagram from '@/assets/instagram.svg';
-import Location from '@/assets/location.svg';
-import Phone from '@/assets/phone.svg';
-import Tiktok from '@/assets/tiktok.svg';
-import Whatsapp from '@/assets/whatsapp.svg';
+import ArrowUp from "@/assets/arrow-up.svg";
+import Email from "@/assets/email.svg";
+import Facebook from "@/assets/facebook.svg";
+import Instagram from "@/assets/instagram.svg";
+import Location from "@/assets/location.svg";
+import Phone from "@/assets/phone.svg";
+import Tiktok from "@/assets/tiktok.svg";
+import Whatsapp from "@/assets/whatsapp.svg";
 import SectionContainer from "@/components/SectionContainer.astro";
 import {
-    address,
-    email,
-    googleMapsEmbedUrl,
-    googleMapsLink,
-    horarios,
-    phoneNumber,
-    socialLinks,
-    whatsAppLink
+  address,
+  email,
+  googleMapsEmbedUrl,
+  googleMapsLink,
+  horarios,
+  phoneNumber,
+  socialLinks,
+  whatsAppLink,
 } from "@/const";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
 const title = "Contacto - Cotiza tus Muebles en Chiclayo";
-const description = "¿Buscas muebles a medida en Chiclayo? Contáctanos al +51 979 264 871 o visítanos en Nicaragua 1140. Cotización gratis. Atendemos de L-S 8am-6pm.";
+const description =
+  "¿Buscas muebles a medida en Chiclayo? Contáctanos al +51 979 264 871 o visítanos en Nicaragua 1140. Cotización gratis. Atendemos de L-S 8am-6pm.";
 
 const breadcrumbs = [
   { name: "Inicio", url: "/" },
-  { name: "Contacto", url: "/contacto" }
+  { name: "Contacto", url: "/contacto" },
 ];
 
-const phoneFormatted = phoneNumber.replace(/\s/g, '');
+const phoneFormatted = phoneNumber.replace(/\s/g, "");
 ---
 
-<BaseLayout title={title} description={description} pageType="contact" breadcrumbs={breadcrumbs}>
+<BaseLayout
+  title={title}
+  description={description}
+  pageType="contact"
+  breadcrumbs={breadcrumbs}
+>
   <main class="contacto-page">
     <SectionContainer name="contacto-header">
       <div class="page-header reveal">
         <h1>Contacto</h1>
         <p>
-          ¿Tienes alguna pregunta o deseas cotizar un proyecto? Estamos aquí para ayudarte.<br />
-          Escríbenos a llámanos al <a href={`tel:${phoneFormatted}`} class="link-highlight">{phoneNumber}</a>
+          ¿Tienes alguna pregunta o deseas cotizar un proyecto? Estamos aquí
+          para ayudarte.<br />
+          Escríbenos a llámanos al <a
+            href={`tel:${phoneFormatted}`}
+            class="link-highlight">{phoneNumber}</a
+          >
         </p>
       </div>
     </SectionContainer>
@@ -55,14 +65,18 @@ const phoneFormatted = phoneNumber.replace(/\s/g, '');
               allowfullscreen=""
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
-              title="Ubicación de Ebanos Muebles en Chiclayo"
-            ></iframe>
+              title="Ubicación de Ebanos Muebles en Chiclayo"></iframe>
           </div>
           <div class="mapa-overlay">
             <span class="mapa-label">Ebanos Muebles</span>
-            <a href={googleMapsLink} target="_blank" rel="noopener noreferrer" class="mapa-link">
+            <a
+              href={googleMapsLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="mapa-link"
+            >
               Ver en Google Maps
-              <ArrowUp/>
+              <ArrowUp />
             </a>
           </div>
         </div>
@@ -70,7 +84,7 @@ const phoneFormatted = phoneNumber.replace(/\s/g, '');
         <div class="contacto-info">
           <div class="info-card reveal">
             <div class="info-icon">
-              <Email/>
+              <Email />
             </div>
             <div class="info-content">
               <span class="info-label">Correo electrónico:</span>
@@ -82,19 +96,27 @@ const phoneFormatted = phoneNumber.replace(/\s/g, '');
 
           <div class="info-card reveal">
             <div class="info-icon">
-              <Phone/>
+              <Phone />
             </div>
             <div class="info-content">
               <span class="info-label">Atención al cliente:</span>
-              <a href={`tel:${phoneFormatted}`} class="info-value info-link phone-number">
+              <a
+                href={`tel:${phoneFormatted}`}
+                class="info-value info-link phone-number"
+              >
                 {phoneNumber}
               </a>
               <div class="horarios">
                 <span>{horarios.semana}</span>
                 <span>{horarios.domingo}</span>
               </div>
-              <a href={whatsAppLink} target="_blank" rel="noopener noreferrer" class="whatsapp-btn">
-                <Whatsapp/>
+              <a
+                href={whatsAppLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="whatsapp-btn"
+              >
+                <Whatsapp />
                 Escríbenos por WhatsApp
               </a>
             </div>
@@ -102,11 +124,16 @@ const phoneFormatted = phoneNumber.replace(/\s/g, '');
 
           <div class="info-card reveal">
             <div class="info-icon">
-              <Location/>
+              <Location />
             </div>
             <div class="info-content">
               <span class="info-label">Ubicación:</span>
-              <a href={googleMapsLink} target="_blank" rel="noopener noreferrer" class="info-value info-link">
+              <a
+                href={googleMapsLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="info-value info-link"
+              >
                 {address}
               </a>
               <span class="info-note">Atendemos proyectos en todo el Perú</span>
@@ -114,18 +141,35 @@ const phoneFormatted = phoneNumber.replace(/\s/g, '');
           </div>
 
           <div class="info-card reveal">
-
             <div class="info-content">
               <span class="info-label">Síguenos en redes:</span>
               <div class="social-links">
-                <a href={socialLinks.facebook} target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">
-                  <Facebook/>
+                <a
+                  href={socialLinks.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="social-link"
+                  aria-label="Facebook"
+                >
+                  <Facebook />
                 </a>
-                <a href={socialLinks.instagram} target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
-                  <Instagram/>
+                <a
+                  href={socialLinks.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="social-link"
+                  aria-label="Instagram"
+                >
+                  <Instagram />
                 </a>
-                <a href={socialLinks.tiktok} target="_blank" rel="noopener noreferrer" class="social-link" aria-label="TikTok">
-                  <Tiktok/>
+                <a
+                  href={socialLinks.tiktok}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="social-link"
+                  aria-label="TikTok"
+                >
+                  <Tiktok />
                 </a>
               </div>
             </div>
@@ -208,7 +252,7 @@ const phoneFormatted = phoneNumber.replace(/\s/g, '');
     left: 0;
     right: 0;
     padding: 1.5rem;
-    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
@@ -230,7 +274,7 @@ const phoneFormatted = phoneNumber.replace(/\s/g, '');
     font-weight: 500;
     color: white;
     text-decoration: none;
-    background: rgba(255,255,255,0.2);
+    background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
     padding: 0.5rem 1rem;
     border-radius: 8px;
@@ -238,7 +282,7 @@ const phoneFormatted = phoneNumber.replace(/\s/g, '');
   }
 
   .mapa-link:hover {
-    background: rgba(255,255,255,0.3);
+    background: rgba(255, 255, 255, 0.3);
   }
 
   .contacto-info {
@@ -257,12 +301,14 @@ const phoneFormatted = phoneNumber.replace(/\s/g, '');
     background: #fafafa;
     border: 1px solid #e5e5e5;
     border-radius: 12px;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
   }
 
   .info-card:hover {
     border-color: #d0d0d0;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   }
 
   .info-icon {
@@ -348,10 +394,12 @@ const phoneFormatted = phoneNumber.replace(/\s/g, '');
     font-size: var(--fs-sm);
     font-weight: 500;
     color: white;
-    background: #25D366;
+    background: #25d366;
     border-radius: 8px;
     text-decoration: none;
-    transition: background 0.2s ease, transform 0.2s ease;
+    transition:
+      background 0.2s ease,
+      transform 0.2s ease;
   }
 
   .whatsapp-btn:hover {
@@ -389,18 +437,27 @@ const phoneFormatted = phoneNumber.replace(/\s/g, '');
   .reveal {
     opacity: 0;
     transform: translateY(30px);
-    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    transition:
+      opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .reveal.active {
     opacity: 1;
     transform: translateY(0);
   }
-  .info-card.reveal:nth-child(1) { transition-delay: 0s; }
-  .info-card.reveal:nth-child(2) { transition-delay: 0.1s; }
-  .info-card.reveal:nth-child(3) { transition-delay: 0.2s; }
-  .info-card.reveal:nth-child(4) { transition-delay: 0.3s; }
+  .info-card.reveal:nth-child(1) {
+    transition-delay: 0s;
+  }
+  .info-card.reveal:nth-child(2) {
+    transition-delay: 0.1s;
+  }
+  .info-card.reveal:nth-child(3) {
+    transition-delay: 0.2s;
+  }
+  .info-card.reveal:nth-child(4) {
+    transition-delay: 0.3s;
+  }
 
   @media (prefers-reduced-motion: reduce) {
     .reveal {
@@ -473,22 +530,25 @@ const phoneFormatted = phoneNumber.replace(/\s/g, '');
 
 <script>
   function initScrollReveal() {
-    const reveals = document.querySelectorAll('.reveal');
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-        }
-      });
-    }, {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    });
+    const reveals = document.querySelectorAll(".reveal");
 
-    reveals.forEach(el => observer.observe(el));
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      }
+    );
+
+    reveals.forEach((el) => observer.observe(el));
   }
 
-  document.addEventListener('DOMContentLoaded', initScrollReveal);
-  document.addEventListener('astro:page-load', initScrollReveal);
+  document.addEventListener("DOMContentLoaded", initScrollReveal);
+  document.addEventListener("astro:page-load", initScrollReveal);
 </script>

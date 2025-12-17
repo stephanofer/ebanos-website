@@ -7,23 +7,22 @@ interface Props {
 
 const { currentPage, totalPages, baseUrl } = Astro.props;
 
-// Generar array de páginas para mostrar
 const generatePageNumbers = () => {
   const pages: (number | string)[] = [];
-  const delta = 2; // Páginas a mostrar alrededor de la actual
-  
+  const delta = 2; 
+
   for (let i = 1; i <= totalPages; i++) {
     if (
-      i === 1 || // Primera página
-      i === totalPages || // Última página
-      (i >= currentPage - delta && i <= currentPage + delta) // Páginas cercanas
+      i === 1 ||
+      i === totalPages || 
+      (i >= currentPage - delta && i <= currentPage + delta) 
     ) {
       pages.push(i);
-    } else if (pages[pages.length - 1] !== '...') {
-      pages.push('...');
+    } else if (pages[pages.length - 1] !== "...") {
+      pages.push("...");
     }
   }
-  
+
   return pages;
 };
 
@@ -37,57 +36,101 @@ const getPageUrl = (page: number) => {
 ---
 
 <nav class="pagination" aria-label="Navegación de páginas">
-  {/* Botón anterior */}
-  {prevPage ? (
-    <a href={getPageUrl(prevPage)} class="pagination-btn pagination-prev" aria-label="Página anterior">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M15 18l-6-6 6-6"/>
-      </svg>
-      <span class="pagination-btn-text">Anterior</span>
-    </a>
-  ) : (
-    <span class="pagination-btn pagination-prev disabled" aria-disabled="true">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M15 18l-6-6 6-6"/>
-      </svg>
-      <span class="pagination-btn-text">Anterior</span>
-    </span>
-  )}
-
-  {/* Números de página */}
-  <div class="pagination-numbers">
-    {pageNumbers.map((page) => (
-      page === '...' ? (
-        <span class="pagination-ellipsis">...</span>
-      ) : (
-        <a
-          href={getPageUrl(page as number)}
-          class={`pagination-number ${currentPage === page ? 'active' : ''}`}
-          aria-current={currentPage === page ? 'page' : undefined}
-          aria-label={`Página ${page}`}
+  {
+    prevPage ? (
+      <a
+        href={getPageUrl(prevPage)}
+        class="pagination-btn pagination-prev"
+        aria-label="Página anterior"
+      >
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
         >
-          {page}
-        </a>
+          <path d="M15 18l-6-6 6-6" />
+        </svg>
+        <span class="pagination-btn-text">Anterior</span>
+      </a>
+    ) : (
+      <span
+        class="pagination-btn pagination-prev disabled"
+        aria-disabled="true"
+      >
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path d="M15 18l-6-6 6-6" />
+        </svg>
+        <span class="pagination-btn-text">Anterior</span>
+      </span>
+    )
+  }
+  <div class="pagination-numbers">
+    {
+      pageNumbers.map((page) =>
+        page === "..." ? (
+          <span class="pagination-ellipsis">...</span>
+        ) : (
+          <a
+            href={getPageUrl(page as number)}
+            class={`pagination-number ${currentPage === page ? "active" : ""}`}
+            aria-current={currentPage === page ? "page" : undefined}
+            aria-label={`Página ${page}`}
+          >
+            {page}
+          </a>
+        )
       )
-    ))}
+    }
   </div>
 
-  {/* Botón siguiente */}
-  {nextPage ? (
-    <a href={getPageUrl(nextPage)} class="pagination-btn pagination-next" aria-label="Página siguiente">
-      <span class="pagination-btn-text">Siguiente</span>
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M9 18l6-6-6-6"/>
-      </svg>
-    </a>
-  ) : (
-    <span class="pagination-btn pagination-next disabled" aria-disabled="true">
-      <span class="pagination-btn-text">Siguiente</span>
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M9 18l6-6-6-6"/>
-      </svg>
-    </span>
-  )}
+  {
+    nextPage ? (
+      <a
+        href={getPageUrl(nextPage)}
+        class="pagination-btn pagination-next"
+        aria-label="Página siguiente"
+      >
+        <span class="pagination-btn-text">Siguiente</span>
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path d="M9 18l6-6-6-6" />
+        </svg>
+      </a>
+    ) : (
+      <span
+        class="pagination-btn pagination-next disabled"
+        aria-disabled="true"
+      >
+        <span class="pagination-btn-text">Siguiente</span>
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path d="M9 18l6-6-6-6" />
+        </svg>
+      </span>
+    )
+  }
 </nav>
 
 <style>

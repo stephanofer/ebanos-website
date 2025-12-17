@@ -1,5 +1,4 @@
 ---
-
 interface Props {
   type?: "home" | "page" | "project" | "contact" | "about";
   pageTitle?: string;
@@ -15,12 +14,12 @@ interface Props {
   };
 }
 
-const { 
-  type = "page", 
-  pageTitle = "Ebanos Muebles", 
+const {
+  type = "page",
+  pageTitle = "Ebanos Muebles",
   pageDescription = "",
   breadcrumbs = [],
-  projectData 
+  projectData,
 } = Astro.props;
 
 const siteUrl = "https://ebanosmuebles.com";
@@ -30,86 +29,98 @@ const organizationSchema = {
   "@context": "https://schema.org",
   "@type": ["Organization", "LocalBusiness", "FurnitureStore"],
   "@id": `${siteUrl}/#organization`,
-  "name": "Ebanos Muebles",
-  "alternateName": ["Ebanos Muebles Perú", "Ebanos Muebles Chiclayo", "Mueblería Ebanos"],
-  "description": "Fabricantes de muebles a medida con más de 30 años de experiencia en Chiclayo, Perú. Especialistas en muebles de madera de alta calidad para hogares y empresas.",
-  "url": siteUrl,
-  "logo": {
+  name: "Ebanos Muebles",
+  alternateName: [
+    "Ebanos Muebles Perú",
+    "Ebanos Muebles Chiclayo",
+    "Mueblería Ebanos",
+  ],
+  description:
+    "Fabricantes de muebles a medida con más de 30 años de experiencia en Chiclayo, Perú. Especialistas en muebles de madera de alta calidad para hogares y empresas.",
+  url: siteUrl,
+  logo: {
     "@type": "ImageObject",
-    "url": `${siteUrl}/favicon.svg`,
-    "width": 512,
-    "height": 512
+    url: `${siteUrl}/favicon.svg`,
+    width: 512,
+    height: 512,
   },
-  "image": [
+  image: [
     `${siteUrl}/assets/image1.webp`,
     `${siteUrl}/assets/sobre-nosotros.webp`,
-    `${siteUrl}/assets/experto.webp`
+    `${siteUrl}/assets/experto.webp`,
   ],
-  "telephone": "+51979264871",
-  "email": "ebanosmueblesperu@gmail.com",
-  "address": {
+  telephone: "+51979264871",
+  email: "ebanosmueblesperu@gmail.com",
+  address: {
     "@type": "PostalAddress",
-    "streetAddress": "Nicaragua 1140",
-    "addressLocality": "Chiclayo",
-    "addressRegion": "Lambayeque",
-    "postalCode": "14001",
-    "addressCountry": "PE"
+    streetAddress: "Nicaragua 1140",
+    addressLocality: "Chiclayo",
+    addressRegion: "Lambayeque",
+    postalCode: "14001",
+    addressCountry: "PE",
   },
-  "geo": {
+  geo: {
     "@type": "GeoCoordinates",
-    "latitude": -6.7713,
-    "longitude": -79.8408
+    latitude: -6.7713,
+    longitude: -79.8408,
   },
-  "areaServed": [
+  areaServed: [
     {
       "@type": "City",
-      "name": "Chiclayo"
-    },
-    {
-      "@type": "City", 
-      "name": "José Leonardo Ortiz"
+      name: "Chiclayo",
     },
     {
       "@type": "City",
-      "name": "La Victoria"
+      name: "José Leonardo Ortiz",
+    },
+    {
+      "@type": "City",
+      name: "La Victoria",
     },
     {
       "@type": "State",
-      "name": "Lambayeque"
+      name: "Lambayeque",
     },
     {
       "@type": "Country",
-      "name": "Perú"
-    }
+      name: "Perú",
+    },
   ],
-  "openingHoursSpecification": [
+  openingHoursSpecification: [
     {
       "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-      "opens": "08:00",
-      "closes": "18:00"
+      dayOfWeek: [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+      ],
+      opens: "08:00",
+      closes: "18:00",
     },
     {
       "@type": "OpeningHoursSpecification",
-      "dayOfWeek": "Sunday",
-      "opens": "08:00",
-      "closes": "18:00"
-    }
+      dayOfWeek: "Sunday",
+      opens: "08:00",
+      closes: "18:00",
+    },
   ],
-  "priceRange": "$$",
-  "currenciesAccepted": "PEN",
-  "paymentAccepted": "Cash, Bank Transfer, Yape, Plin",
-  "foundingDate": "1990",
-  "founder": {
+  priceRange: "$$",
+  currenciesAccepted: "PEN",
+  paymentAccepted: "Cash, Bank Transfer, Yape, Plin",
+  foundingDate: "1990",
+  founder: {
     "@type": "Person",
-    "name": "Huildor Fernandez Cayao"
+    name: "Huildor Fernandez Cayao",
   },
-  "numberOfEmployees": {
+  numberOfEmployees: {
     "@type": "QuantitativeValue",
-    "minValue": 5,
-    "maxValue": 15
+    minValue: 5,
+    maxValue: 15,
   },
-  "knowsAbout": [
+  knowsAbout: [
     "Muebles a medida",
     "Carpintería fina",
     "Muebles de madera",
@@ -120,114 +131,165 @@ const organizationSchema = {
     "Comedores",
     "Muebles de sala",
     "Puertas de madera",
-    "Portones"
+    "Portones",
   ],
-  "hasOfferCatalog": {
+  hasOfferCatalog: {
     "@type": "OfferCatalog",
-    "name": "Catálogo de Muebles a Medida",
-    "itemListElement": [
+    name: "Catálogo de Muebles a Medida",
+    itemListElement: [
       {
         "@type": "OfferCatalog",
-        "name": "Muebles de Dormitorio",
-        "itemListElement": [
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Camas de madera" }},
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Closets a medida" }},
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Veladores" }},
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Roperos" }}
-        ]
+        name: "Muebles de Dormitorio",
+        itemListElement: [
+          {
+            "@type": "Offer",
+            itemOffered: { "@type": "Service", name: "Camas de madera" },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: { "@type": "Service", name: "Closets a medida" },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: { "@type": "Service", name: "Veladores" },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: { "@type": "Service", name: "Roperos" },
+          },
+        ],
       },
       {
         "@type": "OfferCatalog",
-        "name": "Muebles de Comedor",
-        "itemListElement": [
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mesas de comedor" }},
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sillas de comedor" }},
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Aparadores" }}
-        ]
+        name: "Muebles de Comedor",
+        itemListElement: [
+          {
+            "@type": "Offer",
+            itemOffered: { "@type": "Service", name: "Mesas de comedor" },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: { "@type": "Service", name: "Sillas de comedor" },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: { "@type": "Service", name: "Aparadores" },
+          },
+        ],
       },
       {
         "@type": "OfferCatalog",
-        "name": "Muebles de Cocina",
-        "itemListElement": [
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Cocinas integrales" }},
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Reposteros" }}
-        ]
+        name: "Muebles de Cocina",
+        itemListElement: [
+          {
+            "@type": "Offer",
+            itemOffered: { "@type": "Service", name: "Cocinas integrales" },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: { "@type": "Service", name: "Reposteros" },
+          },
+        ],
       },
       {
         "@type": "OfferCatalog",
-        "name": "Carpintería Exterior",
-        "itemListElement": [
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Puertas de madera" }},
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Portones" }},
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Portones levadizos" }}
-        ]
-      }
-    ]
+        name: "Carpintería Exterior",
+        itemListElement: [
+          {
+            "@type": "Offer",
+            itemOffered: { "@type": "Service", name: "Puertas de madera" },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: { "@type": "Service", name: "Portones" },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: { "@type": "Service", name: "Portones levadizos" },
+          },
+        ],
+      },
+    ],
   },
-  "sameAs": [
+  sameAs: [
     "https://www.facebook.com/ebanosmueblesperu",
     "https://www.instagram.com/ebanosmuebles/",
-    "https://www.tiktok.com/@ebanosmuebles"
-  ]
+    "https://www.tiktok.com/@ebanosmuebles",
+  ],
 };
 
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   "@id": `${siteUrl}/#website`,
-  "url": siteUrl,
-  "name": "Ebanos Muebles",
-  "description": "Fábrica de muebles a medida en Chiclayo, Perú. Más de 30 años de experiencia.",
-  "publisher": {
-    "@id": `${siteUrl}/#organization`
+  url: siteUrl,
+  name: "Ebanos Muebles",
+  description:
+    "Fábrica de muebles a medida en Chiclayo, Perú. Más de 30 años de experiencia.",
+  publisher: {
+    "@id": `${siteUrl}/#organization`,
   },
-  "inLanguage": "es-PE"
+  inLanguage: "es-PE",
 };
 
 const webPageSchema = {
   "@context": "https://schema.org",
-  "@type": type === "home" ? "WebPage" : 
-           type === "contact" ? "ContactPage" : 
-           type === "about" ? "AboutPage" : "WebPage",
+  "@type":
+    type === "home"
+      ? "WebPage"
+      : type === "contact"
+        ? "ContactPage"
+        : type === "about"
+          ? "AboutPage"
+          : "WebPage",
   "@id": `${currentUrl}#webpage`,
-  "url": currentUrl,
-  "name": pageTitle,
-  "description": pageDescription,
-  "isPartOf": {
-    "@id": `${siteUrl}/#website`
+  url: currentUrl,
+  name: pageTitle,
+  description: pageDescription,
+  isPartOf: {
+    "@id": `${siteUrl}/#website`,
   },
-  "about": {
-    "@id": `${siteUrl}/#organization`
+  about: {
+    "@id": `${siteUrl}/#organization`,
   },
-  "inLanguage": "es-PE"
+  inLanguage: "es-PE",
 };
 
-const breadcrumbSchema = breadcrumbs.length > 0 ? {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": breadcrumbs.map((item, index) => ({
-    "@type": "ListItem",
-    "position": index + 1,
-    "name": item.name,
-    "item": item.url.startsWith("http") ? item.url : `${siteUrl}${item.url}`
-  }))
-} : null;
+const breadcrumbSchema =
+  breadcrumbs.length > 0
+    ? {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: breadcrumbs.map((item, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: item.name,
+          item: item.url.startsWith("http")
+            ? item.url
+            : `${siteUrl}${item.url}`,
+        })),
+      }
+    : null;
 
-const projectSchema = projectData ? {
-  "@context": "https://schema.org",
-  "@type": "Product",
-  "name": projectData.name,
-  "description": projectData.description,
-  "image": projectData.image.startsWith("http") ? projectData.image : `${siteUrl}${projectData.image}`,
-  "category": projectData.category,
-  "manufacturer": {
-    "@id": `${siteUrl}/#organization`
-  },
-  "brand": {
-    "@type": "Brand",
-    "name": "Ebanos Muebles"
-  }
-} : null;
+const projectSchema = projectData
+  ? {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      name: projectData.name,
+      description: projectData.description,
+      image: projectData.image.startsWith("http")
+        ? projectData.image
+        : `${siteUrl}${projectData.image}`,
+      category: projectData.category,
+      manufacturer: {
+        "@id": `${siteUrl}/#organization`,
+      },
+      brand: {
+        "@type": "Brand",
+        name: "Ebanos Muebles",
+      },
+    }
+  : null;
 
 const schemas: any[] = [organizationSchema, websiteSchema, webPageSchema];
 
@@ -240,6 +302,8 @@ if (projectSchema) {
 }
 ---
 
-{schemas.map((schema) => (
-  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
-))}
+{
+  schemas.map((schema) => (
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  ))
+}

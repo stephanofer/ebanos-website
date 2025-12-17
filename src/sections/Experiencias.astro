@@ -4,7 +4,8 @@ import SectionContainer from "@/components/SectionContainer.astro";
 import TestimonialCard from "@/components/TestimonialCard.astro";
 import ReviewSchema from "@/components/ReviewSchema.astro";
 
-const testimonios: CollectionEntry<"testimonios">[] = await getCollection("testimonios");
+const testimonios: CollectionEntry<"testimonios">[] =
+  await getCollection("testimonios");
 
 const testimoniosOrdenados = testimonios.sort((a, b) => {
   if (b.data.puntuacion !== a.data.puntuacion) {
@@ -21,7 +22,7 @@ const reviewsForSchema = testimoniosOrdenados.map((t) => ({
   titulo: t.data.titulo,
   descripcion: t.body ?? "",
   puntuacion: t.data.puntuacion,
-  fecha: t.data.fecha
+  fecha: t.data.fecha,
 }));
 ---
 
@@ -32,51 +33,82 @@ const reviewsForSchema = testimoniosOrdenados.map((t) => ({
     <div class="testimonials-header">
       <h2>#HogaresEbanos</h2>
       <p>
-        Inspira a nuestra comunidad y muéstranos cómo ha quedado tu hogar Ebanos.
+        Inspira a nuestra comunidad y muéstranos cómo ha quedado tu hogar
+        Ebanos.
       </p>
     </div>
 
     <div class="marquee-wrapper">
-      <button id="prev-btn" class="nav-btn prev" aria-label="Anterior testimonio">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      <button
+        id="prev-btn"
+        class="nav-btn prev"
+        aria-label="Anterior testimonio"
+      >
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg
+        >
       </button>
-      <button id="next-btn" class="nav-btn next" aria-label="Siguiente testimonio">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+      <button
+        id="next-btn"
+        class="nav-btn next"
+        aria-label="Siguiente testimonio"
+      >
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path></svg
+        >
       </button>
 
       <div class="marquee-container">
         <div class="marquee-track" aria-label="Testimonios de clientes">
           <div class="marquee-content">
-            {testimoniosOrdenados.map((testimonio) => (
-              <TestimonialCard
-                nombre={testimonio.data.nombre}
-                ubicacion={testimonio.data.ubicacion}
-                titulo={testimonio.data.titulo}
-                descripcion={testimonio.body ?? ""}
-                tag={testimonio.data.tag}
-                imagenProyecto={testimonio.data.imagenProyecto}
-                imagenAvatar={testimonio.data.imagenAvatar}
-                puntuacion={testimonio.data.puntuacion}
-              />
-            ))}
+            {
+              testimoniosOrdenados.map((testimonio) => (
+                <TestimonialCard
+                  nombre={testimonio.data.nombre}
+                  ubicacion={testimonio.data.ubicacion}
+                  titulo={testimonio.data.titulo}
+                  descripcion={testimonio.body ?? ""}
+                  tag={testimonio.data.tag}
+                  imagenProyecto={testimonio.data.imagenProyecto}
+                  imagenAvatar={testimonio.data.imagenAvatar}
+                  puntuacion={testimonio.data.puntuacion}
+                />
+              ))
+            }
           </div>
           <div class="marquee-content" aria-hidden="true">
-            {testimoniosOrdenados.map((testimonio) => (
-              <TestimonialCard
-                nombre={testimonio.data.nombre}
-                ubicacion={testimonio.data.ubicacion}
-                titulo={testimonio.data.titulo}
-                descripcion={testimonio.body ?? ""}
-                tag={testimonio.data.tag}
-                imagenProyecto={testimonio.data.imagenProyecto}
-                imagenAvatar={testimonio.data.imagenAvatar}
-                puntuacion={testimonio.data.puntuacion}
-              />
-            ))}
+            {
+              testimoniosOrdenados.map((testimonio) => (
+                <TestimonialCard
+                  nombre={testimonio.data.nombre}
+                  ubicacion={testimonio.data.ubicacion}
+                  titulo={testimonio.data.titulo}
+                  descripcion={testimonio.body ?? ""}
+                  tag={testimonio.data.tag}
+                  imagenProyecto={testimonio.data.imagenProyecto}
+                  imagenAvatar={testimonio.data.imagenAvatar}
+                  puntuacion={testimonio.data.puntuacion}
+                />
+              ))
+            }
           </div>
         </div>
       </div>
-      
+
       <div class="fade-overlay fade-left"></div>
       <div class="fade-overlay fade-right"></div>
     </div>
@@ -113,22 +145,18 @@ const reviewsForSchema = testimoniosOrdenados.map((t) => ({
     margin: 0;
   }
 
-  /* Marquee Wrapper - contenedor con overflow y gradientes */
   .marquee-wrapper {
     position: relative;
     overflow: hidden;
     border-radius: 12px;
   }
 
-  /* Marquee Container */
   .marquee-container {
     overflow-x: auto;
     overflow-y: hidden;
     position: relative;
-    /* Ocultar scrollbars pero mantener funcionalidad */
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE/Edge */
-    /* Evitar comportamientos de scroll nativo que interfieran con el JS suave */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
     scroll-behavior: auto;
   }
 
@@ -139,18 +167,15 @@ const reviewsForSchema = testimoniosOrdenados.map((t) => ({
   .marquee-track {
     display: flex;
     width: max-content;
-    /* Eliminamos la animación CSS pura para dar control al usuario */
   }
 
   .marquee-content {
     display: flex;
     gap: 1.5rem;
     padding: 1rem 0.75rem;
-    /* Aseguramos que el contenido no se rompa */
     flex-shrink: 0;
   }
 
-  /* Navigation Buttons */
   .nav-btn {
     position: absolute;
     top: 50%;
@@ -165,7 +190,7 @@ const reviewsForSchema = testimoniosOrdenados.map((t) => ({
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     transition: all 0.2s ease;
     opacity: 1;
     color: var(--foreground);
@@ -177,10 +202,13 @@ const reviewsForSchema = testimoniosOrdenados.map((t) => ({
     scale: 1.1;
   }
 
-  .prev { left: 1rem; }
-  .next { right: 1rem; }
+  .prev {
+    left: 1rem;
+  }
+  .next {
+    right: 1rem;
+  }
 
-  /* Fade overlays para bordes suaves */
   .fade-overlay {
     position: absolute;
     top: 0;
@@ -243,77 +271,66 @@ const reviewsForSchema = testimoniosOrdenados.map((t) => ({
 </style>
 
 <script>
-  // UX Improvement: Interactive Infinite Scroll
-  // Permite al usuario detener, arrastrar y navegar libremente por los testimonios
-  // mientras mantiene el movimiento automático atractivo cuando está inactivo.
-  
   function initMarquee() {
-    const container = document.querySelector('.marquee-container') as HTMLElement;
-    const content = document.querySelector('.marquee-content') as HTMLElement;
-    
+    const container = document.querySelector(
+      ".marquee-container"
+    ) as HTMLElement;
+    const content = document.querySelector(".marquee-content") as HTMLElement;
+
     if (!container || !content) return;
 
     let isPaused = false;
-    let autoScrollSpeed = 0.3; // Velocidad base (px/frame)
-    
-    // Configuración de interacción
-    const pause = () => isPaused = true;
-    const resume = () => isPaused = false;
+    let autoScrollSpeed = 0.3;
 
-    // Botones de navegación
-    const prevBtn = document.getElementById('prev-btn');
-    const nextBtn = document.getElementById('next-btn');
+    const pause = () => (isPaused = true);
+    const resume = () => (isPaused = false);
+
+    const prevBtn = document.getElementById("prev-btn");
+    const nextBtn = document.getElementById("next-btn");
 
     if (prevBtn && nextBtn) {
-      // Pausar al interactuar con los botones
-      prevBtn.addEventListener('mouseenter', pause);
-      prevBtn.addEventListener('mouseleave', resume);
-      nextBtn.addEventListener('mouseenter', pause);
-      nextBtn.addEventListener('mouseleave', resume);
+      prevBtn.addEventListener("mouseenter", pause);
+      prevBtn.addEventListener("mouseleave", resume);
+      nextBtn.addEventListener("mouseenter", pause);
+      nextBtn.addEventListener("mouseleave", resume);
 
-      prevBtn.addEventListener('click', () => {
-        container.scrollBy({ left: -350, behavior: 'smooth' });
+      prevBtn.addEventListener("click", () => {
+        container.scrollBy({ left: -350, behavior: "smooth" });
       });
-      nextBtn.addEventListener('click', () => {
-        container.scrollBy({ left: 350, behavior: 'smooth' });
+      nextBtn.addEventListener("click", () => {
+        container.scrollBy({ left: 350, behavior: "smooth" });
       });
     }
 
-    // --- Eventos de Hover (Pausa simple) ---
-    container.addEventListener('mouseenter', pause);
-    container.addEventListener('mouseleave', resume);
-    
-    // --- Eventos Táctiles (Móvil) ---
-    container.addEventListener('touchstart', pause, { passive: true });
-    container.addEventListener('touchend', () => {
-      setTimeout(resume, 1500);
-    }, { passive: true });
+    container.addEventListener("mouseenter", pause);
+    container.addEventListener("mouseleave", resume);
 
-    // Loop de animación
+    container.addEventListener("touchstart", pause, { passive: true });
+    container.addEventListener(
+      "touchend",
+      () => {
+        setTimeout(resume, 1500);
+      },
+      { passive: true }
+    );
+
     function animate() {
       if (!isPaused) {
-        // Movimiento automático
         container.scrollLeft += autoScrollSpeed;
       }
 
-      // Lógica de Loop Infinito
-      // Si llegamos al final del primer set, saltamos al inicio (sin animación)
       if (container.scrollLeft >= content.offsetWidth) {
         container.scrollLeft -= content.offsetWidth;
-      } 
-      // Si el usuario hace scroll manual hacia atrás más allá del inicio
-      else if (container.scrollLeft <= 0) {
+      } else if (container.scrollLeft <= 0) {
         container.scrollLeft += content.offsetWidth;
       }
 
       requestAnimationFrame(animate);
     }
 
-    // Iniciar animación
     requestAnimationFrame(animate);
   }
 
-  // Inicializar
-  document.addEventListener('astro:page-load', initMarquee);
-  document.addEventListener('DOMContentLoaded', initMarquee);
+  document.addEventListener("astro:page-load", initMarquee);
+  document.addEventListener("DOMContentLoaded", initMarquee);
 </script>

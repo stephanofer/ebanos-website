@@ -8,51 +8,76 @@ interface Props {
 
 const { rating, maxRating = 5, size = "sm", showValue = false } = Astro.props;
 
-// Calcular estrellas llenas, medias y vacías
 const fullStars = Math.floor(rating);
 const hasHalfStar = rating % 1 >= 0.5;
 const emptyStars = maxRating - fullStars - (hasHalfStar ? 1 : 0);
 
 const sizeClasses = {
   sm: "star-sm",
-  md: "star-md", 
-  lg: "star-lg"
+  md: "star-md",
+  lg: "star-lg",
 };
 ---
 
-<div class={`star-rating ${sizeClasses[size]}`} role="img" aria-label={`Puntuación: ${rating} de ${maxRating} estrellas`}>
+<div
+  class={`star-rating ${sizeClasses[size]}`}
+  role="img"
+  aria-label={`Puntuación: ${rating} de ${maxRating} estrellas`}
+>
   <div class="stars">
-    {/* Estrellas llenas */}
-    {Array(fullStars).fill(0).map(() => (
-      <svg class="star star-full" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-      </svg>
-    ))}
-    
-    {/* Estrella media */}
-    {hasHalfStar && (
-      <svg class="star star-half" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="halfGradient">
-            <stop offset="50%" stop-color="currentColor"/>
-            <stop offset="50%" stop-color="#e0e0e0"/>
-          </linearGradient>
-        </defs>
-        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="url(#halfGradient)"/>
-      </svg>
-    )}
-    
-    {/* Estrellas vacías */}
-    {Array(emptyStars).fill(0).map(() => (
-      <svg class="star star-empty" viewBox="0 0 24 24" fill="#e0e0e0" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-      </svg>
-    ))}
+    {
+      Array(fullStars)
+        .fill(0)
+        .map(() => (
+          <svg
+            class="star star-full"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+          </svg>
+        ))
+    }
+
+    {
+      hasHalfStar && (
+        <svg
+          class="star star-half"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <linearGradient id="halfGradient">
+              <stop offset="50%" stop-color="currentColor" />
+              <stop offset="50%" stop-color="#e0e0e0" />
+            </linearGradient>
+          </defs>
+          <path
+            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+            fill="url(#halfGradient)"
+          />
+        </svg>
+      )
+    }
+
+    {
+      Array(emptyStars)
+        .fill(0)
+        .map(() => (
+          <svg
+            class="star star-empty"
+            viewBox="0 0 24 24"
+            fill="#e0e0e0"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+          </svg>
+        ))
+    }
   </div>
-  
-  {showValue && (
-    <span class="rating-value">{rating.toFixed(1)}</span>
-  )}
+
+  {showValue && <span class="rating-value">{rating.toFixed(1)}</span>}
 </div>
 
 <style>
@@ -69,7 +94,7 @@ const sizeClasses = {
   }
 
   .star {
-    color: #f59e0b; /* Amber/gold - color óptimo para estrellas según UX */
+    color: #f59e0b; 
   }
 
   .star-full {
@@ -80,7 +105,6 @@ const sizeClasses = {
     color: #e0e0e0;
   }
 
-  /* Tamaños */
   .star-sm .star {
     width: 14px;
     height: 14px;

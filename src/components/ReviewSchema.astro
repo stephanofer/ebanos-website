@@ -23,31 +23,36 @@ const aggregateRatingSchema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   "@id": `${siteUrl}/#organization`,
-  "name": "Ebanos Muebles",
-  "aggregateRating": {
+  name: "Ebanos Muebles",
+  aggregateRating: {
     "@type": "AggregateRating",
-    "ratingValue": averageRating,
-    "reviewCount": reviews.length,
-    "bestRating": "5",
-    "worstRating": "1"
+    ratingValue: averageRating,
+    reviewCount: reviews.length,
+    bestRating: "5",
+    worstRating: "1",
   },
-  "review": reviews.slice(0, 10).map((review) => ({
+  review: reviews.slice(0, 10).map((review) => ({
     "@type": "Review",
-    "author": {
+    author: {
       "@type": "Person",
-      "name": review.nombre
+      name: review.nombre,
     },
-    "reviewRating": {
+    reviewRating: {
       "@type": "Rating",
-      "ratingValue": review.puntuacion,
-      "bestRating": "5",
-      "worstRating": "1"
+      ratingValue: review.puntuacion,
+      bestRating: "5",
+      worstRating: "1",
     },
-    "name": review.titulo,
-    "reviewBody": review.descripcion,
-    "datePublished": review.fecha?.toISOString().split('T')[0] || new Date().toISOString().split('T')[0]
-  }))
+    name: review.titulo,
+    reviewBody: review.descripcion,
+    datePublished:
+      review.fecha?.toISOString().split("T")[0] ||
+      new Date().toISOString().split("T")[0],
+  })),
 };
 ---
 
-<script type="application/ld+json" set:html={JSON.stringify(aggregateRatingSchema)} />
+<script
+  type="application/ld+json"
+  set:html={JSON.stringify(aggregateRatingSchema)}
+/>

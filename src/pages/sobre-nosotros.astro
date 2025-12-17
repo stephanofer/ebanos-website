@@ -3,11 +3,12 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import SectionContainer from "@/components/SectionContainer.astro";
 
 const title = "Sobre Nosotros - Mueblería con +30 Años en Chiclayo";
-const description = "Conoce la historia de Ebanos Muebles. Desde 1990 fabricando muebles a medida de alta calidad en Chiclayo, Perú. Empresa familiar con experiencia comprobada.";
+const description =
+  "Conoce la historia de Ebanos Muebles. Desde 1990 fabricando muebles a medida de alta calidad en Chiclayo, Perú. Empresa familiar con experiencia comprobada.";
 
 const breadcrumbs = [
   { name: "Inicio", url: "/" },
-  { name: "Sobre Nosotros", url: "/sobre-nosotros" }
+  { name: "Sobre Nosotros", url: "/sobre-nosotros" },
 ];
 
 const fundador = {
@@ -17,7 +18,12 @@ const fundador = {
 };
 ---
 
-<BaseLayout title={title} description={description} pageType="about" breadcrumbs={breadcrumbs}>
+<BaseLayout
+  title={title}
+  description={description}
+  pageType="about"
+  breadcrumbs={breadcrumbs}
+>
   <main class="sobre-nosotros-page">
     <SectionContainer name="sobre-hero">
       <div class="hero-statement reveal">
@@ -283,7 +289,7 @@ const fundador = {
     margin: 0;
   }
 
-   .reveal {
+  .reveal {
     opacity: 0;
     transform: translateY(30px);
     transition:
