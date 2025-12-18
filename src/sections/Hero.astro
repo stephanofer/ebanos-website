@@ -12,6 +12,8 @@ import { whatsAppLink } from "@/const";
       <img
         src="/assets/image1.webp"
         alt="Sala de estar elegante con muebles de madera de alta calidad fabricados por Ebanos"
+        width="1200"
+        height="800"
         loading="eager"
         fetchpriority="high"
         decoding="async"
@@ -37,6 +39,8 @@ import { whatsAppLink } from "@/const";
       <img
         src="/assets/image2.webp"
         alt="Cotiza tu proyecto de muebles"
+        width="600"
+        height="800"
         loading="lazy"
         decoding="async"
         class="cta-bg-image"
@@ -92,18 +96,18 @@ import { whatsAppLink } from "@/const";
     display: grid;
     gap: 0.75rem;
     grid-template-columns: 1fr;
-    min-height: 100vh;
+    /* height: 100vh; */
 
     @media (width > 850px) {
       grid-template-columns: 1.8fr 1fr;
       gap: 1rem;
-      min-height: calc(100vh - 143.09px);
+      height: calc(100vh - 143.09px);
     }
 
     @media (width > 1024px) {
       grid-template-columns: 2fr 1fr;
       gap: 1rem;
-      min-height: calc(100vh - 143.09px);
+      height: calc(100vh - 143.09px);
       padding-bottom: 1rem;
     }
   }
