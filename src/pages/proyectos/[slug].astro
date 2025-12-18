@@ -106,7 +106,7 @@ const projectSchema = {
 >
   <script type="application/ld+json" set:html={JSON.stringify(projectSchema)} />
   <main class="proyecto-detalle">
-    <SectionContainer name="proyecto-nav-top">
+    <section id="proyecto-nav-top">
       <div class="proyecto-nav-top">
         <a href="/proyectos" class="nav-back">
           <svg
@@ -122,10 +122,10 @@ const projectSchema = {
           Ver todos los proyectos
         </a>
       </div>
-    </SectionContainer>
+    </section>
 
-    <SectionContainer name="proyecto-hero">
-      <section class="proyecto-hero reveal">
+    <section id="proyecto-hero" class="hero">
+      <div class="proyecto-hero reveal">
         <div class="hero-image">
           <img src={imagenPortada} alt={imagenPortadaAlt} />
           <div class="hero-overlay">
@@ -136,10 +136,10 @@ const projectSchema = {
             </div>
           </div>
         </div>
-      </section>
-    </SectionContainer>
+      </div>
+    </section>
 
-    <SectionContainer name="proyecto-content">
+    <section id="proyecto-content">
       <div class="proyecto-layout">
         <aside class="proyecto-sidebar reveal">
           <div class="sidebar-card">
@@ -318,11 +318,18 @@ const projectSchema = {
           }
         </div>
       </div>
-    </SectionContainer>
+    </section>
   </main>
 </BaseLayout>
 
 <style>
+  section {
+    max-width: 1200px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin: auto;
+  }
+
   .proyecto-detalle {
     padding-bottom: 4rem;
   }
@@ -474,7 +481,7 @@ const projectSchema = {
 
   .galeria-item img {
     width: 100%;
-    height: auto;
+    max-height: 1000px;
     display: block;
     transition: transform 0.4s ease;
   }
