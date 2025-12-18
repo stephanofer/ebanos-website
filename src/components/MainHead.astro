@@ -32,7 +32,6 @@ const ogImageUrl = image.startsWith("http") ? image : `${siteUrl}${image}`;
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width" />
 
-<!-- Preload LCP image PRIMERO - crítico para performance -->
 <link
   rel="preload"
   href="/assets/image1.webp"
@@ -41,7 +40,6 @@ const ogImageUrl = image.startsWith("http") ? image : `${siteUrl}${image}`;
   fetchpriority="high"
 />
 
-<!-- Preload fuentes críticas -->
 <link
   rel="preload"
   href="/fonts/Inter.woff2"
@@ -138,7 +136,6 @@ const ogImageUrl = image.startsWith("http") ? image : `${siteUrl}${image}`;
     });
   }
 
-  // Cargar GTM después de interacción o después de 3 segundos (lo que ocurra primero)
   var gtmTimeout = setTimeout(loadGTM, 3000);
   
   ['scroll', 'click', 'touchstart', 'mousemove', 'keydown'].forEach(function(event) {
