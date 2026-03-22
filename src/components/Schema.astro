@@ -1,4 +1,6 @@
 ---
+import { email, phoneNumber, socialLinks } from "@/const";
+
 interface Props {
   type?: "home" | "page" | "project" | "contact" | "about";
   pageTitle?: string;
@@ -49,8 +51,8 @@ const organizationSchema = {
     `${siteUrl}/assets/sobre-nosotros.webp`,
     `${siteUrl}/assets/experto.webp`,
   ],
-  telephone: "+51979264871",
-  email: "ebanosmueblesperu@gmail.com",
+  telephone: phoneNumber,
+  email: email,
   address: {
     "@type": "PostalAddress",
     streetAddress: "Nicaragua 1140",
@@ -212,9 +214,9 @@ const organizationSchema = {
     ],
   },
   sameAs: [
-    "https://www.facebook.com/ebanosmueblesperu",
-    "https://www.instagram.com/ebanosmuebles/",
-    "https://www.tiktok.com/@ebanosmuebles",
+    socialLinks.facebook,
+    socialLinks.instagram,
+    socialLinks.tiktok,
   ],
 };
 

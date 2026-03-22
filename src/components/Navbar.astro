@@ -5,6 +5,7 @@ import Logo from "@/assets/main-logo.svg";
 import Arrow from "@/assets/arrow-up.svg";
 import Cart from "@/assets/cart.svg";
 import Button from "@/components/Button.astro";
+import { whatsAppLink } from "@/const";
 
 const sections = [
   { name: "Servicios", href: "/#servicios" },
@@ -33,7 +34,7 @@ const sections = [
     </ul>
 
     <div class="buttons">
-      <Button href="https://wa.me/51979264871">
+      <Button href={whatsAppLink} target="_blank">
         <Arrow slot="icon-right" />
         ¡Diseño Personalizado!
       </Button>
@@ -56,13 +57,13 @@ const sections = [
           ))
         }
         <div class="mobile-buttons">
-          <Button href="mailto:contacto@stephanofer.com">
+          <Button href={whatsAppLink} target="_blank">
             <Arrow slot="icon-right" />
             ¡Diseño Personalizado!
           </Button>
-          <Button href="mailto:contacto@stephanofer.com" type="secondary">
+          <Button href="/proyectos" type="secondary" target="_self">
             <Cart slot="icon-left" />
-            ¡Ultimos Proyectos!
+            ¡Últimos Proyectos!
           </Button>
         </div>
       </nav>
