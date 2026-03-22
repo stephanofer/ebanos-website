@@ -4,7 +4,7 @@ import Instagram from "@/assets/instagram.svg";
 import Tiktok from "@/assets/tiktok.svg";
 import Facebook from "@/assets/facebook.svg";
 import Youtube from "@/assets/youtube.svg";
-import { email, phoneNumber, socialLinks } from "@/const";
+import { email, phoneNumber, socialLinks, horarios } from "@/const";
 ---
 
 <footer class="footer">
@@ -73,8 +73,8 @@ import { email, phoneNumber, socialLinks } from "@/const";
         </p>
 
         <div class="hours">
-          <p><strong>L-V: DE 8:00 A 18:00 h</strong></p>
-          <p><strong>S-D: DE 8:00 A 18:00 h</strong></p>
+          <p><strong>{horarios.semana}</strong></p>
+          <p><strong>{horarios.domingo}</strong></p>
         </div>
       </div>
     </div>

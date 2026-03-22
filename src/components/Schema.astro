@@ -100,13 +100,13 @@ const organizationSchema = {
         "Saturday",
       ],
       opens: "08:00",
-      closes: "18:00",
+      closes: "20:00",
     },
     {
       "@type": "OpeningHoursSpecification",
       dayOfWeek: "Sunday",
       opens: "08:00",
-      closes: "18:00",
+      closes: "15:00",
     },
   ],
   priceRange: "$$",
@@ -290,6 +290,16 @@ const projectSchema = projectData
         "@type": "Brand",
         name: "Ebanos Muebles",
       },
+      offers: {
+        "@type": "Offer",
+        priceCurrency: "PEN",
+        availability: "https://schema.org/InStock",
+        price: "0",
+        url: currentUrl,
+        seller: {
+          "@id": `${siteUrl}/#organization`
+        }
+      }
     }
   : null;
 
