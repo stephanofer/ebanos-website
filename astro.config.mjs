@@ -5,7 +5,6 @@ import robotsTxt from "astro-robots-txt";
 
 export default defineConfig({
   site: "https://ebanosmuebles.com",
-  trailingSlash: "always",
   integrations: [
     sitemap({
       lastmod: new Date(),
