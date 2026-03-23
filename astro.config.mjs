@@ -1,7 +1,6 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 import sitemap from "@astrojs/sitemap";
-import robotsTxt from "astro-robots-txt";
 
 export default defineConfig({
   site: "https://ebanosmuebles.com",
@@ -14,18 +13,6 @@ export default defineConfig({
         video: false,
         xhtml: false,
       },
-    }),
-
-    robotsTxt({
-      policy: [
-        {
-          userAgent: "*",
-          allow: "/",
-          disallow: ["/404"],
-        },
-      ],
-      sitemap: true,
-      host: "ebanosmuebles.com",
     }),
   ],
 });

@@ -1,0 +1,134 @@
+# General rule for all crawlers
+User-agent: *
+Disallow: /404
+Allow: /
+
+# Traditional search engines
+User-agent: Googlebot
+Allow: /
+Disallow: /404
+
+User-agent: BingBot
+Allow: /
+Disallow: /404
+
+User-agent: Applebot
+Allow: /
+Disallow: /404
+
+User-agent: DuckAssistBot
+Allow: /
+Disallow: /404
+
+# OpenAI crawlers
+User-agent: GPTBot
+Allow: /
+Disallow: /404
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /404
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /404
+
+# Anthropic crawlers
+User-agent: ClaudeBot
+Allow: /
+Disallow: /404
+
+User-agent: Claude-SearchBot
+Allow: /
+Disallow: /404
+
+User-agent: Claude-User
+Allow: /
+Disallow: /404
+
+# Perplexity crawlers
+User-agent: PerplexityBot
+Allow: /
+Disallow: /404
+
+User-agent: Perplexity-User
+Allow: /
+Disallow: /404
+
+# Meta crawlers
+User-agent: Meta-ExternalAgent
+Allow: /
+Disallow: /404
+
+User-agent: Meta-ExternalFetcher
+Allow: /
+Disallow: /404
+
+User-agent: FacebookBot
+Allow: /
+Disallow: /404
+
+# Google AI crawlers
+User-agent: Google-CloudVertexBot
+Allow: /
+Disallow: /404
+
+# Amazon crawler
+User-agent: Amazonbot
+Allow: /
+Disallow: /404
+
+# Mistral AI crawler
+User-agent: MistralAI-User
+Allow: /
+Disallow: /404
+
+# Cloudflare crawler
+User-agent: Cloudflare Crawler
+Allow: /
+Disallow: /404
+
+# Manus AI crawler
+User-agent: Manus Bot
+Allow: /
+Disallow: /404
+
+# Other AI and indexing crawlers
+User-agent: Anchor Browser
+Allow: /
+Disallow: /404
+
+User-agent: archive.org_bot
+Allow: /
+Disallow: /404
+
+User-agent: Bytespider
+Allow: /
+Disallow: /404
+
+User-agent: CCBot
+Allow: /
+Disallow: /404
+
+User-agent: Novellum AI Crawl
+Allow: /
+Disallow: /404
+
+User-agent: PetalBot
+Allow: /
+Disallow: /404
+
+User-agent: ProRataInc
+Allow: /
+Disallow: /404
+
+User-agent: Terracotta Bot
+Allow: /
+Disallow: /404
+
+User-agent: Timpibot
+Allow: /
+Disallow: /404
+
+Sitemap: https://ebanosmuebles.com/sitemap-index.xml
+Host: ebanosmuebles.com
