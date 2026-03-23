@@ -6,14 +6,6 @@ interface Props {
   pageTitle?: string;
   pageDescription?: string;
   breadcrumbs?: Array<{ name: string; url: string }>;
-  projectData?: {
-    name: string;
-    description: string;
-    image: string;
-    datePublished: string;
-    category: string;
-    location?: string;
-  };
   collectionItems?: Array<{
     name: string;
     url: string;
@@ -26,7 +18,6 @@ const {
   pageTitle = "Ebanos Muebles",
   pageDescription = "",
   breadcrumbs = [],
-  projectData,
   collectionItems,
 } = Astro.props;
 
@@ -400,36 +391,6 @@ const breadcrumbSchema =
       }
     : null;
 
-const projectSchema = projectData
-  ? {
-      "@context": "https://schema.org",
-      "@type": "Product",
-      name: projectData.name,
-      description: projectData.description,
-      image: projectData.image.startsWith("http")
-        ? projectData.image
-        : `${siteUrl}${projectData.image}`,
-      category: projectData.category,
-      manufacturer: {
-        "@id": `${siteUrl}/#organization`,
-      },
-      brand: {
-        "@type": "Brand",
-        name: "Ebanos Muebles",
-      },
-      offers: {
-        "@type": "Offer",
-        priceCurrency: "PEN",
-        availability: "https://schema.org/InStock",
-        price: "0",
-        url: currentUrl,
-        seller: {
-          "@id": `${siteUrl}/#organization`
-        }
-      }
-    }
-  : null;
-
 const schemas: any[] = [organizationSchema, websiteSchema, webPageSchema];
 
 if (type === "home" || type === "about") {
@@ -438,10 +399,6 @@ if (type === "home" || type === "about") {
 
 if (breadcrumbSchema) {
   schemas.push(breadcrumbSchema);
-}
-
-if (projectSchema) {
-  schemas.push(projectSchema);
 }
 
 const itemListSchema =
