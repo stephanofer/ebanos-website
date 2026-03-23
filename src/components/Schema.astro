@@ -120,8 +120,7 @@ const organizationSchema = {
   paymentAccepted: "Cash, Bank Transfer, Yape, Plin",
   foundingDate: "1990",
   founder: {
-    "@type": "Person",
-    name: "Huildor Fernandez Cayao",
+    "@id": `${siteUrl}/#founder`,
   },
   numberOfEmployees: {
     "@type": "QuantitativeValue",
@@ -306,6 +305,46 @@ const organizationSchema = {
   ],
 };
 
+const founderSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": `${siteUrl}/#founder`,
+  name: "Huildor Fernandez Cayao",
+  jobTitle: "Fundador y Maestro Carpintero",
+  description:
+    "Maestro carpintero con más de 30 años de experiencia en fabricación de muebles a medida. Fundador de Ebanos Muebles en 1990 en Chiclayo, Perú.",
+  image: `${siteUrl}/assets/experto.webp`,
+  url: `${siteUrl}/sobre-nosotros`,
+  worksFor: {
+    "@id": `${siteUrl}/#organization`,
+  },
+  knowsAbout: [
+    "Carpintería fina",
+    "Fabricación de muebles a medida",
+    "Muebles de madera de cedro",
+    "Muebles de melamina",
+    "Diseño de mobiliario",
+    "Puertas y portones de madera",
+    "Cocinas integrales",
+    "Closets y roperos",
+  ],
+  nationality: {
+    "@type": "Country",
+    name: "Perú",
+  },
+  workLocation: {
+    "@type": "Place",
+    name: "Taller Ebanos Muebles",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Nicaragua 1140",
+      addressLocality: "Chiclayo",
+      addressRegion: "Lambayeque",
+      addressCountry: "PE",
+    },
+  },
+};
+
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
@@ -392,6 +431,10 @@ const projectSchema = projectData
   : null;
 
 const schemas: any[] = [organizationSchema, websiteSchema, webPageSchema];
+
+if (type === "home" || type === "about") {
+  schemas.push(founderSchema);
+}
 
 if (breadcrumbSchema) {
   schemas.push(breadcrumbSchema);
