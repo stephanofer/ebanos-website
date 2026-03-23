@@ -39,13 +39,20 @@ const breadcrumbs = [
   { name: "Inicio", url: "/" },
   { name: "Proyectos", url: "/proyectos" },
 ];
+
+const collectionItems = proyectos.map((proyecto) => ({
+  name: proyecto.data.titulo,
+  url: `/proyectos/${proyecto.data.slug}`,
+  image: proyecto.data.imagenPortada,
+}));
 ---
 
 <BaseLayout
   title={pageTitle}
   description={pageDescription}
-  pageType="page"
+  pageType="collection"
   breadcrumbs={breadcrumbs}
+  collectionItems={collectionItems}
 >
   <main class="proyectos-page">
     <SectionContainer name="proyectos-header">

@@ -10,8 +10,9 @@ import "@/styles/global.css";
 interface Props {
   title?: string;
   description?: string;
-  pageType?: "home" | "page" | "project" | "contact" | "about";
+  pageType?: "home" | "page" | "project" | "contact" | "about" | "collection";
   breadcrumbs?: Array<{ name: string; url: string }>;
+  collectionItems?: Array<{ name: string; url: string; image: string }>;
 }
 
 const {
@@ -19,6 +20,7 @@ const {
   description = "Fábrica de muebles a medida en Chiclayo, Perú. +30 años creando muebles de calidad.",
   pageType = "page",
   breadcrumbs = [],
+  collectionItems,
 } = Astro.props;
 ---
 
@@ -70,6 +72,7 @@ const {
       description={description}
       pageType={pageType}
       breadcrumbs={breadcrumbs}
+      collectionItems={collectionItems}
     />
     <ClientRouter />
   </head>
