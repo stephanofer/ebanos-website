@@ -83,5 +83,5 @@ keywords:
 </p>
 
 <p>
-  <a href="https://wa.me/51979264871" target="_blank" rel="noopener noreferrer"><strong>👉 ¡Cotizar Puerta Inteligente por WhatsApp!</strong></a>
+  <a href="https://wa.me/51979264871" target="_blank" rel="noopener noreferrer" data-track-location="project_content"><strong>👉 ¡Cotizar Puerta Inteligente por WhatsApp!</strong></a>
 </p>

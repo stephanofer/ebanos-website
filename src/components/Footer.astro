@@ -3,8 +3,8 @@ import MainLogo from "@/assets/main-logo.svg";
 import Instagram from "@/assets/instagram.svg";
 import Tiktok from "@/assets/tiktok.svg";
 import Facebook from "@/assets/facebook.svg";
-import Youtube from "@/assets/youtube.svg";
-import { email, phoneNumber, socialLinks, horarios } from "@/const";
+import Whatsapp from "@/assets/whatsapp.svg";
+import { email, phoneNumber, socialLinks, horarios,whatsAppLink  } from "@/const";
 ---
 
 <footer class="footer">
@@ -28,12 +28,12 @@ import { email, phoneNumber, socialLinks, horarios } from "@/const";
         <ul>
           <li>
             <a
-              href={socialLinks.instagram}
+              href={whatsAppLink}
               target="_blank"
               class="social-link"
             >
-              <Instagram width="24" height="24" />
-              Instagram
+              <Whatsapp width="20" height="20" />
+              Whatsapp
             </a>
           </li>
           <li>
@@ -43,7 +43,7 @@ import { email, phoneNumber, socialLinks, horarios } from "@/const";
               class="social-link"
             >
               <Tiktok width="24" height="24" />
-              Tik Tok
+              TikTok
             </a>
           </li>
           <li>
@@ -54,6 +54,16 @@ import { email, phoneNumber, socialLinks, horarios } from "@/const";
             >
               <Facebook width="24" height="24" />
               Facebook
+            </a>
+          </li>
+          <li>
+            <a
+              href={socialLinks.instagram}
+              target="_blank"
+              class="social-link"
+            >
+              <Instagram width="24" height="24" />
+              Instagram
             </a>
           </li>
         </ul>

@@ -77,5 +77,5 @@ keywords:
 </p>
 
 <p>
-  <a href="https://wa.me/51979264871" target="_blank" rel="noopener noreferrer"><strong>👉 ¡Cotizar Escritorio Gamer/Pro aquí!</strong></a>
+  <a href="https://wa.me/51979264871" target="_blank" rel="noopener noreferrer" data-track-location="project_content"><strong>👉 ¡Cotizar Escritorio Gamer/Pro aquí!</strong></a>
 </p>
