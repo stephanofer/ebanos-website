@@ -87,6 +87,44 @@ Para que el código realmente envíe datos, hay que configurar GTM y GA4 desde s
 3. En Tag Assistant, verificar que el evento `whatsapp_click` se dispara con los parámetros correctos
 4. Si todo OK → **Submit** (publicar) el container de GTM
 
+Cómo ver click_location y event_page_path
+Para eso lo mejor es una Exploration.
+
+Ir a exploraciones
+Explore
+Free form
+Agrega dimensiones
+Importa estas dimensiones:
+
+Event name
+Custom: click_location
+Custom: event_page_path (si luego la registras como custom dimension)
+opcional:
+Page path + query string
+Page location
+Agrega métricas
+Event count
+opcional:
+Users
+Configuración básica
+Rows
+click_location
+o event_page_path
+Values
+Event count
+Filter
+Event name exactly matches whatsapp_click
+Así verás algo como:
+
+hero -> 10
+navbar -> 6
+footer -> 2
+Y si usas event_page_path:
+
+/ -> 12
+/contacto -> 3
+
+
 ### Paso 5: Marcar como Key Event en GA4
 
 1. Ir a [analytics.google.com](https://analytics.google.com)
