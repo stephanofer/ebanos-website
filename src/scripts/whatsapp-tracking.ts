@@ -19,7 +19,7 @@ function initWhatsAppTracking(): void {
     window.dataLayer.push({
       event: "whatsapp_click",
       click_location: anchor.dataset.trackLocation || "unknown",
-      page_path: window.location.pathname,
+      event_page_path: window.location.pathname,
     });
   });
 }
